@@ -1,6 +1,6 @@
 import { Action } from './actions';
 import * as actions from './actions';
-import { mouseUpCanvas, mouseUpNode } from './nodes';
+import { mouseUpCanvas, mouseDownNode, mouseDownCanvas, mouseUpNode, mouseDrag } from './nodes';
 
 export interface State {
   entities: Entities;
@@ -19,6 +19,13 @@ export interface NodeEntities {
 export interface NodeInfo {
   byId: { [key: string]: Node };
   selected: string[];
+  offsets: null | NodeOffset[];
+}
+
+export interface NodeOffset {
+  id: string;
+  offsetX: number;
+  offsetY: number;
 }
 
 export interface Node {
@@ -29,6 +36,7 @@ export interface Node {
 
 export interface UiInfo {
   multiSelect: boolean;
+  isMouseDown: boolean;
 }
 
 const initState: State = {
@@ -54,11 +62,13 @@ const initState: State = {
           },
         },
         selected: [],
+        offsets: null,
       },
     },
   },
   ui: {
     multiSelect: false,
+    isMouseDown: false,
   },
 };
 
@@ -71,19 +81,40 @@ const reduce = (state: State=initState, action: Action): State => {
           ...state.entities,
           nodes: mouseUpCanvas(state),
         },
+        ui: {
+          ...state.ui,
+          isMouseDown: false,
+        },
       };
     case actions.MOUSE_UP_NODE:
       return {
         ...state,
         entities: {
           ...state.entities,
-          nodes: mouseUpNode(state, action.payload.id),
+          nodes: mouseUpNode(state),
+        },
+        ui: {
+          ...state.ui,
+          isMouseDown: false,
+        },
+      };
+    case actions.MOUSE_DOWN_NODE:
+      return {
+        ...state,
+        entities: {
+          ...state.entities,
+          nodes: mouseDownNode(state, action.payload.id),
+        },
+        ui: {
+          ...state.ui,
+          isMouseDown: true,
         },
       };
     case actions.KEY_DOWN:
       return {
         ...state,
         ui: {
+          ...state.ui,
           multiSelect: action.payload.key === 'Shift' || state.ui.multiSelect,
         },
       };
@@ -91,7 +122,24 @@ const reduce = (state: State=initState, action: Action): State => {
       return {
         ...state,
         ui: {
+          ...state.ui,
           multiSelect: action.payload.key === 'Shift' ? false : state.ui.multiSelect,
+        },
+      };
+    case actions.MOUSE_DOWN_CANVAS:
+      return {
+        ...state,
+        entities: {
+          ...state.entities,
+          nodes: mouseDownCanvas(state, action.payload.offsetX, action.payload.offsetY),
+        },
+      };
+    case actions.MOUSE_DRAG:
+      return {
+        ...state,
+        entities: {
+          ...state.entities,
+          nodes: mouseDrag(state, action.payload.offsetX, action.payload.offsetY),
         },
       };
     default:

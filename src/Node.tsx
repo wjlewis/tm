@@ -8,6 +8,7 @@ import { State, Node as NodeType } from './state/reducers';
 export interface NodeProps {
   info: NodeType;
   isSelected: boolean;
+  mouseDown: () => void;
   mouseUp: () => void;
 }
 
@@ -17,10 +18,14 @@ class Node extends React.Component<NodeProps> {
     return (
       <g>
         {this.props.isSelected && <circle cx={x} cy={y} r="22" fill="red" />}
-        <circle cx={x} cy={y} r="20" onMouseUp={this.handleMouseUp} />
+        <circle cx={x} cy={y} r="20" onMouseDown={this.handleMouseDown} onMouseUp={this.handleMouseUp} />
       </g>
     );
   }
+
+  private handleMouseDown = () => {
+    this.props.mouseDown();
+  };
 
   private handleMouseUp = (evt: any) => {
     evt.stopPropagation();
@@ -33,7 +38,8 @@ const mapStateToProps = (state: State, ownProps: any) => ({
 });
 
 const mapDispatchToProps = (dispatch: Dispatch, ownProps: any) => ({
-  mouseUp: () => dispatch(actions.mouseUpNode(ownProps.info.id)),
+  mouseDown: () => dispatch(actions.mouseDownNode(ownProps.info.id)),
+  mouseUp: () => dispatch(actions.mouseUpNode()),
 });
 
 export default connect(
