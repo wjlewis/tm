@@ -1,20 +1,30 @@
-import { State, Node, NodeInfo, MouseInfo } from './reducers/reducer';
+import { State, Node, NodeInfo, MouseInfo, Transition, TransitionInfo } from './reducers/reducer';
 
 export const currentNodeInfo = (state: State): NodeInfo => (
   state.entities.nodes.wip || state.entities.nodes.committed
 );
 
 export const allNodes = (state: State): Node[] => (
-  Object.values(
-    currentNodeInfo(state).byId
-  )
+  Object.values(currentNodeInfo(state).byId)
 );
 
 export const isNodeSelected = (state: State, id: string): boolean => (
   currentNodeInfo(state).selected.includes(id)
 );
 
-export const isMouseDown = (state: State): boolean => state.ui.isMouseDown;
+export const nodeById = (state: State, id: string): Node => (
+  currentNodeInfo(state).byId[id]
+);
+
+export const isMouseDownNode = (state: State): boolean => state.ui.isMouseDownNode;
+
+export const currentTransitionInfo = (state: State): TransitionInfo => (
+  state.entities.transitions.wip || state.entities.transitions.committed
+);
+
+export const allTransitions = (state: State): Transition[] => (
+  Object.values(currentTransitionInfo(state).byId)
+);
 
 /*
  * In order to take certain actions (for instance, rendering available editing

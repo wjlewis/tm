@@ -58,3 +58,14 @@ export const addNode = (id: string, x: number, y: number): Action => ({
   type: ADD_NODE,
   payload: { id, x, y },
 });
+
+export const MOUSE_DOWN_TRANSITION_CONTROL = 'MOUSE_DOWN_TRANSITION_CONTROL';
+export const mouseDownTransitionControl = (id: string): Action => ({
+  type: MOUSE_DOWN_TRANSITION_CONTROL,
+  payload: { id },
+});
+
+export const MOUSE_UP_TRANSITION_CONTROL = 'MOUSE_UP_TRANSITION_CONTROL';
+export const mouseUpTransitionControl = (): Action => ({
+  type: MOUSE_UP_TRANSITION_CONTROL,
+});

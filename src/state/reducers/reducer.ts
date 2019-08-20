@@ -1,6 +1,7 @@
 import { Action } from '../actions';
 import * as actions from '../actions';
 import * as nodes from './nodes';
+import * as transitions from './transitions';
 
 export interface State {
   entities: Entities;
@@ -9,6 +10,7 @@ export interface State {
 
 export interface Entities {
   nodes: NodeEntities;
+  transitions: TransitionEntities;
 }
 
 export interface NodeEntities {
@@ -34,9 +36,28 @@ export interface Node {
   y: number;
 }
 
+export interface TransitionEntities {
+  wip: null | TransitionInfo;
+  committed: TransitionInfo;
+}
+
+export interface TransitionInfo {
+  byId: { [key: string]: Transition };
+  moving: null | string;
+}
+
+export interface Transition {
+  id: string;
+  start: string;
+  end: string;
+  controlX: number;
+  controlY: number;
+}
+
 export interface UiInfo {
   isMultiSelect: boolean;
-  isMouseDown: boolean;
+  isMouseDownNode: boolean;
+  isMouseDownTransitionControl: boolean;
   isAddingNode: boolean;
   mouse: MouseInfo;
 }
@@ -52,30 +73,31 @@ const initState: State = {
       wip: null,
       committed: {
         byId: {
-          'q0': {
-            id: 'q0',
-            x: 300,
-            y: 150,
-          },
-          'q1': {
-            id: 'q1',
-            x: 500,
-            y: 310,
-          },
-          'q2': {
-            id: 'q2',
-            x: 40,
-            y: 360,
-          },
+          'q0': { id: 'q0', x: 100, y: 240 },
+          'q1': { id: 'q1', x: 400, y: 150 },
+          'q2': { id: 'q2', x: 620, y: 450 },
         },
         selected: [],
         offsets: null,
       },
     },
+    transitions: {
+      wip: null,
+      committed: {
+        byId: {
+          'q0->q1': { id: 'q0->q1', start: 'q0', end: 'q1', controlX: 300, controlY: 430 },
+          'q1->q2': { id: 'q1->q2', start: 'q1', end: 'q2', controlX: 500, controlY: 200 },
+          'q2->q1': { id: 'q2->q1', start: 'q2', end: 'q1', controlX: 500, controlY: 500 },
+          'q1->q1': { id: 'q1->q1', start: 'q1', end: 'q1', controlX: 400, controlY: 40 },
+        },
+        moving: null,
+      },
+    },
   },
   ui: {
     isMultiSelect: false,
-    isMouseDown: false,
+    isMouseDownNode: false,
+    isMouseDownTransitionControl: false,
     isAddingNode: false,
     mouse: { x: 0, y: 0 },
   },
@@ -103,6 +125,10 @@ const reduce = (state: State=initState, action: Action): State => {
       return beginAddNode(state);
     case actions.ADD_NODE:
       return addNode(state, action);
+    case actions.MOUSE_DOWN_TRANSITION_CONTROL:
+      return mouseDownTransitionControl(state, action);
+    case actions.MOUSE_UP_TRANSITION_CONTROL:
+      return mouseUpTransitionControl(state);
     default:
       return state;
   }
@@ -116,7 +142,8 @@ const mouseUpCanvas = (state: State): State => ({
   },
   ui: {
     ...state.ui,
-    isMouseDown: false,
+    isMouseDownNode: false,
+    isMouseDownTransitionControl: false,
   },
 });
 
@@ -128,7 +155,7 @@ const mouseUpNode = (state: State): State => ({
   },
   ui: {
     ...state.ui,
-    isMouseDown: false,
+    isMouseDownNode: false,
   },
 });
 
@@ -140,7 +167,7 @@ const mouseDownNode = (state: State, action: Action): State => ({
   },
   ui: {
     ...state.ui,
-    isMouseDown: true,
+    isMouseDownNode: true,
   },
 });
 
@@ -157,6 +184,7 @@ const mouseMove = (state: State, action: Action): State => ({
   entities: {
     ...state.entities,
     nodes: nodes.mouseMove(state, action.payload.offsetX, action.payload.offsetY),
+    transitions: transitions.mouseMove(state, action.payload.offsetX, action.payload.offsetY),
   },
   ui: {
     ...state.ui,
@@ -185,6 +213,7 @@ const removeSelectedNodes = (state: State): State => ({
   entities: {
     ...state.entities,
     nodes: nodes.removeSelectedNodes(state),
+    transitions: transitions.removeSelectedNodes(state),
   },
 });
 
@@ -210,5 +239,25 @@ const addNode = (state: State, action: Action): State => {
     },
   };
 };
+
+const mouseDownTransitionControl = (state: State, action: Action): State => ({
+  ...state,
+  entities: {
+    ...state.entities,
+    transitions: transitions.mouseDownTransitionControl(state, action.payload.id),
+  },
+  ui: {
+    ...state.ui,
+    isMouseDownTransitionControl: true,
+  },
+});
+
+const mouseUpTransitionControl = (state: State): State => ({
+  ...state,
+  entities: {
+    ...state.entities,
+    transitions: transitions.mouseUpTransitionControl(state),
+  },
+});
 
 export default reduce;

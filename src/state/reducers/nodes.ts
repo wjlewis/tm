@@ -55,7 +55,7 @@ export const mouseDownCanvas = (state: State, mouseX: number, mouseY: number): N
 };
 
 export const mouseMove = (state: State, mouseX: number, mouseY: number): NodeEntities => {
-  if (!state.ui.isMouseDown) {
+  if (!state.ui.isMouseDownNode) {
     return state.entities.nodes;
   }
 

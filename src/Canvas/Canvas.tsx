@@ -2,13 +2,15 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { Dispatch } from 'redux';
 import * as actions from '../state/actions';
-import { State, Node as NodeType, MouseInfo } from '../state/reducers/reducer';
-import { isMouseDown, isAddingNode, allNodes, mouseInfo } from '../state/selectors';
+import { State, Node as NodeType, MouseInfo, Transition as TransitionType } from '../state/reducers/reducer';
+import { isMouseDownNode, isAddingNode, allNodes, mouseInfo, allTransitions } from '../state/selectors';
 import Node from '../Node/Node';
+import Transition from '../Transition/Transition';
 
 export interface CanvasProps {
   nodes: NodeType[];
-  isMouseDown: boolean;
+  transitions: TransitionType[];
+  isMouseDownNode: boolean;
   isAddingNode: boolean;
   mouseInfo: MouseInfo;
   mouseUp: () => void;
@@ -28,6 +30,7 @@ class Canvas extends React.Component<CanvasProps> {
            onMouseDown={this.handleMouseDown}
            onMouseUp={this.handleMouseUp}
            onMouseMove={this.handleMouseMove}>
+        {this.props.transitions.map(trans => <Transition key={trans.id} info={trans} />)}
         {this.props.nodes.map(node => <Node key={node.id} info={node} />)}
         {this.props.isAddingNode && this.renderPhantomNode()}
       </svg>
@@ -81,10 +84,11 @@ class Canvas extends React.Component<CanvasProps> {
 }
 
 const mapStateToProps = (state: State) => ({
-  isMouseDown: isMouseDown(state),
+  isMouseDownNode: isMouseDownNode(state),
   isAddingNode: isAddingNode(state),
   mouseInfo: mouseInfo(state),
   nodes: allNodes(state),
+  transitions: allTransitions(state),
 });
 
 const mapDispatchToProps = (dispatch: Dispatch) => ({
