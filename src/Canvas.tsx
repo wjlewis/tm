@@ -2,9 +2,9 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { Dispatch } from 'redux';
 import * as actions from './state/actions';
-import { isMouseDown, selectNodes } from './state/selectors';
+import { State, Node as NodeType } from './state/reducers/reducer';
+import { isMouseDown, allNodes } from './state/selectors';
 import Node from './Node';
-import { State, Node as NodeType } from './state/reducers';
 
 export interface CanvasProps {
   nodes: NodeType[];
@@ -74,7 +74,7 @@ class Canvas extends React.Component<CanvasProps> {
 
 const mapStateToProps = (state: State) => ({
   isMouseDown: isMouseDown(state),
-  nodes: selectNodes(state),
+  nodes: allNodes(state),
 });
 
 const mapDispatchToProps = (dispatch: Dispatch) => ({

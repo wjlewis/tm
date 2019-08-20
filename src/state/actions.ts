@@ -8,10 +8,10 @@ export const mouseUpCanvas = (): Action => ({
   type: MOUSE_UP_CANVAS,
 });
 
-export const MOUSE_DOWN_NODE = 'MOUSE_DOWN_NODE';
-export const mouseDownNode = (id: string): Action => ({
-  type: MOUSE_DOWN_NODE,
-  payload: { id },
+export const MOUSE_DOWN_CANVAS = 'MOUSE_DOWN_CANVAS';
+export const mouseDownCanvas = (offsetX: number, offsetY: number): Action => ({
+  type: MOUSE_DOWN_CANVAS,
+  payload: { offsetX, offsetY },
 });
 
 export const MOUSE_UP_NODE = 'MOUSE_UP_NODE';
@@ -19,10 +19,10 @@ export const mouseUpNode = (): Action => ({
   type: MOUSE_UP_NODE,
 });
 
-export const MOUSE_DOWN_CANVAS = 'MOUSE_DOWN_CANVAS';
-export const mouseDownCanvas = (offsetX: number, offsetY: number): Action => ({
-  type: MOUSE_DOWN_CANVAS,
-  payload: { offsetX, offsetY },
+export const MOUSE_DOWN_NODE = 'MOUSE_DOWN_NODE';
+export const mouseDownNode = (id: string): Action => ({
+  type: MOUSE_DOWN_NODE,
+  payload: { id },
 });
 
 export const MOUSE_DRAG = 'MOUSE_DRAG';

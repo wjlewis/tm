@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { Dispatch } from 'redux';
 import * as actions from './state/actions';
 import { isNodeSelected } from './state/selectors';
-import { State, Node as NodeType } from './state/reducers';
+import { State, Node as NodeType } from './state/reducers/reducer';
 
 export interface NodeProps {
   info: NodeType;
