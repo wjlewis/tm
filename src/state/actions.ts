@@ -25,9 +25,9 @@ export const mouseDownNode = (id: string): Action => ({
   payload: { id },
 });
 
-export const MOUSE_DRAG = 'MOUSE_DRAG';
-export const mouseDrag = (offsetX: number, offsetY: number): Action => ({
-  type: MOUSE_DRAG,
+export const MOUSE_MOVE = 'MOUSE_MOVE';
+export const mouseMove = (offsetX: number, offsetY: number): Action => ({
+  type: MOUSE_MOVE,
   payload: { offsetX, offsetY },
 });
 
@@ -41,4 +41,20 @@ export const KEY_UP = 'KEY_UP';
 export const keyUp = (key: string): Action => ({
   type: KEY_UP,
   payload: { key },
+});
+
+export const REMOVE_SELECTED_NODES = 'REMOVE_SELECTED_NODES';
+export const removeSelectedNodes = (): Action => ({
+  type: REMOVE_SELECTED_NODES,
+});
+
+export const BEGIN_ADD_NODE = 'BEGIN_ADD_NODE';
+export const beginAddNode = (): Action => ({
+  type: BEGIN_ADD_NODE,
+});
+
+export const ADD_NODE = 'ADD_NODE';
+export const addNode = (id: string, x: number, y: number): Action => ({
+  type: ADD_NODE,
+  payload: { id, x, y },
 });

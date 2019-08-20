@@ -37,6 +37,13 @@ export interface Node {
 export interface UiInfo {
   isMultiSelect: boolean;
   isMouseDown: boolean;
+  isAddingNode: boolean;
+  mouse: MouseInfo;
+}
+
+export interface MouseInfo {
+  x: number;
+  y: number;
 }
 
 const initState: State = {
@@ -69,6 +76,8 @@ const initState: State = {
   ui: {
     isMultiSelect: false,
     isMouseDown: false,
+    isAddingNode: false,
+    mouse: { x: 0, y: 0 },
   },
 };
 
@@ -82,12 +91,18 @@ const reduce = (state: State=initState, action: Action): State => {
       return mouseDownNode(state, action);
     case actions.MOUSE_DOWN_CANVAS:
       return mouseDownCanvas(state, action);
-    case actions.MOUSE_DRAG:
-      return mouseDrag(state, action);
+    case actions.MOUSE_MOVE:
+      return mouseMove(state, action);
     case actions.KEY_DOWN:
       return keyDown(state, action);
     case actions.KEY_UP:
       return keyUp(state, action);
+    case actions.REMOVE_SELECTED_NODES:
+      return removeSelectedNodes(state);
+    case actions.BEGIN_ADD_NODE:
+      return beginAddNode(state);
+    case actions.ADD_NODE:
+      return addNode(state, action);
     default:
       return state;
   }
@@ -137,11 +152,15 @@ const mouseDownCanvas = (state: State, action: Action): State => ({
   },
 });
 
-const mouseDrag = (state: State, action: Action): State => ({
+const mouseMove = (state: State, action: Action): State => ({
   ...state,
   entities: {
     ...state.entities,
-    nodes: nodes.mouseDrag(state, action.payload.offsetX, action.payload.offsetY),
+    nodes: nodes.mouseMove(state, action.payload.offsetX, action.payload.offsetY),
+  },
+  ui: {
+    ...state.ui,
+    mouse: { x: action.payload.offsetX, y: action.payload.offsetY },
   },
 });
 
@@ -160,5 +179,36 @@ const keyUp = (state: State, action: Action): State => ({
     isMultiSelect: action.payload.key === 'Shift' ? false : state.ui.isMultiSelect,
   },
 });
+
+const removeSelectedNodes = (state: State): State => ({
+  ...state,
+  entities: {
+    ...state.entities,
+    nodes: nodes.removeSelectedNodes(state),
+  },
+});
+
+const beginAddNode = (state: State): State => ({
+  ...state,
+  ui: {
+    ...state.ui,
+    isAddingNode: true,
+  },
+});
+
+const addNode = (state: State, action: Action): State => {
+  const { id, x, y } = action.payload;
+  return {
+    ...state,
+    entities: {
+      ...state.entities,
+      nodes: nodes.addNode(state, id, x, y),
+    },
+    ui: {
+      ...state.ui,
+      isAddingNode: false,
+    },
+  };
+};
 
 export default reduce;

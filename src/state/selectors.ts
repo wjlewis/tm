@@ -1,4 +1,4 @@
-import { State, Node, NodeInfo } from './reducers/reducer';
+import { State, Node, NodeInfo, MouseInfo } from './reducers/reducer';
 
 export const currentNodeInfo = (state: State): NodeInfo => (
   state.entities.nodes.wip || state.entities.nodes.committed
@@ -15,3 +15,31 @@ export const isNodeSelected = (state: State, id: string): boolean => (
 );
 
 export const isMouseDown = (state: State): boolean => state.ui.isMouseDown;
+
+/*
+ * In order to take certain actions (for instance, rendering available editing
+ * controls), we need to know a thing or two about the current "editing mode".
+ * This is determined by the number of nodes currently selected -- whether none,
+ * one, two, or more than two.
+ */
+export const editMode = (state: State): EditMode => {
+  const selectedCount = currentNodeInfo(state).selected.length;
+  switch (selectedCount) {
+    case 0: return EditModes.NO_SEL;
+    case 1: return EditModes.ONE_SEL;
+    case 2: return EditModes.TWO_SEL;
+    default: return EditModes.MANY_SEL;
+  }
+};
+
+export type EditMode = 'NO_SEL' | 'ONE_SEL' | 'TWO_SEL' | 'MANY_SEL';
+export const EditModes: { [key: string]: EditMode } = {
+  NO_SEL: 'NO_SEL',
+  ONE_SEL: 'ONE_SEL',
+  TWO_SEL: 'TWO_SEL',
+  MANY_SEL: 'MANY_SEL',
+};
+
+export const isAddingNode = (state: State): boolean => state.ui.isAddingNode;
+
+export const mouseInfo = (state: State): MouseInfo => state.ui.mouse;

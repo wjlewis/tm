@@ -54,7 +54,11 @@ export const mouseDownCanvas = (state: State, mouseX: number, mouseY: number): N
   };
 };
 
-export const mouseDrag = (state: State, mouseX: number, mouseY: number): NodeEntities => {
+export const mouseMove = (state: State, mouseX: number, mouseY: number): NodeEntities => {
+  if (!state.ui.isMouseDown) {
+    return state.entities.nodes;
+  }
+
   // Both the `wip` and the `offsets` properties should be non-null in this
   // case, but if either is null, we cannot execute the drag. In this case, we
   // return early (although we will consider throwing an Error as well).
@@ -80,3 +84,31 @@ export const mouseDrag = (state: State, mouseX: number, mouseY: number): NodeEnt
     },
   };
 };
+
+export const removeSelectedNodes = (state: State): NodeEntities => {
+  const info = currentNodeInfo(state);
+  const remaining = Object.values(info.byId).filter(node => !info.selected.includes(node.id));
+
+  return {
+    ...state.entities.nodes,
+    wip: null,
+    committed: {
+      ...state.entities.nodes.committed,
+      byId: arrayToById(remaining),
+      selected: [],
+    },
+  };
+};
+
+export const addNode = (state: State, id: string, x: number, y: number): NodeEntities => ({
+  ...state.entities.nodes,
+  wip: null,
+  committed: {
+    ...state.entities.nodes.committed,
+    byId: {
+      ...state.entities.nodes.committed.byId,
+      [id]: { id, x, y },
+    },
+    selected: [id],
+  },
+});
