@@ -1,9 +1,11 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { Dispatch } from 'redux';
-import * as actions from './state/actions';
-import { isNodeSelected } from './state/selectors';
-import { State, Node as NodeType } from './state/reducers/reducer';
+import classNames from 'classnames';
+import * as actions from '../state/actions';
+import { isNodeSelected } from '../state/selectors';
+import { State, Node as NodeType } from '../state/reducers/reducer';
+import './Node.css';
 
 export interface NodeProps {
   info: NodeType;
@@ -16,10 +18,10 @@ class Node extends React.Component<NodeProps> {
   render() {
     const { x, y } = this.props.info;
     return (
-      <g>
-        {this.props.isSelected && <circle cx={x} cy={y} r="22" fill="red" />}
-        <circle cx={x} cy={y} r="20" onMouseDown={this.handleMouseDown} onMouseUp={this.handleMouseUp} />
-      </g>
+      <circle className={this.constructClassName()}
+              cx={x} cy={y} r="20"
+              onMouseDown={this.handleMouseDown}
+              onMouseUp={this.handleMouseUp} />
     );
   }
 
@@ -31,6 +33,12 @@ class Node extends React.Component<NodeProps> {
     evt.stopPropagation();
     this.props.mouseUp();
   };
+
+  private constructClassName() {
+    return classNames('node', {
+      'node--selected': this.props.isSelected,
+    });
+  }
 }
 
 const mapStateToProps = (state: State, ownProps: any) => ({

@@ -1,10 +1,10 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { Dispatch } from 'redux';
-import * as actions from './state/actions';
-import { State, Node as NodeType } from './state/reducers/reducer';
-import { isMouseDown, allNodes } from './state/selectors';
-import Node from './Node';
+import * as actions from '../state/actions';
+import { State, Node as NodeType } from '../state/reducers/reducer';
+import { isMouseDown, allNodes } from '../state/selectors';
+import Node from '../Node/Node';
 
 export interface CanvasProps {
   nodes: NodeType[];
@@ -19,9 +19,10 @@ export interface CanvasProps {
 class Canvas extends React.Component<CanvasProps> {
   render() {
     return (
-      <svg xmlns="http://www.w3.org/2000/svg"
-           width="800"
-           height="400"
+      <svg className="canvas"
+           xmlns="http://www.w3.org/2000/svg"
+           width="100%"
+           height="100%"
            onMouseDown={this.handleMouseDown}
            onMouseMove={this.handleMouseMove}>
         {this.props.nodes.map(node => <Node key={node.id} info={node} />)}

@@ -1,0 +1,11 @@
+/*
+ * I've reserved this file for [1] CSS resets, and [2] any global styles. Many
+ * components have their own style file that is specific to their needs.
+ */
+
+html, body, #root {
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  overflow: auto;
+}

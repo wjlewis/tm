@@ -1,6 +1,6 @@
 import { State, NodeEntities } from './reducer';
 import { currentNodeInfo } from '../selectors';
-import { mod2Include, arrayToById } from '../../tools';
+import { mod2Include, arrayToById } from '../../tools/tools';
 
 export const mouseUpCanvas = (state: State): NodeEntities => ({
   ...state.entities.nodes,
