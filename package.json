@@ -9,13 +9,15 @@
     "@types/react": "16.9.1",
     "@types/react-dom": "16.8.5",
     "@types/react-redux": "^7.1.1",
+    "@types/uuid": "^3.4.5",
     "classnames": "^2.2.6",
     "react": "^16.9.0",
     "react-dom": "^16.9.0",
     "react-redux": "^7.1.0",
     "react-scripts": "3.1.1",
     "redux": "^4.0.4",
-    "typescript": "3.5.3"
+    "typescript": "3.5.3",
+    "uuid": "^3.3.3"
   },
   "scripts": {
     "start": "react-scripts start",
