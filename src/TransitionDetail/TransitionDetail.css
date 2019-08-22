@@ -1,0 +1,69 @@
+.transition-detail {
+  display: inline-flex;
+  outline: none;
+  padding: 0.1em;
+}
+
+/*
+ * Input boxes
+ */
+.transition-detail__input {
+  outline: none;
+  border: none;
+  border-bottom: 1px solid transparent;
+  background-color: transparent;
+  width: 1em;
+  text-align: center;
+
+  font-size: 10pt;
+  color: var(--text-light);
+  font-family: var(--code-font);
+
+  transition: border 0.2s, background-color 0.2s, color 0.2s;
+}
+
+.transition-detail:hover .transition-detail__input,
+.transition-detail__input--focus {
+  border-bottom: 1px solid var(--purple-medium);
+  color: var(--text-dark);
+}
+
+.transition-detail__input--focus {
+  background-color: var(--purple-light);
+}
+
+/*
+ * Input separators
+ */
+.transition-detail__separator {
+  padding: 0 4px;
+  font-size: 12pt;
+  font-family: var(--main-font);
+  color: var(--text-light);
+}
+
+/*
+ * Delete button
+ */
+.transition-detail__button {
+  outline: none;
+  border: none;
+  visibility: hidden;
+  margin-left: 0.7em;
+  transform: translateY(2px);
+
+  width: 16px;
+  height: 16px;
+  background-image: url('./delete-button.png');
+  background-color: transparent;
+
+  cursor: pointer;
+}
+
+.transition-detail:hover .transition-detail__button {
+  visibility: unset;
+}
+
+.transition-detail__button:hover {
+  background-image: url('./delete-button--hover.png');
+}

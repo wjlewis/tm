@@ -1,0 +1,60 @@
+/*
+ * The tape container
+ */
+.tape {
+  height: 50px;
+  border: none;
+  border-left: 1px solid var(--text-dark);
+  border-right: 1px solid var(--text-dark);
+
+  position: absolute;
+  bottom: 70px;
+  left: 50%;
+  transform: translateX(-50%);
+
+  overflow-x: scroll;
+  scroll-snap-type: x mandatory;
+}
+
+.tape__cells {
+  display: flex;
+  height: 100%;
+  position: absolute;
+}
+
+/*
+ * Individual cells and padding
+ */
+.tape__cell,
+.tape__padding-left,
+.tape__padding-right {
+  border: 1px solid var(--grey-light);
+  border-left: none;
+  box-sizing: border-box;
+}
+
+.tape__cell {
+  outline: none;
+
+  text-align: center;
+  font-size: 32pt;
+  font-family: var(--code-font);
+  color: var(--text-light);
+
+  scroll-snap-align: center;
+
+  transition: color 0.2s, border 0.2s, background-color 0.2s;
+}
+
+.tape__cell:hover, .tape__cell:focus {
+  color: var(--text-dark);
+  border-bottom: 1px solid var(--purple-medium);
+}
+
+.tape__cell:focus {
+  background-color: var(--purple-light);
+}
+
+.tape__padding-right {
+  border-right: none;
+}

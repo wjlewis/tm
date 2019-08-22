@@ -1,0 +1,48 @@
+.node {
+  fill: #fff;
+  stroke: var(--text-dark);
+
+  cursor: pointer;
+
+  transition: stroke 0.2s, fill 0.1s;
+}
+
+.node:hover {
+  stroke: var(--blue-grey-medium);
+}
+
+.node:active {
+  stroke: var(--purple-medium);
+}
+
+.node--selected {
+  fill: var(--purple-light);
+}
+
+/*
+ * Mnemonic input box
+ */
+.node__mnemonic-input {
+  outline: none;
+  border: none;
+  border-bottom: 1px solid transparent;
+  background-color: transparent;
+
+  width: 2.6em;
+  text-align: center;
+  color: var(--text-light);
+  font-family: var(--code-font);
+  font-size: 10pt;
+
+  transition: color 0.2s, border 0.2s, background-color 0.2s;
+}
+
+.node__mnemonic-input:hover,
+.node__mnemonic-input:focus {
+  border-bottom: 1px solid var(--purple-medium);
+  color: var(--text-dark);
+}
+
+.node__mnemonic-input:focus {
+  background-color: var(--purple-light);
+}

@@ -1,0 +1,24 @@
+.transition-details {
+  display: inline-flex;
+  flex-direction: column;
+}
+
+.transition-details--top-left {
+  transform: translate(2px, 2px);
+}
+
+.transition-details--top-right {
+  transform: translate(calc(-100% - 2px), 2px);
+}
+
+.transition-details--bottom-left {
+  transform: translate(2px, calc(-100% - 2px));
+}
+
+.transition-details--bottom-right {
+  transform: translate(calc(-100% - 2px), calc(-100% - 2px));
+}
+
+.transition-details__container {
+  position: relative;
+}
