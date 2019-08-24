@@ -1,4 +1,5 @@
 import _ from 'lodash';
+import uuid from 'uuid/v4';
 import { Editable, currentLatest } from './auxiliary';
 import { State } from './state';
 import { Action } from './actions';
@@ -86,6 +87,8 @@ export const transitionDetailsReducer = (state: State, action: Action): Transiti
       return changeTransitionDetail(state, action.payload.detail);
     case A.DELETE_TRANSITION_DETAIL:
       return deleteTransitionDetail(state, action.payload.id);
+    case A.ADD_TRANSITION_DETAIL:
+      return addTransitionDetail(state, action.payload.arrow);
     default:
       return state.entities.transitionDetails;
   }
@@ -108,4 +111,26 @@ const deleteTransitionDetail = (state: State, id: string): TransitionDetailState
     ...state.entities.transitionDetails.committed,
     byId: _.omit(state.entities.transitionDetails.committed.byId, id),
   },
+});
+
+const addTransitionDetail = (state: State, arrow: string): TransitionDetailState => {
+  const detail = newEmptyTransitionDetail(arrow);
+  return {
+    wip: null,
+    committed: {
+      ...state.entities.transitionDetails.committed,
+      byId: {
+        ...state.entities.transitionDetails.committed.byId,
+        [detail.id]: detail,
+      },
+    },
+  };
+};
+
+const newEmptyTransitionDetail = (arrow: string): TransitionDetail => ({
+  id: uuid(),
+  arrow,
+  read: '',
+  write: '',
+  move: '',
 });

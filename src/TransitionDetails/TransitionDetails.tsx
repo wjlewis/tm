@@ -21,14 +21,16 @@ export interface TransitionDetailsProps {
   isSelfLoop: boolean;
   changeDetail: (detail: TransitionDetailInfo) => void;
   deleteDetail: (id: string, arrow: string) => void;
+  addDetail: (arrow: string) => void;
 }
 
 class TransitionDetails extends React.Component<TransitionDetailsProps> {
   render() {
     const { details, control } = this.props;
+    const anchorCorner = this.computeAnchorCorner();
     const className = classNames(
       'transition-details',
-      `transition-details--${this.computeAnchorClassName()}`,
+      `transition-details--${anchorCorner}`,
     );
 
     return (
@@ -38,12 +40,14 @@ class TransitionDetails extends React.Component<TransitionDetailsProps> {
              left: control.x,
              top: control.y,
            }}>
+        {!this.isTopAnchor(anchorCorner) && this.renderAddDetailButton()}
         {details.map(detail => (
           <TransitionDetail key={detail.id}
                             value={detail}
                             onChange={this.handleDetailChange}
                             onDelete={this.handleDetailDelete(detail.id, detail.arrow)} />
         ))}
+        {this.isTopAnchor(anchorCorner) && this.renderAddDetailButton()}
       </div>
     );
   }
@@ -56,10 +60,14 @@ class TransitionDetails extends React.Component<TransitionDetailsProps> {
     return () => this.props.deleteDetail(id, arrow);
   }
 
+  private handleAddDetailButton(arrow: string) {
+    return () => this.props.addDetail(arrow);
+  };
+
   // We anchor the TransitionDetails depending on how their associated
   // ControlPoint is situated with respect to the transition's Nodes. This is to
   // keep the details from overlapping with their own associated Arrow.
-  private computeAnchorClassName() {
+  private computeAnchorCorner() {
     if (this.props.isSelfLoop) {
       return this.computeSelfLoopAnchor();
     } else {
@@ -94,6 +102,19 @@ class TransitionDetails extends React.Component<TransitionDetailsProps> {
     // 4th quadrant
     else return 'bottom-left';
   }
+
+  private isTopAnchor(anchor: string) {
+    return /^top/.test(anchor);
+  }
+
+  private renderAddDetailButton() {
+    return (
+      <button className="transition-details__add-button"
+              onClick={this.handleAddDetailButton(this.props.arrowId)}>
+        add new
+      </button>
+    );
+  }
 }
 
 const mapStateToProps = (state: State, ownProps: any) => {
@@ -112,6 +133,7 @@ const mapStateToProps = (state: State, ownProps: any) => {
 const mapDispatchToProps = (dispatch: Dispatch) => ({
   changeDetail: (detail: TransitionDetailInfo) => dispatch(A.changeTransitionDetail(detail)),
   deleteDetail: (id: string, arrow: string) => dispatch(A.deleteTransitionDetail(id, arrow)),
+  addDetail: (arrow: string) => dispatch(A.addTransitionDetail(arrow)),
 });
 
 export default connect(

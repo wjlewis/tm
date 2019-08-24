@@ -22,3 +22,32 @@
 .transition-details__container {
   position: relative;
 }
+
+/* Additional detail button */
+.transition-details__add-button {
+  visibility: hidden;
+
+  border: none;
+  outline: none;
+  width: 79px;
+  padding-top: 4px;
+  padding-bottom: 4px;
+
+  font-size: 8pt;
+  font-family: var(--main-font);
+  color: var(--text-light);
+  font-style: italic;
+  cursor: pointer;
+  background-color: transparent;
+
+  transition: background-color 0.2s, color 0.2s;
+}
+
+.transition-details:hover .transition-details__add-button {
+  visibility: unset;
+}
+
+.transition-details__add-button:hover {
+  background-color: var(--purple-light);
+  color: var(--text-dark);
+}

@@ -105,3 +105,9 @@ export const deleteControlPoint = (id: string): Action => ({
   type: DELETE_CONTROL_POINT,
   payload: { id },
 });
+
+export const ADD_TRANSITION_DETAIL = 'ADD_TRANSITION_DETAIL';
+export const addTransitionDetail = (arrow: string): Action => ({
+  type: ADD_TRANSITION_DETAIL,
+  payload: { arrow },
+});
