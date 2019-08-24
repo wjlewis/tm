@@ -1,6 +1,8 @@
 import React from 'react';
 import classNames from 'classnames';
 import { connect } from 'react-redux';
+import { Dispatch } from 'redux';
+import * as A from '../state-mgmt/actions';
 import { State } from '../state-mgmt/state';
 import { TransitionDetail as TransitionDetailInfo } from '../state-mgmt/TransitionDetail';
 import { arrowById } from '../state-mgmt/Arrow';
@@ -17,6 +19,8 @@ export interface TransitionDetailsProps {
   end: Vector;
   control: Vector;
   isSelfLoop: boolean;
+  changeDetail: (detail: TransitionDetailInfo) => void;
+  deleteDetail: (id: string, arrow: string) => void;
 }
 
 class TransitionDetails extends React.Component<TransitionDetailsProps> {
@@ -34,9 +38,22 @@ class TransitionDetails extends React.Component<TransitionDetailsProps> {
              left: control.x,
              top: control.y,
            }}>
-        {details.map(detail => <TransitionDetail key={detail.id} value={detail} />)}
+        {details.map(detail => (
+          <TransitionDetail key={detail.id}
+                            value={detail}
+                            onChange={this.handleDetailChange}
+                            onDelete={this.handleDetailDelete(detail.id, detail.arrow)} />
+        ))}
       </div>
     );
+  }
+
+  private handleDetailChange = (detail: TransitionDetailInfo) => {
+    this.props.changeDetail(detail);
+  };
+
+  private handleDetailDelete(id: string, arrow: string) {
+    return () => this.props.deleteDetail(id, arrow);
   }
 
   // We anchor the TransitionDetails depending on how their associated
@@ -92,6 +109,12 @@ const mapStateToProps = (state: State, ownProps: any) => {
   };
 };
 
+const mapDispatchToProps = (dispatch: Dispatch) => ({
+  changeDetail: (detail: TransitionDetailInfo) => dispatch(A.changeTransitionDetail(detail)),
+  deleteDetail: (id: string, arrow: string) => dispatch(A.deleteTransitionDetail(id, arrow)),
+});
+
 export default connect(
   mapStateToProps,
+  mapDispatchToProps,
 )(TransitionDetails);

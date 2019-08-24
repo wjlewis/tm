@@ -1,6 +1,8 @@
 import _ from 'lodash';
 import { Editable, currentLatest } from './auxiliary';
 import { State } from './state';
+import { Action } from './actions';
+import * as A from './actions';
 
 export interface TransitionDetailState extends Editable<TransitionDetailInfo> {}
 
@@ -8,11 +10,9 @@ export interface TransitionDetailInfo {
   byId: { [key: string]: TransitionDetail };
 }
 
-/*
- * A machine transition consists of an Arrow (which indicates the start and end
- * states), and some details regarding when the transition should be taken, and
- * what actions should be executed to effect the transition.
- */
+// A machine transition consists of an Arrow (which indicates the start and end
+// states), and some details regarding when the transition should be taken, and
+// what actions should be executed to effect the transition.
 export interface TransitionDetail {
   id: string;
   arrow: string;
@@ -64,9 +64,7 @@ export const initTransitionDetailState: TransitionDetailState = {
   },
 };
 
-/*
- * Selectors
- */
+// Selectors
 export const allTransitionDetails = (state: State): TransitionDetail[] => (
   Object.values(currentLatest(state.entities.transitionDetails).byId)
 );
@@ -76,3 +74,38 @@ export const allTransitionDetails = (state: State): TransitionDetail[] => (
 export const allGroupedTransitionDetails = (state: State): { [key: string]: TransitionDetail[] } => (
   _.groupBy(allTransitionDetails(state), detail => detail.arrow)
 );
+
+export const transitionDetailsForArrow = (state: State, arrow: string): TransitionDetail[] => (
+  allGroupedTransitionDetails(state)[arrow]
+);
+
+// Reducer
+export const transitionDetailsReducer = (state: State, action: Action): TransitionDetailState => {
+  switch (action.type) {
+    case A.CHANGE_TRANSITION_DETAIL:
+      return changeTransitionDetail(state, action.payload.detail);
+    case A.DELETE_TRANSITION_DETAIL:
+      return deleteTransitionDetail(state, action.payload.id);
+    default:
+      return state.entities.transitionDetails;
+  }
+};
+
+const changeTransitionDetail = (state: State, detail: TransitionDetail): TransitionDetailState => ({
+  wip: null,
+  committed: {
+    ...state.entities.transitionDetails.committed,
+    byId: {
+      ...state.entities.transitionDetails.committed.byId,
+      [detail.id]: detail,
+    },
+  },
+});
+
+const deleteTransitionDetail = (state: State, id: string): TransitionDetailState => ({
+  wip: null,
+  committed: {
+    ...state.entities.transitionDetails.committed,
+    byId: _.omit(state.entities.transitionDetails.committed.byId, id),
+  },
+});

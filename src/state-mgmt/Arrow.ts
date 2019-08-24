@@ -1,5 +1,8 @@
+import _ from 'lodash';
 import { Editable, currentLatest } from './auxiliary';
 import { State } from './state';
+import { Action } from './actions';
+import * as A from './actions';
 
 export interface ArrowState extends Editable<ArrowInfo> {}
 
@@ -7,11 +10,9 @@ export interface ArrowInfo {
   byId: { [key: string]: Arrow };
 }
 
-/*
- * An Arrow represents one or more transitions between (not necessarily
- * distinct) states. The `start` and `end` properties are associated with the
- * IDs of Node objects.
- */
+// An Arrow represents one or more transitions between (not necessarily
+// distinct) states. The `start` and `end` properties are associated with the
+// IDs of Node objects.
 export interface Arrow {
   id: string;
   start: string;
@@ -30,9 +31,7 @@ export const initArrowState: ArrowState = {
   },
 };
 
-/*
- * Selectors
- */
+// Selectors
 export const allArrows = (state: State): Arrow[] => (
   Object.values(currentLatest(state.entities.arrows).byId)
 );
@@ -44,3 +43,21 @@ export const arrowById = (state: State, id: string): Arrow => {
   }
   return arrow;
 };
+
+// Reducer
+export const arrowsReducer = (state: State, action: Action): ArrowState => {
+  switch (action.type) {
+    case A.DELETE_ARROW:
+      return deleteArrow(state, action.payload.id);
+    default:
+      return state.entities.arrows;
+  }
+};
+
+const deleteArrow = (state: State, id: string): ArrowState => ({
+  wip: null,
+  committed: {
+    ...state.entities.arrows.committed,
+    byId: _.omit(state.entities.arrows.committed.byId, id),
+  },
+});

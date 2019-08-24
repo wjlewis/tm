@@ -1,3 +1,4 @@
+import _ from 'lodash';
 import { Action } from './actions';
 import * as A from './actions';
 import { Editable, currentLatest } from './auxiliary';
@@ -50,7 +51,6 @@ export const initControlPointState: ControlPointState = {
   },
 };
 
-
 // Selectors
 export const allControlPoints = (state: State): ControlPoint[] => (
   Object.values(currentLatest(state.entities.controlPoints).byId)
@@ -78,6 +78,8 @@ export const controlPointsReducer = (state: State, action: Action): ControlPoint
     case A.MOUSE_UP_CANVAS:
     case A.MOUSE_UP_NODE:
       return mouseUpNodeOrCanvas(state);
+    case A.DELETE_CONTROL_POINT:
+      return deleteControlPoint(state, action.payload.id);
     default:
       return state.entities.controlPoints;
   }
@@ -269,5 +271,13 @@ const mouseUpNodeOrCanvas = (state: State): ControlPointState => ({
     offsets: {},
     fullOffsets: {},
     halfOffsets: {},
+  },
+});
+
+const deleteControlPoint = (state: State, id: string): ControlPointState => ({
+  wip: null,
+  committed: {
+    ...state.entities.controlPoints.committed,
+    byId: _.omit(state.entities.controlPoints.committed.byId, id),
   },
 });

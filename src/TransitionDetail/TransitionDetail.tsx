@@ -1,16 +1,15 @@
 import React from 'react';
 import classNames from 'classnames';
+import { TransitionDetail as TransitionDetailInfo } from '../state-mgmt/TransitionDetail';
 import './TransitionDetail.css';
 
-/*
- * Each transition consists of a pair of (not necessarily distinct) states, and
- * 3 pieces of information detailing (1) what tape symbol must be read in order
- * to take the transition, (2) what tape symbol will be written if the
- * transition is taken, and (3) in which direction the tape head should move.
- * This component allows a user to input these 3 values, and provides some
- * additional properties for detecting changes to its focus, removal, etc.
- */
 
+// Each transition consists of a pair of (not necessarily distinct) states, and
+// 3 pieces of information detailing (1) what tape symbol must be read in order
+// to take the transition, (2) what tape symbol will be written if the
+// transition is taken, and (3) in which direction the tape head should move.
+// This component allows a user to input these 3 values, and provides some
+// additional properties for detecting changes to its focus, removal, etc.
 export interface TransitionDetailProps {
   value: TransitionDetailInfo;
   onChange?: (value: TransitionDetailInfo) => void;
@@ -21,12 +20,6 @@ export interface TransitionDetailProps {
 
 export interface TransitionDetailState {
   isFocused: boolean;
-}
-
-export interface TransitionDetailInfo {
-  read: string;
-  write: string;
-  move: string;
 }
 
 class TransitionDetail extends React.Component<TransitionDetailProps, TransitionDetailState> {

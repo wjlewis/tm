@@ -1,4 +1,5 @@
 import Vector from '../tools/Vector';
+import { TransitionDetail as TransitionDetailInfo } from './TransitionDetail';
 
 export interface Action {
   type: string;
@@ -75,4 +76,32 @@ export const mouseDownControlPoint = (id: string): Action => ({
 export const MOUSE_UP_CONTROL_POINT = 'MOUSE_UP_CONTROL_POINT';
 export const mouseUpControlPoint = (): Action => ({
   type: MOUSE_UP_CONTROL_POINT,
+});
+
+// Indicates that a transition detail has been changed
+export const CHANGE_TRANSITION_DETAIL = 'CHANGE_TRANSITION_DETAIL';
+export const changeTransitionDetail = (detail: TransitionDetailInfo): Action => ({
+  type: CHANGE_TRANSITION_DETAIL,
+  payload: { detail },
+});
+
+// Indicates that a transition detail has been removed
+export const DELETE_TRANSITION_DETAIL = 'DELETE_TRANSITION_DETAIL';
+export const deleteTransitionDetail = (id: string, arrow: string): Action => ({
+  type: DELETE_TRANSITION_DETAIL,
+  payload: { id, arrow },
+});
+
+// Indicates that an arrow should be removed
+export const DELETE_ARROW = 'DELETE_ARROW';
+export const deleteArrow = (id: string): Action => ({
+  type: DELETE_ARROW,
+  payload: { id },
+});
+
+// Indicates that a control point should be removed
+export const DELETE_CONTROL_POINT = 'DELETE_CONTROL_POINT';
+export const deleteControlPoint = (id: string): Action => ({
+  type: DELETE_CONTROL_POINT,
+  payload: { id },
 });
