@@ -1,0 +1,4 @@
+.shadow-node {
+  fill: var(--purple-light);
+  stroke: var(--purple-medium);
+}

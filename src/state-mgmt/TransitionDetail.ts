@@ -89,6 +89,8 @@ export const transitionDetailsReducer = (state: State, action: Action): Transiti
       return deleteTransitionDetail(state, action.payload.id);
     case A.ADD_TRANSITION_DETAIL:
       return addTransitionDetail(state, action.payload.arrow);
+    case A.DELETE_TRANSITION_DETAILS:
+      return deleteTransitionDetails(state, action.payload.arrow);
     default:
       return state.entities.transitionDetails;
   }
@@ -123,6 +125,20 @@ const addTransitionDetail = (state: State, arrow: string): TransitionDetailState
         ...state.entities.transitionDetails.committed.byId,
         [detail.id]: detail,
       },
+    },
+  };
+};
+
+const deleteTransitionDetails = (state: State, arrow: string): TransitionDetailState => {
+  const remaining = allTransitionDetails(state).filter(d => d.arrow !== arrow);
+  return {
+    wip: null,
+    committed: {
+      ...state.entities.transitionDetails.committed,
+      byId: remaining.reduce((acc, d) => ({
+        ...acc,
+        [d.id]: d,
+      }), {}),
     },
   };
 };

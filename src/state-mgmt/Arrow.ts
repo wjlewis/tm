@@ -1,4 +1,5 @@
 import _ from 'lodash';
+import uuid from 'uuid/v4';
 import { Editable, currentLatest } from './auxiliary';
 import { State } from './state';
 import { Action } from './actions';
@@ -44,11 +45,22 @@ export const arrowById = (state: State, id: string): Arrow => {
   return arrow;
 };
 
+export const arrowsForNode = (state: State, nodeId: string): Arrow[] => (
+  allArrows(state).filter(arrow => arrow.start === nodeId || arrow.end === nodeId)
+);
+
+export const arrowForEndpoints = (state: State, start: string, end: string): null | Arrow => {
+  const arrow = allArrows(state).find(a => a.start === start && a.end === end);
+  return arrow || null;
+};
+
 // Reducer
 export const arrowsReducer = (state: State, action: Action): ArrowState => {
   switch (action.type) {
     case A.DELETE_ARROW:
       return deleteArrow(state, action.payload.id);
+    case A.ADD_ARROW:
+      return addArrow(state, action.payload.start, action.payload.end);
     default:
       return state.entities.arrows;
   }
@@ -61,3 +73,17 @@ const deleteArrow = (state: State, id: string): ArrowState => ({
     byId: _.omit(state.entities.arrows.committed.byId, id),
   },
 });
+
+const addArrow = (state: State, start: string, end: string): ArrowState => {
+  const id = uuid();
+  return {
+    wip: null,
+    committed: {
+      ...state.entities.arrows.committed,
+      byId: {
+        ...state.entities.arrows.committed.byId,
+        [id]: { id, start, end },
+      },
+    },
+  };
+};

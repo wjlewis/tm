@@ -2,25 +2,34 @@ import _ from 'lodash';
 import { State } from './state';
 import { Action } from './actions';
 import * as A from './actions';
+import Vector from '../tools/Vector';
 
 export interface UIState {
+  mousePos: Vector;
   keysDown: string[];
   isMouseDownNode: boolean;
   isMouseDownControlPoint: boolean;
+  isAddingNode: boolean;
 }
 
 export const initUIState: UIState = {
+  mousePos: new Vector(0, 0),
   keysDown: [],
   isMouseDownNode: false,
   isMouseDownControlPoint: false,
+  isAddingNode: false,
 };
 
 // Selectors
+export const mousePos = (state: State): Vector => state.ui.mousePos;
+
 export const isMultiselect = (state: State): boolean => state.ui.keysDown.includes('Shift');
 
 export const isMouseDownNode = (state: State): boolean => state.ui.isMouseDownNode;
 
 export const isMouseDownControlPoint = (state: State): boolean => state.ui.isMouseDownControlPoint;
+
+export const isAddingNode = (state: State): boolean => state.ui.isAddingNode;
 
 // Reducer
 export const uiReducer = (state: State, action: Action): UIState => {
@@ -39,6 +48,12 @@ export const uiReducer = (state: State, action: Action): UIState => {
       return mouseUpControlPoint(state);
     case A.MOUSE_UP_CANVAS:
       return mouseUpCanvas(state);
+    case A.START_ADDING_NODE:
+      return startAddingNode(state);
+    case A.ADD_NODE:
+      return addNode(state);
+    case A.MOUSE_MOVE_CANVAS:
+      return mouseMoveCanvas(state, action.payload.pos);
     default:
       return state.ui;
   }
@@ -78,4 +93,19 @@ const mouseUpCanvas = (state: State): UIState => ({
   ...state.ui,
   isMouseDownNode: false,
   isMouseDownControlPoint: false,
+});
+
+const startAddingNode = (state: State): UIState => ({
+  ...state.ui,
+  isAddingNode: true,
+});
+
+const addNode = (state: State): UIState => ({
+  ...state.ui,
+  isAddingNode: false,
+});
+
+const mouseMoveCanvas = (state: State, pos: Vector): UIState => ({
+  ...state.ui,
+  mousePos: pos,
 });

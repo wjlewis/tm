@@ -4,6 +4,7 @@ import { Dispatch } from 'redux';
 import *  as A from '../state-mgmt/actions';
 import Canvas from '../Canvas/Canvas';
 import Tape from '../Tape/Tape';
+import EditControls from '../EditControls/EditControls';
 import './App.css';
 
 export interface AppProps {
@@ -17,6 +18,7 @@ class App extends React.Component<AppProps, any> {
       <div className="app">
         <Canvas />
         <Tape />
+        <EditControls />
       </div>
     );
   }

@@ -11,6 +11,7 @@ import Arrow from '../Arrow/Arrow';
 import Node from '../Node/Node';
 import ControlPoint from '../ControlPoint/ControlPoint';
 import TransitionDetails from '../TransitionDetails/TransitionDetails';
+import ShadowNode from '../ShadowNode/ShadowNode';
 import Vector from '../tools/Vector';
 import './Canvas.css';
 
@@ -40,6 +41,7 @@ class Canvas extends React.Component<CanvasProps> {
           {arrows.map(details => <Arrow key={details.id} details={details} />)}
           {nodes.map(details => <Node key={details.id} details={details} />)}
           {controlPoints.map(details => <ControlPoint key={details.id} details={details} />)}
+          <ShadowNode />
         </svg>
         {Object.keys(transitionDetails).map(arrowId => (
           <TransitionDetails key={arrowId} arrowId={arrowId} details={transitionDetails[arrowId]} />

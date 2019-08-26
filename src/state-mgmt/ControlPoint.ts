@@ -1,4 +1,5 @@
 import _ from 'lodash';
+import uuid from 'uuid/v4';
 import { Action } from './actions';
 import * as A from './actions';
 import { Editable, currentLatest } from './auxiliary';
@@ -80,6 +81,8 @@ export const controlPointsReducer = (state: State, action: Action): ControlPoint
       return mouseUpNodeOrCanvas(state);
     case A.DELETE_CONTROL_POINT:
       return deleteControlPoint(state, action.payload.id);
+    case A.ADD_CONTROL_POINT:
+      return addControlPoint(state, action.payload.arrow, action.payload.pos);
     default:
       return state.entities.controlPoints;
   }
@@ -281,3 +284,17 @@ const deleteControlPoint = (state: State, id: string): ControlPointState => ({
     byId: _.omit(state.entities.controlPoints.committed.byId, id),
   },
 });
+
+const addControlPoint = (state: State, arrow: string, pos: Vector): ControlPointState => {
+  const id = uuid();
+  return {
+    wip: null,
+    committed: {
+      ...state.entities.controlPoints.committed,
+      byId: {
+        ...state.entities.controlPoints.committed.byId,
+        [id]: { id, arrow, pos },
+      },
+    },
+  };
+};

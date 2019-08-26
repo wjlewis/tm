@@ -1,4 +1,5 @@
 import _ from 'lodash';
+import uuid from 'uuid/v4';
 import { Action } from './actions';
 import * as A from './actions';
 import { Editable, currentLatest } from './auxiliary';
@@ -13,6 +14,7 @@ export interface NodeInfo {
   byId: { [key: string]: Node };
   selected: string[];
   offsets: { [key: string]: Vector };
+  startNode: null | string;
 }
 
 // A Node represents a machine state. It has an optional "mnemonic" -- a short
@@ -22,18 +24,20 @@ export interface Node {
   id: string;
   mnemonic: string;
   pos: Vector;
+  isAccepting: boolean;
 }
 
 export const initNodeState: NodeState = {
   wip: null,
   committed: {
     byId: {
-      'q0': { id: 'q0', mnemonic: 'q0', pos: new Vector(100, 100) },
-      'q1': { id: 'q1', mnemonic: 'q1', pos: new Vector(520, 300) },
-      'q2': { id: 'q2', mnemonic: 'q2', pos: new Vector(300, 400) },
+      'q0': { id: 'q0', mnemonic: 'q0', pos: new Vector(100, 100), isAccepting: false, },
+      'q1': { id: 'q1', mnemonic: 'q1', pos: new Vector(520, 300), isAccepting: true },
+      'q2': { id: 'q2', mnemonic: 'q2', pos: new Vector(300, 400), isAccepting: false },
     },
     selected: [],
     offsets: {},
+    startNode: null,
   },
 };
 
@@ -58,6 +62,11 @@ export const selectedNodes = (state: State): string[] => (
   currentLatest(state.entities.nodes).selected
 );
 
+export const isStartNode = (state: State, id: string): boolean => {
+  const { startNode } = currentLatest(state.entities.nodes);
+  return (startNode !== null) && startNode === id;
+};
+
 // Reducer
 export const nodesReducer = (state: State, action: Action): NodeState => {
   switch (action.type) {
@@ -74,6 +83,14 @@ export const nodesReducer = (state: State, action: Action): NodeState => {
       return mouseUpCanvas(state);
     case A.MOUSE_MOVE_CANVAS:
       return mouseMoveCanvas(state, action.payload.pos);
+    case A.ADD_NODE:
+      return addNode(state, action.payload.pos);
+    case A.DELETE_SELECTED_NODES:
+      return removeSelectedNodes(state);
+    case A.MAKE_START_NODE:
+      return makeStartNode(state);
+    case A.TOGGLE_ACCEPTING_NODES:
+      return toggleAcceptingNodes(state);
     default:
       return state.entities.nodes;
   }
@@ -178,6 +195,61 @@ const mouseMoveCanvas = (state: State, pos: Vector): NodeState => {
       byId: {
         ...nodes.wip!.byId,
         ...moved,
+      },
+    },
+  };
+};
+
+const addNode = (state: State, pos: Vector): NodeState => {
+  const id = uuid();
+  const node = { id, pos, mnemonic: '', isAccepting: false };
+  return {
+    wip: null,
+    committed: {
+      ...state.entities.nodes.committed,
+      byId: {
+        ...state.entities.nodes.committed.byId,
+        [id]: node,
+      },
+    },
+  };
+};
+
+const removeSelectedNodes = (state: State): NodeState => ({
+  wip: null,
+  committed: {
+    ...state.entities.nodes.committed,
+    byId: allNodes(state).filter(({ id }) => !isNodeSelected(state, id))
+      .reduce((acc, node) => ({
+        ...acc,
+        [node.id]: node,
+      }), {}),
+  },
+});
+
+const makeStartNode = (state: State): NodeState => ({
+  wip: null,
+  committed: {
+    ...state.entities.nodes.committed,
+    startNode: state.entities.nodes.committed.selected[0],
+  },
+});
+
+const toggleAcceptingNodes = (state: State): NodeState => {
+  const selected = selectedNodes(state).map(id => nodeById(state, id));
+  const isAccepting = selected[0] && !selected[0].isAccepting;
+  const updatedById = selected.reduce((acc, x) => ({
+    ...acc,
+    [x.id]: { ...x, isAccepting },
+  }), {});
+
+  return {
+    wip: null,
+    committed: {
+      ...state.entities.nodes.committed,
+      byId: {
+        ...state.entities.nodes.committed.byId,
+        ...updatedById,
       },
     },
   };

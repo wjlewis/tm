@@ -111,3 +111,52 @@ export const addTransitionDetail = (arrow: string): Action => ({
   type: ADD_TRANSITION_DETAIL,
   payload: { arrow },
 });
+
+export const START_ADDING_NODE = 'START_ADDING_NODE';
+export const startAddingNode = (): Action => ({
+  type: START_ADDING_NODE,
+});
+
+export const ADD_NODE = 'ADD_NODE';
+export const addNode = (pos: Vector): Action => ({
+  type: ADD_NODE,
+  payload: { pos },
+});
+
+export const DELETE_SELECTED_NODES = 'DELETE_SELECTED_NODES';
+export const deleteSelectedNodes = (): Action => ({
+  type: DELETE_SELECTED_NODES,
+});
+
+export const DELETE_TRANSITION_DETAILS = 'DELETE_TRANSITION_DETAILS';
+export const deleteTransitionDetails = (arrow: string): Action => ({
+  type: DELETE_TRANSITION_DETAILS,
+  payload: { arrow },
+});
+
+export const ADD_TRANSITION = 'ADD_TRANSITION';
+export const addTransition = (): Action => ({
+  type: ADD_TRANSITION,
+});
+
+export const ADD_ARROW = 'ADD_ARROW';
+export const addArrow = (start: string, end: string): Action => ({
+  type: ADD_ARROW,
+  payload: { start, end },
+});
+
+export const ADD_CONTROL_POINT = 'ADD_CONTROL_POINT';
+export const addControlPoint = (arrow: string, pos: Vector): Action => ({
+  type: ADD_CONTROL_POINT,
+  payload: { arrow, pos },
+});
+
+export const MAKE_START_NODE = 'MAKE_START_NODE';
+export const makeStartNode = (): Action => ({
+  type: MAKE_START_NODE,
+});
+
+export const TOGGLE_ACCEPTING_NODES = 'TOGGLE_ACCEPTING_NODES';
+export const toggleAcceptingNodes = (): Action => ({
+  type: TOGGLE_ACCEPTING_NODES,
+});

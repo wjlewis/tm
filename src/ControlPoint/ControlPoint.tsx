@@ -68,7 +68,7 @@ class ControlPoint extends React.Component<ControlPointProps> {
 }
 
 const mapStateToProps = (state: State, ownProps: any) => {
-  const arrow = arrowById(state, ownProps.details.id);
+  const arrow = arrowById(state, ownProps.details.arrow);
   const start = nodeById(state, arrow.start);
   const end = nodeById(state, arrow.end);
   return {

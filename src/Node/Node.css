@@ -46,3 +46,12 @@
 .node__mnemonic-input:focus {
   background-color: var(--purple-light);
 }
+
+.node__start-arrow-line {
+  stroke: var(--text-dark);
+}
+
+.node__start-arrow-head {
+  stroke: none;
+  fill: var(--text-dark);
+}
