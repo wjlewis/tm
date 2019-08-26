@@ -15,7 +15,8 @@ import ShadowNode from '../ShadowNode/ShadowNode';
 import Vector from '../tools/Vector';
 import './Canvas.css';
 
-// The Canvas is the main surface on which most of the UI elements are displayed.
+// The canvas is the editing surface for the machine. It is responsible for
+// rendering all nodes, arrows, control points, and transition details.
 
 export interface CanvasProps {
   arrows: ArrowDetails[];
@@ -30,6 +31,13 @@ export interface CanvasProps {
 class Canvas extends React.Component<CanvasProps> {
   render() {
     const { arrows, nodes, controlPoints, transitionDetails } = this.props;
+    // This configuration probably warrants an explanation. Most of the machine
+    // components (e.g. arrows, nodes, control points) need to be rendered in an
+    // SVG context. However, we cannot render the transition details inside of
+    // one (strictly speaking, we could use "foreignObject" elements, but this
+    // proved to be far more complicated). Therefore, we render an SVG element
+    // inside of a containing div, and render the transition details inside of
+    // the latter.
     return (
       <div className="canvas"
              onMouseDown={this.handleMouseDown}
@@ -62,7 +70,7 @@ class Canvas extends React.Component<CanvasProps> {
     this.props.mouseMove(this.computeMousePos(e));
   };
 
-  // Here we compute the position of the mouse relative to the Canvas itself
+  // Here we compute the position of the mouse relative to the canvas itself
   // (rather than the browser client, or some other frame of reference).
   private computeMousePos(e: React.MouseEvent) {
     const { left, top } = e.currentTarget.getBoundingClientRect();

@@ -1,18 +1,23 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { Dispatch } from 'redux';
-import *  as A from '../state-mgmt/actions';
+import { keyDown, keyUp } from '../state-mgmt/actions';
 import Canvas from '../Canvas/Canvas';
-import Tape from '../Tape/Tape';
 import EditControls from '../EditControls/EditControls';
+import Tape from '../Tape/Tape';
 import './App.css';
+
+// The entire app consists of only a few components: a "canvas" for displaying
+// the machine state editing UI, the machine's tape, some buttons that perform
+// various editing tasks, and some buttons for starting, pausing, stepping, and
+// resetting the machine.
 
 export interface AppProps {
   keyDown: (key: string) => void;
   keyUp: (key: string) => void;
 }
 
-class App extends React.Component<AppProps, any> {
+class App extends React.Component<AppProps> {
   render() {
     return (
       <div className="app">
@@ -45,8 +50,8 @@ class App extends React.Component<AppProps, any> {
 }
 
 const mapDispatchToProps = (dispatch: Dispatch) => ({
-  keyDown: (key: string) => dispatch(A.keyDown(key)),
-  keyUp: (key: string) => dispatch(A.keyUp(key)),
+  keyDown: (key: string) => dispatch(keyDown(key)),
+  keyUp: (key: string) => dispatch(keyUp(key)),
 });
 
 export default connect(

@@ -1,7 +1,6 @@
-/*
- * Here's a minimal vector library for helping out with some of the calculations
- * involved in rendering various SVG shapes.
- */
+// Much of the work in rendering the components in this app can be reduced by
+// expressing positions and operations in vector form. This class provides all
+// the functionality we need in this regard in a self-contained package.
 
 class Vector {
   constructor(public x: number, public y: number) {}
@@ -21,7 +20,7 @@ class Vector {
   }
 
   // Return a vector perpendicular to this vector (with the same length). NOTE:
-  // this effectively rotates the vector 90 deg CW.
+  // this effectively rotates the vector 90 deg clockwise.
   perp() {
     return new Vector(-this.y, this.x);
   }
@@ -33,7 +32,7 @@ class Vector {
 
   // Return the difference between this vector and the input.
   minus(v: Vector) {
-    return new Vector(this.x - v.x, this.y - v.y);
+    return this.plus(v.scale(-1));
   }
 
   // Scale this vector by the specified amount.

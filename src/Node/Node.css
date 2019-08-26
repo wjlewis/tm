@@ -1,3 +1,6 @@
+/*
+ * The basic, unadorned node.
+ */
 .node {
   fill: #fff;
   stroke: var(--text-dark);
@@ -15,12 +18,59 @@
   stroke: var(--purple-medium);
 }
 
+/*
+ * When a node is selected, we change its fill.
+ */
 .node--selected {
   fill: var(--purple-light);
 }
 
 /*
- * Mnemonic input box
+ * Two embellishments: an arrow, and a concentric circle.
+ */
+.node__start-arrow-line {
+  stroke: var(--text-dark);
+  transition: stroke 0.2s;
+}
+
+.node__start-arrow-head {
+  stroke: none;
+  fill: var(--text-dark);
+  transition: fill 0.2s;
+}
+
+.node:hover ~ g .node__start-arrow-line {
+  stroke: var(--blue-grey-medium);
+}
+
+.node:hover ~ g .node__start-arrow-head {
+  fill: var(--blue-grey-medium);
+}
+
+.node:active ~ g .node__start-arrow-line {
+  stroke: var(--purple-medium);
+}
+
+.node:active ~ g .node__start-arrow-head {
+  fill: var(--purple-medium);
+}
+
+.node__accepting-circle {
+  fill: none;
+  stroke: var(--text-dark);
+  transition: stroke 0.2s;
+}
+
+.node:hover ~ .node__accepting-circle {
+  stroke: var(--blue-grey-medium);
+}
+
+.node:active ~ .node__accepting-circle {
+  stroke: var(--purple-medium);
+}
+
+/*
+ * The node's "mnemonic" input box.
  */
 .node__mnemonic-input {
   outline: none;
@@ -45,13 +95,4 @@
 
 .node__mnemonic-input:focus {
   background-color: var(--purple-light);
-}
-
-.node__start-arrow-line {
-  stroke: var(--text-dark);
-}
-
-.node__start-arrow-head {
-  stroke: none;
-  fill: var(--text-dark);
 }

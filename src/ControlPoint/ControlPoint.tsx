@@ -9,9 +9,13 @@ import { ControlPoint as ControlPointDetails } from '../state-mgmt/ControlPoint'
 import Vector from '../tools/Vector';
 import './ControlPoint.css';
 
-// A ControlPoint is a handle associated with an Arrow that allows the user to
-// change the Arrow's shape. We render it as an arrowhead pointing indicating
-// the direction of the Arrow.
+// A control point is a draggable handle that the user can position to alter the
+// curve of an arrow. Control points are essential in being able to layout a
+// machine in an aesthetically pleasing way. As for arrows, there are 2 cases to
+// consider here: (1) the control point is for a self-transition, and (2) it is
+// for a standard transition. In both cases, we render the control point as an
+// arrowhead pointing in the direction of the transition that its arrow
+// represents.
 
 export interface ControlPointProps {
   details: ControlPointDetails;
@@ -27,15 +31,18 @@ const ARROW_LENGTH = 18;
 class ControlPoint extends React.Component<ControlPointProps> {
   render() {
     const pathString = this.props.isSelfLoop
-    ? this.computeSelfLoopPathString()
-    : this.computeStandardPathString();
+    ? this.computeCubicString()
+    : this.computeQuadraticPathString();
     return <path className="control-point"
                  d={pathString}
                  onMouseDown={this.handleMouseDown}
                  onMouseUp={this.handleMouseUp} />;
   }
 
-  private computeStandardPathString() {
+  // In the quadratic (i.e. standard transition) case, we render the control
+  // point as an arrowhead that is parallel to the line segment connecting the
+  // two nodes that its arrow joins.
+  private computeQuadraticPathString() {
     const { start, end } = this.props;
     const { pos } = this.props.details;
     const v1 = end.minus(start).normalize().scale(ARROW_LENGTH);
@@ -45,7 +52,10 @@ class ControlPoint extends React.Component<ControlPointProps> {
     return `M ${p1.x} ${p1.y} L ${pos.x} ${pos.y} L ${p2.x} ${p2.y}`;
   }
 
-  private computeSelfLoopPathString() {
+  // For a self-transition, we render the control point as an arrowhead that is
+  // perpendicular to the line connecting it to the node that its arrow
+  // connects.
+  private computeCubicString() {
     const { start } = this.props;
     const { pos } = this.props.details;
     const v1 = pos.minus(start).normalize();
@@ -56,6 +66,8 @@ class ControlPoint extends React.Component<ControlPointProps> {
     return `M ${p1.x} ${p1.y} L ${tip.x} ${tip.y} L ${p2.x} ${p2.y}`;
   }
 
+  // As for nodes, we call "preventDefault" on the event in order to prevent the
+  // annoying text-highlighting that occurs when a user drags the mouse around.
   private handleMouseDown = (e: React.MouseEvent) => {
     e.preventDefault();
     this.props.mouseDown();
@@ -63,7 +75,6 @@ class ControlPoint extends React.Component<ControlPointProps> {
 
   private handleMouseUp = (e: React.MouseEvent) => {
     this.props.mouseUp();
-    e.stopPropagation();
   };
 }
 

@@ -20,6 +20,7 @@ export interface TransitionDetail {
   read: string;
   write: string;
   move: string;
+  isFocused: boolean;
 }
 
 export const initTransitionDetailState: TransitionDetailState = {
@@ -31,7 +32,8 @@ export const initTransitionDetailState: TransitionDetailState = {
         arrow: 'q0->q1',
         read: 'A',
         write: 'B',
-        move: 'L'
+        move: 'L',
+        isFocused: false,
       },
       'q0->q1.1': {
         id: 'q0->q1.1',
@@ -39,6 +41,7 @@ export const initTransitionDetailState: TransitionDetailState = {
         read: 'B',
         write: 'A',
         move: 'R',
+        isFocused: false,
       },
       'q1->q2.0': {
         id: 'q1->q2.0',
@@ -46,6 +49,7 @@ export const initTransitionDetailState: TransitionDetailState = {
         read: '0',
         write: '1',
         move: 'N',
+        isFocused: false,
       },
       'q1->q1.0': {
         id: 'q1->q1.0',
@@ -53,6 +57,7 @@ export const initTransitionDetailState: TransitionDetailState = {
         read: '1',
         write: '1',
         move: 'R',
+        isFocused: false,
       },
       'q1->q0.0': {
         id: 'q1->q0.0',
@@ -60,6 +65,7 @@ export const initTransitionDetailState: TransitionDetailState = {
         read: '0',
         write: ' ',
         move: 'L',
+        isFocused: false,
       },
     },
   },
@@ -91,6 +97,10 @@ export const transitionDetailsReducer = (state: State, action: Action): Transiti
       return addTransitionDetail(state, action.payload.arrow);
     case A.DELETE_TRANSITION_DETAILS:
       return deleteTransitionDetails(state, action.payload.arrow);
+    case A.FOCUS_TRANSITION_DETAIL:
+      return focusTransitionDetail(state, action.payload.id);
+    case A.BLUR_TRANSITION_DETAIL:
+      return blurTransitionDetail(state, action.payload.id);
     default:
       return state.entities.transitionDetails;
   }
@@ -149,4 +159,33 @@ const newEmptyTransitionDetail = (arrow: string): TransitionDetail => ({
   read: '',
   write: '',
   move: '',
+  isFocused: true,
+});
+
+const focusTransitionDetail = (state: State, id: string): TransitionDetailState => ({
+  wip: null,
+  committed: {
+    ...state.entities.transitionDetails.committed,
+    byId: {
+      ...state.entities.transitionDetails.committed.byId,
+      [id]: {
+        ...state.entities.transitionDetails.committed.byId[id],
+        isFocused: true,
+      },
+    }
+  },
+});
+
+const blurTransitionDetail = (state: State, id: string): TransitionDetailState => ({
+  wip: null,
+  committed: {
+    ...state.entities.transitionDetails.committed,
+    byId: {
+      ...state.entities.transitionDetails.committed.byId,
+      [id]: {
+        ...state.entities.transitionDetails.committed.byId[id],
+        isFocused: false,
+      },
+    }
+  },
 });

@@ -5,7 +5,7 @@
 }
 
 /*
- * Input boxes
+ * The input boxes.
  */
 .transition-detail__input {
   outline: none;
@@ -33,7 +33,7 @@
 }
 
 /*
- * Input separators
+ * Input separators ("/", ",").
  */
 .transition-detail__separator {
   padding: 0 4px;
@@ -43,7 +43,7 @@
 }
 
 /*
- * Delete button
+ * The delete button.
  */
 .transition-detail__button {
   outline: none;

@@ -7,11 +7,12 @@ import { nodeById } from '../state-mgmt/Node';
 import Vector from '../tools/Vector';
 import './Arrow.css';
 
-/*
- * An Arrow is simply a curve connecting two (not necessarily distinct Nodes).
- * If the start and end nodes are distinct, we render the Arrow as a quadratic
- * bezier curve; if they are the same, we render it as a cubic curve.
- */
+// An arrow represents one or more transitions between machine states (which are
+// represented by nodes). We render an arrow as a curved line between nodes,
+// using the arrow's control points to construct this curve. There are two cases
+// we need to consider: (1) if the arrow represents a self-transition, we render
+// it using a cubic bezier curve, (2) if the arrow represents a standard
+// transition, we use a quadratic curve.
 
 export interface ArrowProps {
   details: ArrowDetails;
@@ -30,11 +31,16 @@ class Arrow extends React.Component<ArrowProps> {
   }
 
   private computeQuadraticPathString() {
-    // To compute the bezier control point from the user control point, we first
-    // find the midpoint between the nodes. We then construct the vector
-    // pointing from this midpoint to the user control point, and scale it by 2.
-    // The bezier control point is described by the sum of this vector and the
-    // midpoint vector.
+    // We need to distinguish between two types of "control point": the USER
+    // control point, which is represented by an arrowhead that the user can
+    // drag around, and the BEZIER control point, which is determined by the
+    // position of the user control point and in turn determines the shape of
+    // the arrow's curve. The main task here is to derive the BEZIER control
+    // point from the USER control point. To do so, we first find the midpoint
+    // between the nodes. We then construct the vector pointing from this
+    // midpoint to the USER control point, and scale it by 2. The bezier control
+    // point is described by the sum of this vector and the midpoint vector. I
+    // discovered this via experimentation, but it works like a charm.
     const { start, end, control} = this.props;
     const mid = start.plus(end.minus(start).scale(1 / 2));
     const bezierControl= mid.plus(control.minus(mid).scale(2));
@@ -42,11 +48,12 @@ class Arrow extends React.Component<ArrowProps> {
   }
 
   private computeCubicPathString() {
-    // To construct the bezier control points in this case, we first construct
-    // the vector pointing from the node to the user control point and scale it
-    // by 4 / 3 (I discovered this experimentally, and it appears to work
-    // perfectly although I don't know why). We then move a specified distance
-    // (`separation`) perpendicular to this vector in either direction.
+    // To construct the bezier control pointS in this case, we first construct
+    // the vector pointing from the node to the USER control point and scale it
+    // by 4 / 3 (as above, I discovered this experimentally, and it appears to
+    // work perfectly although I don't know why). We then move a specified
+    // distance (`separation`) perpendicular to this vector in either direction.
+    // This separation distance determines how wide the loop is.
     const { start, control } = this.props;
     const v1 = control.minus(start).scale(4 / 3);
     const separation = 80;

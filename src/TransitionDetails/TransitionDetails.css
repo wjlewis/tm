@@ -1,3 +1,6 @@
+/*
+ * The details container and its various "stances".
+ */
 .transition-details {
   display: inline-flex;
   flex-direction: column;
@@ -19,11 +22,9 @@
   transform: translate(calc(-100% - 2px), calc(-100% - 2px));
 }
 
-.transition-details__container {
-  position: relative;
-}
-
-/* Additional detail button */
+/*
+ * "add new" detail button.
+ */
 .transition-details__add-button {
   visibility: hidden;
 

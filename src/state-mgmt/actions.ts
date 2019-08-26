@@ -160,3 +160,15 @@ export const TOGGLE_ACCEPTING_NODES = 'TOGGLE_ACCEPTING_NODES';
 export const toggleAcceptingNodes = (): Action => ({
   type: TOGGLE_ACCEPTING_NODES,
 });
+
+export const FOCUS_TRANSITION_DETAIL = 'FOCUS_TRANSIITON_DETAIL';
+export const focusTransitionDetail = (id: string): Action => ({
+  type: FOCUS_TRANSITION_DETAIL,
+  payload: { id },
+});
+
+export const BLUR_TRANSITION_DETAIL = 'BLUR_TRANSITION_DETAIL';
+export const blurTransitionDetail = (id: string): Action => ({
+  type: BLUR_TRANSITION_DETAIL,
+  payload: { id },
+});

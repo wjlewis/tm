@@ -77,7 +77,7 @@ const addTransition = (state: State): State => {
             ...state.entities.transitionDetails.committed,
             byId: {
               ...state.entities.transitionDetails.committed.byId,
-              [transitionDetailId]: { id: transitionDetailId, arrow: arrowId, read: '', write: '', move: ''},
+              [transitionDetailId]: { id: transitionDetailId, arrow: arrowId, read: '', write: '', move: '', isFocused: true },
             },
           },
         },
@@ -96,7 +96,7 @@ const addTransition = (state: State): State => {
           ...state.entities.transitionDetails.committed,
           byId: {
             ...state.entities.transitionDetails.committed.byId,
-            [transitionDetailId]: { id: transitionDetailId, arrow: existingArrow.id, read: '', write: '', move: ''},
+            [transitionDetailId]: { id: transitionDetailId, arrow: existingArrow.id, read: '', write: '', move: '', isFocused: true },
           },
         },
       },
