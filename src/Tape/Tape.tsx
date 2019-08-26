@@ -20,7 +20,7 @@ class Tape extends React.Component<TapeProps> {
                    className="tape__cell"
                    style={{ width: `${CELL_WIDTH}px` }}
                    type="text"
-                   value={l}
+                   defaultValue={l}
                    maxLength={1} />
           ))}
           <div className="tape__padding-right" style={{ width: `${CELL_WIDTH / 2}px` }} />
