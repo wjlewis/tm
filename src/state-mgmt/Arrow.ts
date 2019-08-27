@@ -1,19 +1,18 @@
 import _ from 'lodash';
-import uuid from 'uuid/v4';
-import { Editable, currentLatest } from './auxiliary';
 import { State } from './state';
 import { Action } from './actions';
 import * as A from './actions';
 
-export interface ArrowState extends Editable<ArrowInfo> {}
+// An arrow represents one or more transitions between two states in the
+// machine. Therefore, we can describe them using the IDs of their start and end
+// nodes (along with their own unique ID). For the most part, arrows are
+// passive: they are drawn entirely according to the positions of their start
+// and end nodes, along with their control point.
 
-export interface ArrowInfo {
+export interface ArrowState {
   byId: { [key: string]: Arrow };
 }
 
-// An Arrow represents one or more transitions between (not necessarily
-// distinct) states. The `start` and `end` properties are associated with the
-// IDs of Node objects.
 export interface Arrow {
   id: string;
   start: string;
@@ -21,69 +20,61 @@ export interface Arrow {
 }
 
 export const initArrowState: ArrowState = {
-  wip: null,
-  committed: {
-    byId: {
-      'q0->q1': { id: 'q0->q1', start: 'q0', end: 'q1' },
-      'q1->q2': { id: 'q1->q2', start: 'q1', end: 'q2' },
-      'q1->q1': { id: 'q1->q1', start: 'q1', end: 'q1' },
-      'q1->q0': { id: 'q1->q0', start: 'q1', end: 'q0' },
-    },
+  byId: {
+    'q0->q1': { id: 'q0->q1', start: 'q0', end: 'q1' },
+    'q1->q2': { id: 'q1->q2', start: 'q1', end: 'q2' },
+    'q1->q1': { id: 'q1->q1', start: 'q1', end: 'q1' },
+    'q1->q0': { id: 'q1->q0', start: 'q1', end: 'q0' },
   },
 };
 
-// Selectors
+// Return an array containing all arrows in existence.
 export const allArrows = (state: State): Arrow[] => (
-  Object.values(currentLatest(state.entities.arrows).byId)
+  Object.values(state.entities.arrows.byId)
 );
 
+// Return the arrow with the given ID.
 export const arrowById = (state: State, id: string): Arrow => {
-  const arrow = allArrows(state).find(a => a.id === id);
+  const arrow = state.entities.arrows.byId[id];
   if (!arrow) {
     throw new Error(`No Arrow with ID "${id}"`);
   }
   return arrow;
 };
 
+// Return an array containing all arrows associated with the given node (i.e.
+// arrows that either start or end at the node).
 export const arrowsForNode = (state: State, nodeId: string): Arrow[] => (
   allArrows(state).filter(arrow => arrow.start === nodeId || arrow.end === nodeId)
 );
 
-export const arrowForEndpoints = (state: State, start: string, end: string): null | Arrow => {
-  const arrow = allArrows(state).find(a => a.start === start && a.end === end);
+// If an arrow exists joining the two given nodes, return it; otherwise return
+// null.
+export const arrowForEndpoints = (state: State, startId: string, endId: string): null | Arrow => {
+  const arrow = allArrows(state).find(a => a.start === startId && a.end === endId);
   return arrow || null;
 };
 
-// Reducer
 export const arrowsReducer = (state: State, action: Action): ArrowState => {
   switch (action.type) {
-    case A.DELETE_ARROW:
-      return deleteArrow(state, action.payload.id);
     case A.ADD_ARROW:
-      return addArrow(state, action.payload.start, action.payload.end);
+      return addArrow(state, action.payload.start, action.payload.end, action.payload.id);
+    case A.DELETE_ENTITIES:
+      return deleteEntities(state, action.payload.arrows);
     default:
       return state.entities.arrows;
   }
 };
 
-const deleteArrow = (state: State, id: string): ArrowState => ({
-  wip: null,
-  committed: {
-    ...state.entities.arrows.committed,
-    byId: _.omit(state.entities.arrows.committed.byId, id),
-  },
-});
-
-const addArrow = (state: State, start: string, end: string): ArrowState => {
-  const id = uuid();
-  return {
-    wip: null,
-    committed: {
-      ...state.entities.arrows.committed,
-      byId: {
-        ...state.entities.arrows.committed.byId,
-        [id]: { id, start, end },
-      },
+const addArrow = (state: State, start: string, end: string, id: string): ArrowState => (
+  _.merge({}, state.entities.arrows, {
+    byId: {
+      [id]: { start, end, id },
     },
-  };
-};
+  })
+);
+
+const deleteEntities = (state: State, ids: string[]): ArrowState => ({
+  ...state.entities.arrows,
+  byId: _.omit(state.entities.arrows.byId, ids)
+});

@@ -1,6 +1,6 @@
-import { Editable } from './auxiliary';
+import { Transient } from './auxiliary';
 
-export interface TapeState extends Editable<TapeInfo> {}
+export interface TapeState extends Transient<TapeInfo> {}
 
 export interface TapeInfo {
   byPosition: { [key: number]: TapeEntry };

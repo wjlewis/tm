@@ -1,15 +1,36 @@
 import _ from 'lodash';
+import uuid from 'uuid/v4';
 import { Middleware } from 'redux';
 import * as A from './actions';
 import { transitionDetailsForArrow } from './TransitionDetail';
 import { controlPointForArrow } from './ControlPoint';
 import { selectedNodes } from './Node';
-import { arrowsForNode } from './Arrow';
-import { isAddingNode, mousePos } from './UI';
+import { arrowsForNode, arrowForEndpoints } from './Arrow';
 
-// When a transition detail is removed, we need to check if it was the last one
-// for its arrow. If it was, we need to also remove the arrow and the control
-// point.
+// When we add a new transition, we need to check if there is already an arrow
+// between its two endpoints. If so, we simply add an additional detail to this
+// arrow; if not we need to construct a new arrow and control point, and then
+// add the detail to that.
+export const addTransition: Middleware = api => next => action => {
+  if (action.type !== A.ADD_TRANSITION_BETWEEN_SELECTED) return next(action);
+
+  const state = api.getState();
+  const nodes = selectedNodes(state);
+  const start = nodes[0];
+  const end = nodes[1] || nodes[0];
+  const existingArrow = arrowForEndpoints(state, start, end);
+
+  if (existingArrow) {
+    return next(A.addTransitionDetail(existingArrow.id));
+  } else {
+    const arrowId = uuid();
+    return next(A.addArrow(start, end, arrowId));
+  }
+};
+
+// When a transition detail is deleted, we need to check if it was the last one
+// for its associated arrow. If it is, we need to also delete the arrow its
+// control point.
 export const deleteTransitionDetail: Middleware = api => next => action => {
   if (action.type !== A.DELETE_TRANSITION_DETAIL) return next(action);
 
@@ -19,36 +40,22 @@ export const deleteTransitionDetail: Middleware = api => next => action => {
 
   if (remainingDetails.length > 0) return next(action);
 
-  // Otherwise, we need to find the ID of the control point and remove it and
-  // the arrow.
-  const controlPoint = controlPointForArrow(state, arrow);
-  next(action);
-  next(A.deleteControlPoint(controlPoint.id));
-  next(A.deleteArrow(arrow));
+  const controlPointId = controlPointForArrow(state, arrow).id;
+  return next(A.deleteEntities([], [arrow], [controlPointId], [id]));
 };
 
+// When we delete a node, we need to remove anything that was "attached" to it:
+// any arrows, and control points and transition details associated with them.
 export const deleteNode: Middleware = api => next => action => {
   if (action.type !== A.DELETE_SELECTED_NODES) return next(action);
 
   const state = api.getState();
-  const selected = selectedNodes(state);
-  const arrowIds = _.uniq(_.flatten(selected.map(id => arrowsForNode(state, id))).map(({ id }) => id));
+  const nodeIds = selectedNodes(state);
+  const arrows = _.flatten(nodeIds.map(id => arrowsForNode(state, id)));
+  const arrowIds = _.uniq(_.flatten(arrows.map(({ id }) => id)));
+  const controlPointIds = arrowIds.map(id => controlPointForArrow(state, id)).map(({ id }) => id);
+  const transitionDetails = _.flatten(arrowIds.map(id => transitionDetailsForArrow(state, id)));
+  const transitionDetailIds = transitionDetails.map(({ id }) => id);
 
-  arrowIds.forEach(id => {
-    const controlPoint = controlPointForArrow(state, id);
-    next(A.deleteTransitionDetails(id));
-    next(A.deleteControlPoint(controlPoint.id));
-    next(A.deleteArrow(id));
-  });
-
-  return next(action);
-};
-
-export const addNode: Middleware = api => next => action => {
-  if (action.type !== A.MOUSE_UP_CANVAS) return next(action);
-
-  const state = api.getState();
-  if (!isAddingNode(state)) return next(action);
-
-  return next(A.addNode(mousePos(state)));
+  return next(A.deleteEntities(nodeIds, arrowIds, controlPointIds, transitionDetailIds));
 };

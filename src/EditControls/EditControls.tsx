@@ -12,7 +12,7 @@ export interface EditControlsProps {
   removeStates: () => void;
   addTransition: () => void;
   makeStart: () => void;
-  toggleAccepting: () => void;
+  toggleFinal: () => void;
 }
 
 class EditControls extends React.Component<EditControlsProps> {
@@ -34,7 +34,7 @@ class EditControls extends React.Component<EditControlsProps> {
     [EditButtonTypes.ADD_SELF_TRANSITION]: () => this.props.addTransition(),
     [EditButtonTypes.ADD_TRANSITION]: () => this.props.addTransition(),
     [EditButtonTypes.MAKE_START]: () => this.props.makeStart(),
-    [EditButtonTypes.TOGGLE_ACCEPTING]: () => this.props.toggleAccepting(),
+    [EditButtonTypes.TOGGLE_ACCEPTING]: () => this.props.toggleFinal(),
   };
 }
 
@@ -45,9 +45,9 @@ const mapStateToProps = (state: State) => ({
 const mapDispatchToProps = (dispatch: Dispatch) => ({
   addState: () => dispatch(A.startAddingNode()),
   removeStates: () => dispatch(A.deleteSelectedNodes()),
-  addTransition: () => dispatch(A.addTransition()),
-  makeStart: () => dispatch(A.makeStartNode()),
-  toggleAccepting: () => dispatch(A.toggleAcceptingNodes()),
+  addTransition: () => dispatch(A.addTransitionBetweenSelected()),
+  makeStart: () => dispatch(A.makeSelectedStartNode()),
+  toggleFinal: () => dispatch(A.toggleSelectedFinalNodes()),
 });
 
 export default connect(

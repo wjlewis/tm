@@ -1,5 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import { Dispatch } from 'redux';
+import * as A from '../state-mgmt/actions';
 import { State } from '../state-mgmt/state';
 import { isAddingNode, mousePos } from '../state-mgmt/UI';
 import { NODE_RADIUS } from '../Node/Node';
@@ -13,15 +15,25 @@ import './ShadowNode.css';
 export interface ShadowNodeProps {
   isVisible: boolean;
   pos: Vector;
+  add: (pos: Vector) => void;
 }
 
 class ShadowNode extends React.Component<ShadowNodeProps> {
   render() {
     const { isVisible, pos } = this.props;
     return (isVisible &&
-      <circle className="shadow-node" cx={pos.x} cy={pos.y} r={NODE_RADIUS} />
+      <circle className="shadow-node"
+              cx={pos.x}
+              cy={pos.y}
+              r={NODE_RADIUS}
+              onMouseUp={this.handleMouseUp} />
     );
   }
+
+  private handleMouseUp = (e: React.MouseEvent) => {
+    e.stopPropagation();
+    this.props.add(this.props.pos);
+  };
 }
 
 const mapStateToProps = (state: State) => ({
@@ -29,6 +41,11 @@ const mapStateToProps = (state: State) => ({
   pos: mousePos(state),
 });
 
+const mapDispatchToProps = (dispatch: Dispatch) => ({
+  add: (pos: Vector) => dispatch(A.addNode(pos)),
+});
+
 export default connect(
   mapStateToProps,
+  mapDispatchToProps,
 )(ShadowNode);

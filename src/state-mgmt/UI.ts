@@ -4,6 +4,9 @@ import { Action } from './actions';
 import * as A from './actions';
 import Vector from '../tools/Vector';
 
+// The UI state is fairly self-explanatory: it consists of miscellaneous tidbits
+// of information regarding where the mouse is, what keys are pressed, etc.
+
 export interface UIState {
   mousePos: Vector;
   keysDown: string[];
@@ -20,18 +23,21 @@ export const initUIState: UIState = {
   isAddingNode: false,
 };
 
-// Selectors
+// Return the current mouse position.
 export const mousePos = (state: State): Vector => state.ui.mousePos;
 
+// Test if we are currently in "multiselect" mode.
 export const isMultiselect = (state: State): boolean => state.ui.keysDown.includes('Shift');
 
+// Test if the mouse is currently pressed over a node.
 export const isMouseDownNode = (state: State): boolean => state.ui.isMouseDownNode;
 
+// Test if the mouse is current pressed over a control point.
 export const isMouseDownControlPoint = (state: State): boolean => state.ui.isMouseDownControlPoint;
 
+// Test if we are in the process of adding a node.
 export const isAddingNode = (state: State): boolean => state.ui.isAddingNode;
 
-// Reducer
 export const uiReducer = (state: State, action: Action): UIState => {
   switch (action.type) {
     case A.KEY_DOWN:

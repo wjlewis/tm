@@ -41,7 +41,7 @@ class Node extends React.Component<NodeProps> {
                   cy={pos.y}
                   r={NODE_RADIUS} />
           {this.props.isStart && this.renderStartArrow()}
-          {this.props.details.isAccepting && this.renderAcceptingCircle()}
+          {this.props.details.isFinal && this.renderFinalCircle()}
         </g>
         <foreignObject x={mnemonicPos.x} y={mnemonicPos.y} width="100" height="100">
           <input className="node__mnemonic-input"
@@ -78,9 +78,9 @@ class Node extends React.Component<NodeProps> {
 
   // If the node is represents an accepting (or "final") state, then we render
   // an additional circle inside of it, as is customary.
-  private renderAcceptingCircle = () => {
+  private renderFinalCircle = () => {
     const { pos } = this.props.details;
-    return <circle className="node__accepting-circle" cx={pos.x} cy={pos.y} r={NODE_RADIUS-3} />;
+    return <circle className="node__final-circle" cx={pos.x} cy={pos.y} r={NODE_RADIUS-3} />;
   };
 
   // We call "preventDefault" on this event to prevent the ugly text

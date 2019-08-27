@@ -55,17 +55,17 @@
   fill: var(--purple-medium);
 }
 
-.node__accepting-circle {
+.node__final-circle {
   fill: none;
   stroke: var(--text-dark);
   transition: stroke 0.2s;
 }
 
-.node:hover ~ .node__accepting-circle {
+.node:hover ~ .node__final-circle {
   stroke: var(--blue-grey-medium);
 }
 
-.node:active ~ .node__accepting-circle {
+.node:active ~ .node__final-circle {
   stroke: var(--purple-medium);
 }
 
