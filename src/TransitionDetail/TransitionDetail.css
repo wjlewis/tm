@@ -33,6 +33,24 @@
 }
 
 /*
+ * Tape direction selector.
+ */
+.transition-detail__selector {
+  outline: none;
+  border: none;
+  border-bottom: 1px solid transparent;
+
+  font-size: 10pt;
+  color: var(--text-light);
+  font-family: var(--code-font);
+}
+
+.transition-detail:hover .transition-detail__selector,
+.transition-detail__selector--focus {
+  color:var(--text-dark);
+}
+
+/*
  * Input separators ("/", ",").
  */
 .transition-detail__separator {

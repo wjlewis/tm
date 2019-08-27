@@ -25,6 +25,9 @@ class TransitionDetail extends React.Component<TransitionDetailProps> {
     const inputClassName = classNames('transition-detail__input', {
       'transition-detail__input--focus': isFocused,
     });
+    const selectorClassName = classNames('transition-detail__selector', {
+      'transition-detail__selector--focus': isFocused,
+    });
 
     return (
       <div className="transition-detail">
@@ -44,13 +47,13 @@ class TransitionDetail extends React.Component<TransitionDetailProps> {
                type="text"
                maxLength={1} />
         <span className="transition-detail__separator">,</span>
-        <input className={inputClassName}
-               value={move}
-               onChange={this.handleChange('move')}
-               onFocus={this.handleFocus}
-               onBlur={this.handleBlur}
-               type="text"
-               maxLength={1} />
+        <select className={selectorClassName}
+                value={move}
+                onChange={this.handleSelectChange}>
+          <option value="←">←</option>
+          <option value="→">→</option>
+          <option value="↮">↮</option>
+        </select>
         <button className="transition-detail__button"
                 onClick={this.handleDeleteClick}>
         </button>
@@ -58,7 +61,7 @@ class TransitionDetail extends React.Component<TransitionDetailProps> {
     );
   }
 
-  private handleChange(property: 'read' | 'write' | 'move') {
+  private handleChange(property: 'read' | 'write') {
     return (evt: React.ChangeEvent<HTMLInputElement>) => {
       if (!this.props.onChange) return;
       this.props.onChange({
@@ -67,6 +70,14 @@ class TransitionDetail extends React.Component<TransitionDetailProps> {
       });
     };
   }
+
+  private handleSelectChange = (evt: React.ChangeEvent<HTMLSelectElement>) => {
+    if (!this.props.onChange) return;
+    this.props.onChange({
+      ...this.props.detail,
+      move: evt.target.value,
+    });
+  };
 
   private handleFocus = () => {
     if (this.props.onFocus) this.props.onFocus();
