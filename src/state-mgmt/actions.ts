@@ -43,6 +43,11 @@ export const changeMnemonic = (id: string, value: string): Action => ({
   payload: { id, value },
 });
 
+export const BLUR_MNEMONIC = 'BLUR_MNEMONIC';
+export const blurMnemonic = (): Action => ({
+  type: BLUR_MNEMONIC,
+});
+
 export const DELETE_SELECTED_NODES = 'DELETE_SELECTED_NODES';
 export const deleteSelectedNodes = (): Action => ({
   type: DELETE_SELECTED_NODES,
@@ -151,4 +156,14 @@ export const DELETE_ENTITIES = 'DELETE_ENTITIES';
 export const deleteEntities = (nodes: string[], arrows: string[], controlPoints: string[], transitionDetails: string[]): Action => ({
   type: DELETE_ENTITIES,
   payload: { nodes, arrows, controlPoints, transitionDetails },
+});
+
+export const UNDO = 'UNDO';
+export const undo = (): Action => ({
+  type: UNDO,
+});
+
+export const REDO = 'REDO';
+export const redo = (): Action => ({
+  type: REDO,
 });

@@ -18,6 +18,7 @@ export interface NodeProps {
   isSelected: boolean;
   isStart: boolean;
   changeMnemonic: (value: string) => void;
+  blurMnemonic: () => void;
   mouseDown: () => void;
   mouseUp: () => void;
 }
@@ -47,6 +48,7 @@ class Node extends React.Component<NodeProps> {
           <input className="node__mnemonic-input"
                  value={mnemonic}
                  onChange={this.handleInputChange}
+                 onBlur={this.handleInputBlur}
                  type="text"
                  maxLength={4} />
         </foreignObject>
@@ -103,6 +105,10 @@ class Node extends React.Component<NodeProps> {
   private handleInputChange = (evt: React.ChangeEvent<HTMLInputElement>) => {
     this.props.changeMnemonic(evt.target.value);
   };
+
+  private handleInputBlur = () => {
+    this.props.blurMnemonic();
+  };
 }
 
 const mapStateToProps = (state: State, ownProps: any) => ({
@@ -112,6 +118,7 @@ const mapStateToProps = (state: State, ownProps: any) => ({
 
 const mapDispatchToProps = (dispatch: Dispatch, ownProps: any) => ({
   changeMnemonic: (value: string) => dispatch(A.changeMnemonic(ownProps.details.id, value)),
+  blurMnemonic: () => dispatch(A.blurMnemonic()),
   mouseDown: () => dispatch(A.mouseDownNode(ownProps.details.id)),
   mouseUp: () => dispatch(A.mouseUpNode()),
 });

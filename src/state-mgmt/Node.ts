@@ -88,6 +88,8 @@ export const nodesReducer = (state: State, action: Action): NodeState => {
       return toggleFinalNodes(state);
     case A.CHANGE_MNEMONIC:
       return changeMnemonic(state, action.payload.id, action.payload.value);
+    case A.BLUR_MNEMONIC:
+      return blurMnemonic(state);
 
     // These operations deal with movement.
     case A.MOUSE_DOWN_NODE:
@@ -161,12 +163,17 @@ const toggleFinalNodes = (state: State): NodeState => {
 };
 
 const changeMnemonic = (state: State, id: string, value: string): NodeState => ({
-  wip: null,
-  committed: _.merge({}, state.entities.nodes.committed, {
+  ...state.entities.nodes,
+  wip: _.merge({}, currentLatest(state.entities.nodes), {
     byId: {
       [id]: { mnemonic: value }
     },
   }),
+});
+
+const blurMnemonic = (state: State): NodeState => ({
+  wip: null,
+  committed: currentLatest(state.entities.nodes),
 });
 
 // When the user presses the mouse over a node, we update the selection as

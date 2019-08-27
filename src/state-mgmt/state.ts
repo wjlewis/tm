@@ -3,6 +3,7 @@ import { ArrowState, initArrowState } from './Arrow';
 import { ControlPointState, initControlPointState } from './ControlPoint';
 import { TransitionDetailState, initTransitionDetailState } from './TransitionDetail';
 import { UIState, initUIState } from './UI';
+import { UndoRedoState, initUndoRedoState } from './UndoRedo';
 
 // The application state consists of a number of "entities" (objects -- in the
 // general sense -- that are displayed and interacted with), along with some UI
@@ -16,6 +17,7 @@ export interface State {
     transitionDetails: TransitionDetailState;
   }
   ui: UIState;
+  undoRedo: UndoRedoState;
 }
 
 export const initState: State = {
@@ -26,4 +28,5 @@ export const initState: State = {
     transitionDetails: initTransitionDetailState,
   },
   ui: initUIState,
+  undoRedo: initUndoRedoState,
 };

@@ -1,14 +1,15 @@
 import { createStore, applyMiddleware } from 'redux';
 import { composeWithDevTools } from 'redux-devtools-extension';
 import reducer from './reducer';
-import { addTransition, deleteTransitionDetail, deleteNode } from './middleware';
+import * as M from './middleware';
 
 const store = createStore(
   reducer,
   composeWithDevTools(applyMiddleware(
-    addTransition,
-    deleteTransitionDetail,
-    deleteNode,
+    M.keyboardShortcuts,
+    M.addTransition,
+    M.deleteTransitionDetail,
+    M.deleteNode,
   )),
 );
 
