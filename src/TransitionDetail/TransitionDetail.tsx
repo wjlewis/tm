@@ -12,6 +12,7 @@ import './TransitionDetail.css';
 
 export interface TransitionDetailProps {
   detail: TransitionDetailInfo;
+  isFocused: boolean;
   onFocus?: () => void;
   onBlur?: () => void;
   onChange?: (value: TransitionDetailInfo) => void;
@@ -19,21 +20,24 @@ export interface TransitionDetailProps {
 }
 
 class TransitionDetail extends React.Component<TransitionDetailProps> {
+  private readRef: React.RefObject<HTMLInputElement> = React.createRef();
+
   render() {
-    const { read, write, move, isFocused } = this.props.detail;
+    const { read, write, move } = this.props.detail;
 
     const inputClassName = classNames('transition-detail__input', {
-      'transition-detail__input--focus': isFocused,
+      'transition-detail__input--focus': this.props.isFocused,
     });
     const selectorClassName = classNames('transition-detail__selector', {
-      'transition-detail__selector--focus': isFocused,
+      'transition-detail__selector--focus': this.props.isFocused,
     });
 
     return (
       <div className="transition-detail">
         <input className={inputClassName}
+               ref={this.readRef}
                value={read}
-               onChange={this.handleChange('read')}
+               onChange={this.handleInputChange('read')}
                onFocus={this.handleFocus}
                onBlur={this.handleBlur}
                type="text"
@@ -41,7 +45,7 @@ class TransitionDetail extends React.Component<TransitionDetailProps> {
         <span className="transition-detail__separator">&#47;</span>
         <input className={inputClassName}
                value={write}
-               onChange={this.handleChange('write')}
+               onChange={this.handleInputChange('write')}
                onFocus={this.handleFocus}
                onBlur={this.handleBlur}
                type="text"
@@ -61,7 +65,18 @@ class TransitionDetail extends React.Component<TransitionDetailProps> {
     );
   }
 
-  private handleChange(property: 'read' | 'write') {
+  // In the meantime, whenever a transition detail is created, it is immediately
+  // focused. This (slight) hack ensures that the browser focus remains
+  // synchronized.
+  componentDidMount() {
+    if (this.props.isFocused) this.focus();
+  }
+
+  private focus() {
+    if (this.readRef.current) this.readRef.current.focus();
+  }
+
+  private handleInputChange(property: 'read' | 'write') {
     return (evt: React.ChangeEvent<HTMLInputElement>) => {
       if (!this.props.onChange) return;
       this.props.onChange({

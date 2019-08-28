@@ -12,6 +12,7 @@ import * as A from './actions';
 
 export interface TransitionDetailState {
   byId: { [key: string]: TransitionDetail };
+  focused: null | string;
 }
 
 export interface TransitionDetail {
@@ -20,7 +21,6 @@ export interface TransitionDetail {
   read: string;
   write: string;
   move: string;
-  isFocused: boolean;
 }
 
 export const initTransitionDetailState: TransitionDetailState = {
@@ -31,7 +31,6 @@ export const initTransitionDetailState: TransitionDetailState = {
       read: 'A',
       write: 'B',
       move: 'L',
-      isFocused: false,
     },
     'q0->q1.1': {
       id: 'q0->q1.1',
@@ -39,7 +38,6 @@ export const initTransitionDetailState: TransitionDetailState = {
       read: 'B',
       write: 'A',
       move: 'R',
-      isFocused: false,
     },
     'q1->q2.0': {
       id: 'q1->q2.0',
@@ -47,7 +45,6 @@ export const initTransitionDetailState: TransitionDetailState = {
       read: '0',
       write: '1',
       move: 'N',
-      isFocused: false,
     },
     'q1->q1.0': {
       id: 'q1->q1.0',
@@ -55,7 +52,6 @@ export const initTransitionDetailState: TransitionDetailState = {
       read: '1',
       write: '1',
       move: 'R',
-      isFocused: false,
     },
     'q1->q0.0': {
       id: 'q1->q0.0',
@@ -63,9 +59,9 @@ export const initTransitionDetailState: TransitionDetailState = {
       read: '0',
       write: ' ',
       move: 'L',
-      isFocused: false,
     },
   },
+  focused: null,
 };
 
 // Return an array containing all transition details.
@@ -84,6 +80,9 @@ export const transitionDetailsForArrow = (state: State, arrow: string): Transiti
   allGroupedTransitionDetails(state)[arrow]
 );
 
+// Return the currently focused transition detail
+export const focusedDetail = (state: State): null | string => state.entities.transitionDetails.focused;
+
 export const transitionDetailsReducer = (state: State, action: Action): TransitionDetailState => {
   switch (action.type) {
     case A.ADD_TRANSITION_DETAIL:
@@ -99,7 +98,7 @@ export const transitionDetailsReducer = (state: State, action: Action): Transiti
     case A.FOCUS_TRANSITION_DETAIL:
       return focusTransitionDetail(state, action.payload.id);
     case A.BLUR_TRANSITION_DETAIL:
-      return blurTransitionDetail(state, action.payload.id);
+      return blurTransitionDetail(state);
     default:
       return state.entities.transitionDetails;
   }
@@ -112,6 +111,7 @@ const addTransitionDetail = (state: State, arrow: string): TransitionDetailState
     byId: {
       [id]: detail,
     },
+    focused: id,
   });
 };
 
@@ -141,18 +141,12 @@ const deleteEntities = (state: State, ids: string[]): TransitionDetailState => (
   byId: _.omit(state.entities.transitionDetails.byId, ids),
 });
 
-const focusTransitionDetail = (state: State, id: string): TransitionDetailState => (
-  _.merge({}, state.entities.transitionDetails, {
-    byId: {
-      [id]: { isFocused: true },
-    },
-  })
-);
+const focusTransitionDetail = (state: State, id: string): TransitionDetailState => ({
+  ...state.entities.transitionDetails,
+  focused: id,
+});
 
-const blurTransitionDetail = (state: State, id: string): TransitionDetailState => (
-  _.merge({}, state.entities.transitionDetails, {
-    byId: {
-      [id]: { isFocused: false },
-    }
-  })
-);
+const blurTransitionDetail = (state: State): TransitionDetailState => ({
+  ...state.entities.transitionDetails,
+  focused: null,
+});

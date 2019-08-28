@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import { Dispatch } from 'redux';
 import * as A from '../state-mgmt/actions';
 import { State } from '../state-mgmt/state';
-import { TransitionDetail as TransitionDetailInfo } from '../state-mgmt/TransitionDetail';
+import { TransitionDetail as TransitionDetailInfo, focusedDetail } from '../state-mgmt/TransitionDetail';
 import { arrowById } from '../state-mgmt/Arrow';
 import { nodeById } from '../state-mgmt/Node';
 import { controlPointForArrow } from '../state-mgmt/ControlPoint';
@@ -30,6 +30,7 @@ export interface TransitionDetailsProps {
   end: Vector;
   control: Vector;
   isSelfLoop: boolean;
+  focusedDetail: null | string;
   changeDetail: (detail: TransitionDetailInfo) => void;
   deleteDetail: (id: string, arrow: string) => void;
   addDetail: (arrow: string) => void;
@@ -60,6 +61,7 @@ class TransitionDetails extends React.Component<TransitionDetailsProps> {
         {details.map(detail => (
           <TransitionDetail key={detail.id}
                             detail={detail}
+                            isFocused={this.props.focusedDetail === detail.id}
                             onChange={this.handleDetailChange}
                             onDelete={this.handleDetailDelete(detail.id, detail.arrow)}
                             onFocus={this.handleDetailFocus(detail.id)}
@@ -163,6 +165,7 @@ const mapStateToProps = (state: State, ownProps: any) => {
     end: end.pos,
     control: control.pos,
     isSelfLoop: start.id === end.id,
+    focusedDetail: focusedDetail(state),
   };
 };
 
