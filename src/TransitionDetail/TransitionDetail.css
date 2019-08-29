@@ -16,7 +16,7 @@
   text-align: center;
 
   font-size: 10pt;
-  color: var(--text-light);
+  color: var(--grey-medium);
   font-family: var(--code-font);
 
   transition: border 0.2s, background-color 0.2s, color 0.2s;
@@ -25,7 +25,7 @@
 .transition-detail:hover .transition-detail__input,
 .transition-detail__input--focus {
   border-bottom: 1px solid var(--purple-medium);
-  color: var(--text-dark);
+  color: var(--grey-dark);
 }
 
 .transition-detail__input--focus {
@@ -41,13 +41,13 @@
   border-bottom: 1px solid transparent;
 
   font-size: 10pt;
-  color: var(--text-light);
+  color: var(--grey-medium);
   font-family: var(--code-font);
 }
 
 .transition-detail:hover .transition-detail__selector,
 .transition-detail__selector--focus {
-  color:var(--text-dark);
+  color:var(--grey-dark);
 }
 
 /*
@@ -57,7 +57,7 @@
   padding: 0 4px;
   font-size: 12pt;
   font-family: var(--main-font);
-  color: var(--text-light);
+  color: var(--grey-medium);
 }
 
 /*

@@ -6,10 +6,11 @@
 :root {
   --code-font: 'Roboto Mono', monospace;
   --main-font: 'Roboto', sans-serif;
-  --text-dark: #33373d;
-  --text-light: #b1b6bd;
+  --bg: #fff;
+  --grey-dark: #33373d;
+  --grey-medium: #b1b6bd;
   --grey-light: #dcdde0;
-  --error: #f56f42;
+  --red-medium: #f56f42;
   --blue-grey-medium: #626770;
   --purple-medium: #995fd4;
   --purple-light: #e4d1ff;

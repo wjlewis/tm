@@ -1,5 +1,5 @@
 .control-point {
-  fill: var(--text-dark);
+  fill: var(--grey-dark);
   cursor: pointer;
 
   transition: fill 0.2s;

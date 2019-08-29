@@ -4,8 +4,8 @@
 .tape {
   height: 50px;
   border: none;
-  border-left: 1px solid var(--text-dark);
-  border-right: 1px solid var(--text-dark);
+  border-left: 1px solid var(--grey-dark);
+  border-right: 1px solid var(--grey-dark);
 
   position: absolute;
   bottom: 70px;
@@ -39,7 +39,7 @@
   text-align: center;
   font-size: 32pt;
   font-family: var(--code-font);
-  color: var(--text-light);
+  color: var(--grey-medium);
 
   scroll-snap-align: center;
 
@@ -47,7 +47,7 @@
 }
 
 .tape__cell:hover, .tape__cell:focus {
-  color: var(--text-dark);
+  color: var(--grey-dark);
   border-bottom: 1px solid var(--purple-medium);
 }
 

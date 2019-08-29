@@ -3,7 +3,7 @@
  */
 .node {
   fill: #fff;
-  stroke: var(--text-dark);
+  stroke: var(--grey-dark);
 
   cursor: pointer;
 
@@ -29,13 +29,13 @@
  * Two embellishments: an arrow, and a concentric circle.
  */
 .node__start-arrow-line {
-  stroke: var(--text-dark);
+  stroke: var(--grey-dark);
   transition: stroke 0.2s;
 }
 
 .node__start-arrow-head {
   stroke: none;
-  fill: var(--text-dark);
+  fill: var(--grey-dark);
   transition: fill 0.2s;
 }
 
@@ -57,7 +57,7 @@
 
 .node__final-circle {
   fill: none;
-  stroke: var(--text-dark);
+  stroke: var(--grey-dark);
   transition: stroke 0.2s;
 }
 
@@ -80,7 +80,7 @@
 
   width: 2.6em;
   text-align: center;
-  color: var(--text-light);
+  color: var(--grey-medium);
   font-family: var(--code-font);
   font-size: 10pt;
 
@@ -90,7 +90,7 @@
 .node__mnemonic-input:hover,
 .node__mnemonic-input:focus {
   border-bottom: 1px solid var(--purple-medium);
-  color: var(--text-dark);
+  color: var(--grey-dark);
 }
 
 .node__mnemonic-input:focus {
