@@ -116,6 +116,19 @@ export const blurTransitionDetail = (id: string): Action => ({
   payload: { id },
 });
 
+// Tape actions:
+export const SET_TAPE_CENTER = 'SET_TAPE_CENTER';
+export const setTapeCenter = (pos: number): Action => ({
+  type: SET_TAPE_CENTER,
+  payload: { pos },
+});
+
+export const CHANGE_TAPE_CELL = 'CHANGE_TAPE_CELL';
+export const changeTapeCell = (pos: number, value: string): Action => ({
+  type: CHANGE_TAPE_CELL,
+  payload: { pos, value },
+});
+
 // Canvas and UI actions:
 export const MOUSE_DOWN_CANVAS = 'MOUSE_DOWN_CANVAS';
 export const mouseDownCanvas = (pos: Vector): Action => ({
