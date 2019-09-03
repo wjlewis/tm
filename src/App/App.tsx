@@ -5,6 +5,7 @@ import { keyDown, keyUp } from '../state-mgmt/actions';
 import Canvas from '../Canvas/Canvas';
 import EditControls from '../EditControls/EditControls';
 import Tape from '../Tape/Tape';
+import Message from '../Message/Message';
 import './App.css';
 
 // The entire app consists of only a few components: a "canvas" for displaying
@@ -24,6 +25,7 @@ class App extends React.Component<AppProps> {
         <Canvas />
         <Tape />
         <EditControls />
+        <Message />
       </div>
     );
   }
