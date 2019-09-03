@@ -2,6 +2,7 @@ import _ from 'lodash';
 import { Action } from './actions';
 import * as A from './actions';
 import { State } from './state';
+import { isInEditMode } from './Mode';
 
 export interface TapeState {
   entries: string[];
@@ -20,13 +21,18 @@ export const tapeEntries = (state: State): string[] => state.entities.tape.entri
 export const tapeCenter = (state: State): number => state.entities.tape.center;
 
 export const tapeReducer = (state: State, action: Action): TapeState => {
-  switch (action.type) {
-    case A.SET_TAPE_CENTER:
-      return setTapeCenter(state, action.payload.pos);
-    case A.CHANGE_TAPE_CELL:
-      return changeTapeCell(state, action.payload.pos, action.payload.value);
-    default:
-      return state.entities.tape;
+  if (isInEditMode(state)) {
+    switch (action.type) {
+      case A.SET_TAPE_CENTER:
+        return setTapeCenter(state, action.payload.pos);
+      case A.CHANGE_TAPE_CELL:
+        return changeTapeCell(state, action.payload.pos, action.payload.value);
+      default:
+        return state.entities.tape;
+    }
+  }
+  else {
+    return state.entities.tape;
   }
 };
 

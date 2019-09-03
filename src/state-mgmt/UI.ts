@@ -3,6 +3,7 @@ import { State } from './state';
 import { Action } from './actions';
 import * as A from './actions';
 import Vector from '../tools/Vector';
+import { isInEditMode } from './Mode';
 
 // The UI state is fairly self-explanatory: it consists of miscellaneous tidbits
 // of information regarding where the mouse is, what keys are pressed, etc.
@@ -39,29 +40,34 @@ export const isMouseDownControlPoint = (state: State): boolean => state.ui.isMou
 export const isAddingNode = (state: State): boolean => state.ui.isAddingNode;
 
 export const uiReducer = (state: State, action: Action): UIState => {
-  switch (action.type) {
-    case A.KEY_DOWN:
-      return keyDown(state, action.payload.key);
-    case A.KEY_UP:
-      return keyUp(state, action.payload.key);
-    case A.MOUSE_DOWN_NODE:
-      return mouseDownNode(state);
-    case A.MOUSE_UP_NODE:
-      return mouseUpNode(state);
-    case A.MOUSE_DOWN_CONTROL_POINT:
-      return mouseDownControlPoint(state);
-    case A.MOUSE_UP_CONTROL_POINT:
-      return mouseUpControlPoint(state);
-    case A.MOUSE_UP_CANVAS:
-      return mouseUpCanvas(state);
-    case A.START_ADDING_NODE:
-      return startAddingNode(state);
-    case A.ADD_NODE:
-      return addNode(state);
-    case A.MOUSE_MOVE_CANVAS:
-      return mouseMoveCanvas(state, action.payload.pos);
-    default:
-      return state.ui;
+  if (isInEditMode(state)) {
+    switch (action.type) {
+      case A.KEY_DOWN:
+        return keyDown(state, action.payload.key);
+      case A.KEY_UP:
+        return keyUp(state, action.payload.key);
+      case A.MOUSE_DOWN_NODE:
+        return mouseDownNode(state);
+      case A.MOUSE_UP_NODE:
+        return mouseUpNode(state);
+      case A.MOUSE_DOWN_CONTROL_POINT:
+        return mouseDownControlPoint(state);
+      case A.MOUSE_UP_CONTROL_POINT:
+        return mouseUpControlPoint(state);
+      case A.MOUSE_UP_CANVAS:
+        return mouseUpCanvas(state);
+      case A.START_ADDING_NODE:
+        return startAddingNode(state);
+      case A.ADD_NODE:
+        return addNode(state);
+      case A.MOUSE_MOVE_CANVAS:
+        return mouseMoveCanvas(state, action.payload.pos);
+      default:
+        return state.ui;
+    }
+  }
+  else {
+    return state.ui;
   }
 };
 

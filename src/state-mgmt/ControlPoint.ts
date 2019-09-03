@@ -9,6 +9,7 @@ import { isMouseDownNode, isMouseDownControlPoint } from './UI';
 import { State } from './state';
 import Vector from '../tools/Vector';
 import { xOr } from '../tools/auxiliary';
+import { isInEditMode } from './Mode';
 
 // A control point is a draggable handle associated with a particular arrow. It
 // is used to control the curve of the arrow in order to create aesthetically
@@ -86,24 +87,29 @@ export const controlPointForArrow = (state: State, arrowId: string): ControlPoin
 };
 
 export const controlPointsReducer = (state: State, action: Action): ControlPointState => {
-  switch (action.type) {
-    case A.ADD_ARROW:
-      return addArrow(state, action.payload.start, action.payload.end, action.payload.id);
-    case A.DELETE_ENTITIES:
-      return deleteEntities(state, action.payload.controlPoints);
-    case A.MOUSE_DOWN_CONTROL_POINT:
-      return mouseDownControlPoint(state, action.payload.id);
-    case A.MOUSE_UP_CONTROL_POINT:
-      return mouseUpControlPoint(state);
-    case A.MOUSE_DOWN_CANVAS:
-      return mouseDownCanvas(state, action.payload.pos);
-    case A.MOUSE_MOVE_CANVAS:
-      return mouseMoveCanvas(state, action.payload.pos);
-    case A.MOUSE_UP_CANVAS:
-    case A.MOUSE_UP_NODE:
-      return mouseUpNodeOrCanvas(state);
-    default:
-      return state.entities.controlPoints;
+  if (isInEditMode(state)) {
+    switch (action.type) {
+      case A.ADD_ARROW:
+        return addArrow(state, action.payload.start, action.payload.end, action.payload.id);
+      case A.DELETE_ENTITIES:
+        return deleteEntities(state, action.payload.controlPoints);
+      case A.MOUSE_DOWN_CONTROL_POINT:
+        return mouseDownControlPoint(state, action.payload.id);
+      case A.MOUSE_UP_CONTROL_POINT:
+        return mouseUpControlPoint(state);
+      case A.MOUSE_DOWN_CANVAS:
+        return mouseDownCanvas(state, action.payload.pos);
+      case A.MOUSE_MOVE_CANVAS:
+        return mouseMoveCanvas(state, action.payload.pos);
+      case A.MOUSE_UP_CANVAS:
+      case A.MOUSE_UP_NODE:
+        return mouseUpNodeOrCanvas(state);
+      default:
+        return state.entities.controlPoints;
+    }
+  }
+  else {
+    return state.entities.controlPoints;
   }
 };
 

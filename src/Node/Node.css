@@ -5,16 +5,18 @@
   fill: #fff;
   stroke: var(--base-dk);
 
-  cursor: pointer;
-
   transition: stroke 0.2s, fill 0.1s;
 }
 
-.node:hover {
+.node--editable {
+  cursor: pointer;
+}
+
+.node--editable:hover {
   stroke: var(--primary-dk);
 }
 
-.node:active {
+.node--editable:active {
   stroke: var(--primary-md);
 }
 
@@ -39,19 +41,19 @@
   transition: fill 0.2s;
 }
 
-.node:hover ~ g .node__start-arrow-line {
+.node--editable:hover ~ g .node__start-arrow-line {
   stroke: var(--primary-dk);
 }
 
-.node:hover ~ g .node__start-arrow-head {
+.node--editable:hover ~ g .node__start-arrow-head {
   fill: var(--primary-dk);
 }
 
-.node:active ~ g .node__start-arrow-line {
+.node--editable:active ~ g .node__start-arrow-line {
   stroke: var(--primary-md);
 }
 
-.node:active ~ g .node__start-arrow-head {
+.node--editable:active ~ g .node__start-arrow-head {
   fill: var(--primary-md);
 }
 
@@ -61,11 +63,11 @@
   transition: stroke 0.2s;
 }
 
-.node:hover ~ .node__final-circle {
+.node--editable:hover ~ .node__final-circle {
   stroke: var(--primary-dk);
 }
 
-.node:active ~ .node__final-circle {
+.node--editable:active ~ .node__final-circle {
   stroke: var(--primary-md);
 }
 
@@ -87,12 +89,12 @@
   transition: color 0.2s, border 0.2s, background-color 0.2s;
 }
 
-.node__mnemonic-input:hover,
-.node__mnemonic-input:focus {
+.node__mnemonic-input--editable:hover,
+.node__mnemonic-input--editable:focus {
   border-bottom: 1px solid var(--primary-md);
   color: var(--base-dk);
 }
 
-.node__mnemonic-input:focus {
+.node__mnemonic-input--editable:focus {
   background-color: var(--primary-lt);
 }

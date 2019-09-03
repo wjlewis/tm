@@ -2,6 +2,7 @@ import _ from 'lodash/fp';
 import { Action } from './actions';
 import * as A from './actions';
 import { State } from './state';
+import { isInEditMode } from './Mode';
 
 export interface UndoRedoState {
   actions: ActionRecord[];
@@ -20,15 +21,20 @@ export const initUndoRedoState: UndoRedoState = {
 };
 
 export const undoRedoReducer = (state: State, action: Action): UndoRedoState => {
-  switch (action.type) {
-    case A.DELETE_ENTITIES:
-      return addRecord(state, 'entities', 'delete selected nodes');
-    case A.ADD_NODE:
-      return addRecord(state, 'entities.nodes', 'add node');
-    case A.BLUR_MNEMONIC:
-      return addRecord(state, 'entities.nodes.committed', 'change mnemonic');
-    default:
-      return state.undoRedo;
+  if (isInEditMode(state)) {
+    switch (action.type) {
+      case A.DELETE_ENTITIES:
+        return addRecord(state, 'entities', 'delete selected nodes');
+      case A.ADD_NODE:
+        return addRecord(state, 'entities.nodes', 'add node');
+      case A.BLUR_MNEMONIC:
+        return addRecord(state, 'entities.nodes.committed', 'change mnemonic');
+      default:
+        return state.undoRedo;
+    }
+  }
+  else {
+    return state.undoRedo;
   }
 };
 

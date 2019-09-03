@@ -7,6 +7,7 @@ import { State } from './state';
 import Vector from '../tools/Vector';
 import { mod2Include } from '../tools/auxiliary';
 import { isMultiselect, isMouseDownNode } from './UI';
+import { isInEditMode } from './Mode';
 
 // A node represents a machine state in the TM formalism. Each node is
 // draggable, and may come in several different varieties (it may be the start
@@ -81,35 +82,40 @@ export const hasStartNode = (state: State): boolean => (
 );
 
 export const nodesReducer = (state: State, action: Action): NodeState => {
-  switch (action.type) {
-    // These operations affect the non-positional attributes of a node.
-    case A.ADD_NODE:
-      return addNode(state, action.payload.pos);
-    case A.DELETE_ENTITIES:
-      return deleteEntities(state, action.payload.nodes);
-    case A.MAKE_SELECTED_START_NODE:
-      return makeStartNode(state);
-    case A.TOGGLE_SELECTED_FINAL_NODES:
-      return toggleFinalNodes(state);
-    case A.CHANGE_MNEMONIC:
-      return changeMnemonic(state, action.payload.id, action.payload.value);
-    case A.BLUR_MNEMONIC:
-      return blurMnemonic(state);
+  if (isInEditMode(state)) {
+    switch (action.type) {
+      // These operations affect the non-positional attributes of a node.
+      case A.ADD_NODE:
+        return addNode(state, action.payload.pos);
+      case A.DELETE_ENTITIES:
+        return deleteEntities(state, action.payload.nodes);
+      case A.MAKE_SELECTED_START_NODE:
+        return makeStartNode(state);
+      case A.TOGGLE_SELECTED_FINAL_NODES:
+        return toggleFinalNodes(state);
+      case A.CHANGE_MNEMONIC:
+        return changeMnemonic(state, action.payload.id, action.payload.value);
+      case A.BLUR_MNEMONIC:
+        return blurMnemonic(state);
 
-    // These operations deal with movement.
-    case A.MOUSE_DOWN_NODE:
-      return mouseDownNode(state, action.payload.id);
-    case A.MOUSE_UP_NODE:
-      return mouseUpNode(state);
-    case A.MOUSE_DOWN_CANVAS:
-      return mouseDownCanvas(state, action.payload.pos);
-    case A.MOUSE_UP_CANVAS:
-    case A.MOUSE_UP_CONTROL_POINT:
-      return mouseUpCanvas(state);
-    case A.MOUSE_MOVE_CANVAS:
-      return mouseMoveCanvas(state, action.payload.pos);
-    default:
-      return state.entities.nodes;
+      // These operations deal with movement.
+      case A.MOUSE_DOWN_NODE:
+        return mouseDownNode(state, action.payload.id);
+      case A.MOUSE_UP_NODE:
+        return mouseUpNode(state);
+      case A.MOUSE_DOWN_CANVAS:
+        return mouseDownCanvas(state, action.payload.pos);
+      case A.MOUSE_UP_CANVAS:
+      case A.MOUSE_UP_CONTROL_POINT:
+        return mouseUpCanvas(state);
+      case A.MOUSE_MOVE_CANVAS:
+        return mouseMoveCanvas(state, action.payload.pos);
+      default:
+        return state.entities.nodes;
+    }
+  }
+  else {
+    return state.entities.nodes;
   }
 };
 

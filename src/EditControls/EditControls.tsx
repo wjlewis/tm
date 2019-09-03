@@ -4,9 +4,11 @@ import { Dispatch } from 'redux';
 import { State } from '../state-mgmt/state';
 import *  as A from '../state-mgmt/actions';
 import { whichButtonTypes, EditButtonType, EditButtonTypes } from '../state-mgmt/EditControls';
+import { isInEditMode } from '../state-mgmt/Mode';
 import './EditControls.css';
 
 export interface EditControlsProps {
+  inEditMode: boolean;
   buttonTypes: EditButtonType[];
   addState: () => void;
   removeStates: () => void;
@@ -19,7 +21,7 @@ class EditControls extends React.Component<EditControlsProps> {
   render() {
     return (
       <div className="edit-controls">
-        {this.props.buttonTypes.map(type => (
+        {this.props.inEditMode && this.props.buttonTypes.map(type => (
           <button key={type}
                   onClick={this.actions[type]}>{type}</button>
         ))}
@@ -39,6 +41,7 @@ class EditControls extends React.Component<EditControlsProps> {
 }
 
 const mapStateToProps = (state: State) => ({
+  inEditMode: isInEditMode(state),
   buttonTypes: whichButtonTypes(state),
 });
 

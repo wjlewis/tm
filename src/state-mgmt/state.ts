@@ -6,6 +6,7 @@ import { TapeState, initTapeState } from './Tape';
 import { UIState, initUIState } from './UI';
 import { UndoRedoState, initUndoRedoState } from './UndoRedo';
 import { MessageState, initMessageState } from './Message';
+import { ModeState, initModeState } from './Mode';
 
 // The application state consists of a number of "entities" (objects -- in the
 // general sense -- that are displayed and interacted with), along with some UI
@@ -22,6 +23,7 @@ export interface State {
   ui: UIState;
   undoRedo: UndoRedoState;
   message: MessageState;
+  mode: ModeState;
 }
 
 export const initState: State = {
@@ -35,4 +37,5 @@ export const initState: State = {
   ui: initUIState,
   undoRedo: initUndoRedoState,
   message: initMessageState,
+  mode: initModeState,
 };

@@ -1,11 +1,13 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { Dispatch } from 'redux';
+import classNames from 'classnames';
 import * as A from '../state-mgmt/actions';
 import { State } from '../state-mgmt/state';
 import { arrowById } from '../state-mgmt/Arrow';
 import { nodeById } from '../state-mgmt/Node';
 import { ControlPoint as ControlPointDetails } from '../state-mgmt/ControlPoint';
+import { isInEditMode } from '../state-mgmt/Mode';
 import Vector from '../tools/Vector';
 import './ControlPoint.css';
 
@@ -22,6 +24,7 @@ export interface ControlPointProps {
   start: Vector;
   end: Vector;
   isSelfLoop: boolean;
+  isEditable: boolean;
   mouseDown: () => void;
   mouseUp: () => void;
 }
@@ -30,10 +33,14 @@ const ARROW_LENGTH = 18;
 
 class ControlPoint extends React.Component<ControlPointProps> {
   render() {
+    const className = classNames('control-point', {
+      'control-point--editable': this.props.isEditable,
+    });
+
     const pathString = this.props.isSelfLoop
     ? this.computeCubicString()
     : this.computeQuadraticPathString();
-    return <path className="control-point"
+    return <path className={className}
                  d={pathString}
                  onMouseDown={this.handleMouseDown}
                  onMouseUp={this.handleMouseUp} />;
@@ -86,6 +93,7 @@ const mapStateToProps = (state: State, ownProps: any) => {
     start: start.pos,
     end: end.pos,
     isSelfLoop: start.id === end.id,
+    isEditable: isInEditMode(state),
   };
 };
 

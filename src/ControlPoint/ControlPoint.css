@@ -1,14 +1,17 @@
 .control-point {
   fill: var(--base-dk);
-  cursor: pointer;
 
   transition: fill 0.2s;
 }
 
-.control-point:hover {
+.control-point--editable {
+  cursor: pointer;
+}
+
+.control-point--editable:hover {
   fill: var(--primary-dk);
 }
 
-.control-point:active {
+.control-point--editable:active {
   fill: var(--primary-md);
 }

@@ -2,6 +2,7 @@ import _ from 'lodash';
 import { State } from './state';
 import { Action } from './actions';
 import * as A from './actions';
+import { isInEditMode } from './Mode';
 
 // An arrow represents one or more transitions between two states in the
 // machine. Therefore, we can describe them using the IDs of their start and end
@@ -56,13 +57,18 @@ export const arrowForEndpoints = (state: State, startId: string, endId: string):
 };
 
 export const arrowsReducer = (state: State, action: Action): ArrowState => {
-  switch (action.type) {
-    case A.ADD_ARROW:
-      return addArrow(state, action.payload.start, action.payload.end, action.payload.id);
-    case A.DELETE_ENTITIES:
-      return deleteEntities(state, action.payload.arrows);
-    default:
-      return state.entities.arrows;
+  if (isInEditMode(state)) {
+    switch (action.type) {
+      case A.ADD_ARROW:
+        return addArrow(state, action.payload.start, action.payload.end, action.payload.id);
+      case A.DELETE_ENTITIES:
+        return deleteEntities(state, action.payload.arrows);
+      default:
+        return state.entities.arrows;
+    }
+  }
+  else {
+    return state.entities.arrows;
   }
 };
 

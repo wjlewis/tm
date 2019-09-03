@@ -22,18 +22,18 @@
   transition: border 0.2s, background-color 0.2s, color 0.2s;
 }
 
-.transition-detail:hover .transition-detail__input,
-.transition-detail__input--focus {
+.transition-detail:hover .transition-detail__input--editable,
+.transition-detail__input--editable.transition-detail__input--focus {
   border-bottom: 1px solid var(--primary-md);
   color: var(--base-dk);
 }
 
-.transition-detail__input--focus {
+.transition-detail__input--editable.transition-detail__input--focus {
   background-color: var(--primary-lt);
 }
 
 .transition-detail__input--error {
-  background-color: var(--error-md);
+  background-color: var(--error-md) !important;
   border-bottom-color: var(--error-md) !important;
   color: var(--bg) !important;
 }
@@ -51,8 +51,8 @@
   font-family: var(--code-font);
 }
 
-.transition-detail:hover .transition-detail__selector,
-.transition-detail__selector--focus {
+.transition-detail:hover .transition-detail__selector--editable,
+.transition-detail__selected--editable.transition-detail__selector--focus {
   color:var(--base-dk);
 }
 

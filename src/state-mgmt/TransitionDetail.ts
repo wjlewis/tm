@@ -3,6 +3,7 @@ import uuid from 'uuid/v4';
 import { State } from './state';
 import { Action } from './actions';
 import * as A from './actions';
+import { isInEditMode } from './Mode';
 
 // A transition detail provides the information that is missing in an arrow: an
 // arrow indicates the start and end states for a number of transitions; a
@@ -100,25 +101,30 @@ export const duplicateTransitionDetails = (state: State): string[] => {
 export const focusedDetail = (state: State): null | string => state.entities.transitionDetails.focused;
 
 export const transitionDetailsReducer = (state: State, action: Action): TransitionDetailState => {
-  switch (action.type) {
-    case A.ADD_TRANSITION_DETAIL:
-      return addTransitionDetail(state, action.payload.arrow);
-    case A.ADD_ARROW:
-      return addArrow(state, action.payload.id);
-    case A.CHANGE_TRANSITION_DETAIL:
-      return changeTransitionDetail(state, action.payload.detail);
-    case A.DELETE_TRANSITION_DETAIL:
-      return deleteTransitionDetail(state, action.payload.id);
-    case A.DELETE_ENTITIES:
-      return deleteEntities(state, action.payload.transitionDetails);
-    case A.FOCUS_TRANSITION_DETAIL:
-      return focusTransitionDetail(state, action.payload.id);
-    case A.BLUR_TRANSITION_DETAIL:
-      return blurTransitionDetail(state);
-    case A.MARK_DUPLICATE_TRANSITIONS:
-      return markDuplicateTransitions(state, action.payload.ids);
-    default:
-      return state.entities.transitionDetails;
+  if (isInEditMode(state)) {
+    switch (action.type) {
+      case A.ADD_TRANSITION_DETAIL:
+        return addTransitionDetail(state, action.payload.arrow);
+      case A.ADD_ARROW:
+        return addArrow(state, action.payload.id);
+      case A.CHANGE_TRANSITION_DETAIL:
+        return changeTransitionDetail(state, action.payload.detail);
+      case A.DELETE_TRANSITION_DETAIL:
+        return deleteTransitionDetail(state, action.payload.id);
+      case A.DELETE_ENTITIES:
+        return deleteEntities(state, action.payload.transitionDetails);
+      case A.FOCUS_TRANSITION_DETAIL:
+        return focusTransitionDetail(state, action.payload.id);
+      case A.BLUR_TRANSITION_DETAIL:
+        return blurTransitionDetail(state);
+      case A.MARK_DUPLICATE_TRANSITIONS:
+        return markDuplicateTransitions(state, action.payload.ids);
+      default:
+        return state.entities.transitionDetails;
+    }
+  }
+  else {
+    return state.entities.transitionDetails;
   }
 };
 

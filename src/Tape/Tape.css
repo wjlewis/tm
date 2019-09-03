@@ -46,12 +46,12 @@
   transition: color 0.2s, border 0.2s, background-color 0.2s;
 }
 
-.tape__cell:hover, .tape__cell:focus {
+.tape__cell--editable:hover, .tape__cell--editable:focus {
   color: var(--base-dk);
   border-bottom: 1px solid var(--primary-md);
 }
 
-.tape__cell:focus {
+.tape__cell--editable:focus {
   background-color: var(--primary-lt);
 }
 

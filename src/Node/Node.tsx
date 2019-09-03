@@ -5,6 +5,7 @@ import classNames from 'classnames';
 import { State } from '../state-mgmt/state';
 import * as A from '../state-mgmt/actions';
 import { Node as NodeDetails, isNodeSelected, isStartNode } from '../state-mgmt/Node';
+import { isInEditMode } from '../state-mgmt/Mode';
 import Vector from '../tools/Vector';
 import './Node.css';
 
@@ -17,6 +18,7 @@ export interface NodeProps {
   details: NodeDetails;
   isSelected: boolean;
   isStart: boolean;
+  isEditable: boolean;
   changeMnemonic: (value: string) => void;
   blurMnemonic: () => void;
   mouseDown: () => void;
@@ -28,7 +30,14 @@ export const NODE_RADIUS = 20;
 class Node extends React.Component<NodeProps> {
   render() {
     const { pos, mnemonic } = this.props.details;
-    const className = classNames('node', { 'node--selected': this.props.isSelected });
+    const className = classNames('node', {
+      'node--selected': this.props.isSelected,
+      'node--editable': this.props.isEditable,
+    });
+
+    const mnemonicClassName = classNames('node__mnemonic-input', {
+      'node__mnemonic-input--editable': this.props.isEditable,
+    });
 
     // This was determined experimentally, although it is obviously related to NODE_RADIUS.
     const mnemonicPos = pos.plus(new Vector(-20, 22));
@@ -45,7 +54,8 @@ class Node extends React.Component<NodeProps> {
           {this.props.details.isFinal && this.renderFinalCircle()}
         </g>
         <foreignObject x={mnemonicPos.x} y={mnemonicPos.y} width="100" height="100">
-          <input className="node__mnemonic-input"
+          <input className={mnemonicClassName}
+                 disabled={!this.props.isEditable}
                  value={mnemonic}
                  onChange={this.handleInputChange}
                  onBlur={this.handleInputBlur}
@@ -114,6 +124,7 @@ class Node extends React.Component<NodeProps> {
 const mapStateToProps = (state: State, ownProps: any) => ({
   isSelected: isNodeSelected(state, ownProps.details.id),
   isStart: isStartNode(state, ownProps.details.id),
+  isEditable: isInEditMode(state),
 });
 
 const mapDispatchToProps = (dispatch: Dispatch, ownProps: any) => ({

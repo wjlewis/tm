@@ -10,6 +10,7 @@ import { nodeById } from '../state-mgmt/Node';
 import { controlPointForArrow } from '../state-mgmt/ControlPoint';
 import Vector from '../tools/Vector';
 import TransitionDetail from '../TransitionDetail/TransitionDetail';
+import { isInEditMode } from '../state-mgmt/Mode';
 import './TransitionDetails.css';
 
 // A single arrow between nodes can represent any number of transitions. In
@@ -31,6 +32,7 @@ export interface TransitionDetailsProps {
   control: Vector;
   isSelfLoop: boolean;
   focusedDetail: null | string;
+  isEditable: boolean;
   changeDetail: (detail: TransitionDetailInfo) => void;
   deleteDetail: (id: string, arrow: string) => void;
   addDetail: (arrow: string) => void;
@@ -57,17 +59,18 @@ class TransitionDetails extends React.Component<TransitionDetailsProps> {
              left: control.x,
              top: control.y,
            }}>
-        {!this.isTopStance(stance) && this.renderAddDetailButton()}
+        {this.props.isEditable && !this.isTopStance(stance) && this.renderAddDetailButton()}
         {details.map(detail => (
           <TransitionDetail key={detail.id}
                             detail={detail}
                             isFocused={this.props.focusedDetail === detail.id}
+                            isEditable={this.props.isEditable}
                             onChange={this.handleDetailChange}
                             onDelete={this.handleDetailDelete(detail.id, detail.arrow)}
                             onFocus={this.handleDetailFocus(detail.id)}
                             onBlur={this.handleDetailBlur(detail.id)} />
         ))}
-        {this.isTopStance(stance) && this.renderAddDetailButton()}
+        {this.props.isEditable && this.isTopStance(stance) && this.renderAddDetailButton()}
       </div>
     );
   }
@@ -166,6 +169,7 @@ const mapStateToProps = (state: State, ownProps: any) => {
     control: control.pos,
     isSelfLoop: start.id === end.id,
     focusedDetail: focusedDetail(state),
+    isEditable: isInEditMode(state),
   };
 };
 

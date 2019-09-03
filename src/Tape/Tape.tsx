@@ -1,14 +1,17 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { Dispatch } from 'redux';
+import classNames from 'classnames';
 import { State } from '../state-mgmt/state';
 import * as A from '../state-mgmt/actions';
 import { tapeEntries, tapeCenter } from '../state-mgmt/Tape';
+import { isInEditMode } from '../state-mgmt/Mode';
 import './Tape.css';
 
 export interface TapeProps {
   entries: string[];
   center: number;
+  isEditable: boolean;
   setCenter: (pos: number) => void;
   changeCell: (pos: number, value: string) => void;
 }
@@ -20,6 +23,10 @@ class Tape extends React.Component<TapeProps> {
   private tapeRef: React.RefObject<HTMLDivElement> = React.createRef();
 
   render() {
+    const cellClassName = classNames('tape__cell', {
+      'tape__cell--editable': this.props.isEditable,
+    });
+
     return (
       <div className="tape"
            ref={this.tapeRef}
@@ -28,7 +35,8 @@ class Tape extends React.Component<TapeProps> {
           <div className="tape__padding-left" style={{ width: `${CELL_WIDTH / 2}px` }} />
           {this.props.entries.map((l, i) => (
             <input key={i}
-                   className="tape__cell"
+                   disabled={!this.props.isEditable}
+                   className={cellClassName}
                    onFocus={this.handleCellFocus(i)}
                    value={l}
                    onChange={this.handleCellChange(i)}
@@ -77,6 +85,7 @@ class Tape extends React.Component<TapeProps> {
 const mapStateToProps = (state: State) => ({
   entries: tapeEntries(state),
   center: tapeCenter(state),
+  isEditable: isInEditMode(state),
 });
 
 const mapDispatchToProps = (dispatch: Dispatch) => ({

@@ -13,6 +13,7 @@ import './TransitionDetail.css';
 export interface TransitionDetailProps {
   detail: TransitionDetailInfo;
   isFocused: boolean;
+  isEditable: boolean;
   onFocus?: () => void;
   onBlur?: () => void;
   onChange?: (value: TransitionDetailInfo) => void;
@@ -27,6 +28,7 @@ class TransitionDetail extends React.Component<TransitionDetailProps> {
 
     const inputClassName = classNames('transition-detail__input', {
       'transition-detail__input--focus': this.props.isFocused,
+      'transition-detail__input--editable': this.props.isEditable,
     });
     // We create a special className for the read input in order to distinguish
     // inputs in an "error" state.
@@ -35,12 +37,14 @@ class TransitionDetail extends React.Component<TransitionDetailProps> {
     })
     const selectorClassName = classNames('transition-detail__selector', {
       'transition-detail__selector--focus': this.props.isFocused,
+      'transition-detail__selector--editable': this.props.isEditable,
     });
 
     return (
       <div className="transition-detail">
         <input className={readInputClassName}
                ref={this.readRef}
+               disabled={!this.props.isEditable}
                value={read}
                onChange={this.handleInputChange('read')}
                onFocus={this.handleFocus}
@@ -49,6 +53,7 @@ class TransitionDetail extends React.Component<TransitionDetailProps> {
                maxLength={1} />
         <span className="transition-detail__separator">&#47;</span>
         <input className={inputClassName}
+               disabled={!this.props.isEditable}
                value={write}
                onChange={this.handleInputChange('write')}
                onFocus={this.handleFocus}
@@ -57,15 +62,18 @@ class TransitionDetail extends React.Component<TransitionDetailProps> {
                maxLength={1} />
         <span className="transition-detail__separator">,</span>
         <select className={selectorClassName}
+                disabled={!this.props.isEditable}
                 value={move}
                 onChange={this.handleSelectChange}>
           <option value="←">←</option>
           <option value="→">→</option>
           <option value="↮">↮</option>
         </select>
-        <button className="transition-detail__button"
-                onClick={this.handleDeleteClick}>
-        </button>
+        {this.props.isEditable &&
+          <button className="transition-detail__button"
+                  onClick={this.handleDeleteClick}>
+          </button>
+        }
       </div>
     );
   }
