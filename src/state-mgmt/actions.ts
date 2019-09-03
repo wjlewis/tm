@@ -186,3 +186,30 @@ export const REDO = 'REDO';
 export const redo = (): Action => ({
   type: REDO,
 });
+
+export const DISPLAY_MESSAGE = 'DISPLAY_MESSAGE';
+export const displayMessage = (title: string, content?: string | JSX.Element): Action => ({
+  type: DISPLAY_MESSAGE,
+  payload: { title, content },
+});
+
+export const DISMISS_MESSAGE = 'DISMISS_MESSAGE';
+export const dismissMessage = (): Action => ({
+  type: DISMISS_MESSAGE,
+});
+
+// Simulation actions:
+export const STEP_SIM = 'STEP_SIM';
+export const stepSim = (): Action => ({
+  type: STEP_SIM,
+});
+
+export const TOGGLE_PLAY_PAUSE_SIM = 'TOGGLE_PLAY_PAUSE_SIM';
+export const togglePlayPauseSim = (): Action => ({
+  type: TOGGLE_PLAY_PAUSE_SIM,
+});
+
+export const RESET_SIM = 'RESET_SIM';
+export const resetSim = (): Action => ({
+  type: RESET_SIM,
+});

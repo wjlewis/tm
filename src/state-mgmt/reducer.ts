@@ -8,6 +8,7 @@ import { transitionDetailsReducer } from './TransitionDetail';
 import { tapeReducer } from './Tape';
 import { uiReducer } from './UI';
 import { undoRedoReducer, undo, redo } from './UndoRedo';
+import { messageReducer } from './Message';
 
 const reducer = (state: State=initState, action: Action): State => {
   switch (action.type) {
@@ -28,6 +29,7 @@ const reducer = (state: State=initState, action: Action): State => {
         },
         ui: uiReducer(state, action),
         undoRedo: undoRedoReducer(state, action),
+        message: messageReducer(state, action),
       }
   }
 };

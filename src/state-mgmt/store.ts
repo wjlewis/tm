@@ -7,6 +7,7 @@ const store = createStore(
   reducer,
   composeWithDevTools(applyMiddleware(
     M.validateTransitionDetails,
+    M.validatePreSim,
     M.keyboardShortcuts,
     M.addTransition,
     M.deleteTransitionDetail,

@@ -1,0 +1,12 @@
+.error-report {
+  width: 100%;
+}
+
+.error-report__title {
+  color: var(--error-md);
+}
+
+.error-report__section {
+  margin: 15px 0;
+  line-height: 1.4em;
+}

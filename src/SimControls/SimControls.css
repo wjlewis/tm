@@ -1,0 +1,6 @@
+.sim-controls {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  bottom: 35px;
+}

@@ -75,6 +75,11 @@ export const isStartNode = (state: State, id: string): boolean => {
   return (startNode !== null) && startNode === id;
 };
 
+// Test if a node has been distinguished as the start state.
+export const hasStartNode = (state: State): boolean => (
+  currentLatest(state.entities.nodes).startNode !== null
+);
+
 export const nodesReducer = (state: State, action: Action): NodeState => {
   switch (action.type) {
     // These operations affect the non-positional attributes of a node.
@@ -124,14 +129,20 @@ const addNode = (state: State, pos: Vector): NodeState => {
   };
 };
 
-const deleteEntities = (state: State, ids: string[]): NodeState => ({
-  wip: null,
-  committed: {
-    ...state.entities.nodes.committed,
-    byId: _.omit(state.entities.nodes.committed.byId, ids),
-    selected: [],
-  },
-});
+const deleteEntities = (state: State, ids: string[]): NodeState => {
+  const { committed } = state.entities.nodes;
+  return {
+    wip: null,
+    committed: {
+      ...committed,
+      byId: _.omit(committed.byId, ids),
+      selected: [],
+      startNode: committed.startNode && ids.includes(committed.startNode)
+        ? null
+        : committed.startNode,
+    },
+  };
+};
 
 const makeStartNode = (state: State): NodeState => ({
   wip: null,

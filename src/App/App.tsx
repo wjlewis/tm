@@ -5,6 +5,7 @@ import { keyDown, keyUp } from '../state-mgmt/actions';
 import Canvas from '../Canvas/Canvas';
 import EditControls from '../EditControls/EditControls';
 import Tape from '../Tape/Tape';
+import SimControls from '../SimControls/SimControls';
 import Message from '../Message/Message';
 import './App.css';
 
@@ -25,6 +26,7 @@ class App extends React.Component<AppProps> {
         <Canvas />
         <Tape />
         <EditControls />
+        <SimControls />
         <Message />
       </div>
     );
