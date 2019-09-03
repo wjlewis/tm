@@ -4,8 +4,8 @@
 .tape {
   height: 50px;
   border: none;
-  border-left: 1px solid var(--grey-dark);
-  border-right: 1px solid var(--grey-dark);
+  border-left: 1px solid var(--base-dk);
+  border-right: 1px solid var(--base-dk);
 
   position: absolute;
   bottom: 70px;
@@ -28,7 +28,7 @@
 .tape__cell,
 .tape__padding-left,
 .tape__padding-right {
-  border: 1px solid var(--grey-light);
+  border: 1px solid var(--base-lt);
   border-left: none;
   box-sizing: border-box;
 }
@@ -39,7 +39,7 @@
   text-align: center;
   font-size: 32pt;
   font-family: var(--code-font);
-  color: var(--grey-medium);
+  color: var(--base-md);
 
   scroll-snap-align: center;
 
@@ -47,12 +47,12 @@
 }
 
 .tape__cell:hover, .tape__cell:focus {
-  color: var(--grey-dark);
-  border-bottom: 1px solid var(--purple-medium);
+  color: var(--base-dk);
+  border-bottom: 1px solid var(--primary-md);
 }
 
 .tape__cell:focus {
-  background-color: var(--purple-light);
+  background-color: var(--primary-lt);
 }
 
 .tape__padding-right {

@@ -7,13 +7,13 @@
   --code-font: 'Roboto Mono', monospace;
   --main-font: 'Roboto', sans-serif;
   --bg: #fff;
-  --grey-dark: #33373d;
-  --grey-medium: #b1b6bd;
-  --grey-light: #dcdde0;
-  --red-medium: #f56f42;
-  --blue-grey-medium: #626770;
-  --purple-medium: #995fd4;
-  --purple-light: #e4d1ff;
+  --base-dk: #33373d;
+  --base-md: #b1b6bd;
+  --base-lt: #dcdde0;
+  --error-md: #f56f42;
+  --primary-dk: #626770;
+  --primary-md: #466ea6;
+  --primary-lt: #a8c3f7;
 }
 
 html, body, #root {

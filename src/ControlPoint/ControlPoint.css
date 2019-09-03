@@ -1,14 +1,14 @@
 .control-point {
-  fill: var(--grey-dark);
+  fill: var(--base-dk);
   cursor: pointer;
 
   transition: fill 0.2s;
 }
 
 .control-point:hover {
-  fill: var(--blue-grey-medium);
+  fill: var(--primary-dk);
 }
 
 .control-point:active {
-  fill: var(--purple-medium);
+  fill: var(--primary-md);
 }

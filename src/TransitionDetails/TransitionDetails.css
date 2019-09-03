@@ -36,7 +36,7 @@
 
   font-size: 8pt;
   font-family: var(--main-font);
-  color: var(--grey-medium);
+  color: var(--base-md);
   font-style: italic;
   cursor: pointer;
   background-color: transparent;
@@ -49,6 +49,6 @@
 }
 
 .transition-details__add-button:hover {
-  background-color: var(--purple-light);
-  color: var(--grey-dark);
+  background-color: var(--primary-lt);
+  color: var(--base-dk);
 }

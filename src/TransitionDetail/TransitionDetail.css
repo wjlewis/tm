@@ -16,7 +16,7 @@
   text-align: center;
 
   font-size: 10pt;
-  color: var(--grey-medium);
+  color: var(--base-md);
   font-family: var(--code-font);
 
   transition: border 0.2s, background-color 0.2s, color 0.2s;
@@ -24,12 +24,12 @@
 
 .transition-detail:hover .transition-detail__input,
 .transition-detail__input--focus {
-  border-bottom: 1px solid var(--purple-medium);
-  color: var(--grey-dark);
+  border-bottom: 1px solid var(--primary-md);
+  color: var(--base-dk);
 }
 
 .transition-detail__input--focus {
-  background-color: var(--purple-light);
+  background-color: var(--primary-lt);
 }
 
 /*
@@ -41,13 +41,13 @@
   border-bottom: 1px solid transparent;
 
   font-size: 10pt;
-  color: var(--grey-medium);
+  color: var(--base-md);
   font-family: var(--code-font);
 }
 
 .transition-detail:hover .transition-detail__selector,
 .transition-detail__selector--focus {
-  color:var(--grey-dark);
+  color:var(--base-dk);
 }
 
 /*
@@ -57,7 +57,7 @@
   padding: 0 4px;
   font-size: 12pt;
   font-family: var(--main-font);
-  color: var(--grey-medium);
+  color: var(--base-md);
 }
 
 /*
