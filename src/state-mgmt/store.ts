@@ -6,6 +6,7 @@ import * as M from './middleware';
 const store = createStore(
   reducer,
   composeWithDevTools(applyMiddleware(
+    M.validateTransitionDetails,
     M.keyboardShortcuts,
     M.addTransition,
     M.deleteTransitionDetail,

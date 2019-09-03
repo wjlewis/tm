@@ -116,6 +116,12 @@ export const blurTransitionDetail = (id: string): Action => ({
   payload: { id },
 });
 
+export const MARK_DUPLICATE_TRANSITIONS = 'MARK_DUPLICATE_TRANSITIONS';
+export const markDuplicateTransitions = (ids: string[]): Action => ({
+  type: MARK_DUPLICATE_TRANSITIONS,
+  payload: { ids },
+});
+
 // Tape actions:
 export const SET_TAPE_CENTER = 'SET_TAPE_CENTER';
 export const setTapeCenter = (pos: number): Action => ({

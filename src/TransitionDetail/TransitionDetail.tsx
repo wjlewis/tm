@@ -28,13 +28,18 @@ class TransitionDetail extends React.Component<TransitionDetailProps> {
     const inputClassName = classNames('transition-detail__input', {
       'transition-detail__input--focus': this.props.isFocused,
     });
+    // We create a special className for the read input in order to distinguish
+    // inputs in an "error" state.
+    const readInputClassName = classNames(inputClassName, {
+      'transition-detail__input--error': this.props.detail.isDuplicate,
+    })
     const selectorClassName = classNames('transition-detail__selector', {
       'transition-detail__selector--focus': this.props.isFocused,
     });
 
     return (
       <div className="transition-detail">
-        <input className={inputClassName}
+        <input className={readInputClassName}
                ref={this.readRef}
                value={read}
                onChange={this.handleInputChange('read')}

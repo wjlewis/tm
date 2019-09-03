@@ -32,6 +32,12 @@
   background-color: var(--primary-lt);
 }
 
+.transition-detail__input--error {
+  background-color: var(--error-md);
+  border-bottom-color: var(--error-md) !important;
+  color: var(--bg) !important;
+}
+
 /*
  * Tape direction selector.
  */

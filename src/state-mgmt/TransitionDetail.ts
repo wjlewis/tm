@@ -21,6 +21,7 @@ export interface TransitionDetail {
   read: string;
   write: string;
   move: string;
+  isDuplicate: boolean;
 }
 
 export const initTransitionDetailState: TransitionDetailState = {
@@ -31,6 +32,7 @@ export const initTransitionDetailState: TransitionDetailState = {
       read: 'A',
       write: 'B',
       move: 'L',
+      isDuplicate: false,
     },
     'q0->q1.1': {
       id: 'q0->q1.1',
@@ -38,6 +40,7 @@ export const initTransitionDetailState: TransitionDetailState = {
       read: 'B',
       write: 'A',
       move: 'R',
+      isDuplicate: false,
     },
     'q1->q2.0': {
       id: 'q1->q2.0',
@@ -45,6 +48,7 @@ export const initTransitionDetailState: TransitionDetailState = {
       read: '0',
       write: '1',
       move: 'N',
+      isDuplicate: false,
     },
     'q1->q1.0': {
       id: 'q1->q1.0',
@@ -52,6 +56,7 @@ export const initTransitionDetailState: TransitionDetailState = {
       read: '1',
       write: '1',
       move: 'R',
+      isDuplicate: false,
     },
     'q1->q0.0': {
       id: 'q1->q0.0',
@@ -59,6 +64,7 @@ export const initTransitionDetailState: TransitionDetailState = {
       read: '0',
       write: ' ',
       move: 'L',
+      isDuplicate: false,
     },
   },
   focused: null,
@@ -80,6 +86,16 @@ export const transitionDetailsForArrow = (state: State, arrow: string): Transiti
   allGroupedTransitionDetails(state)[arrow]
 );
 
+// Return an array of IDs of transition details that share "read" symbols with
+// at least one other detail.
+export const duplicateTransitionDetails = (state: State): string[] => {
+  const byArrow = Object.values(allGroupedTransitionDetails(state));
+  const byReadSym = byArrow.map(ds => Object.values(_.groupBy(ds, detail => detail.read)));
+  const duplicates = byReadSym.map(ds => ds.filter(group => group.length > 1)); 
+  const flattened = _.flattenDeep(duplicates) as TransitionDetail[];
+  return flattened.map(detail => detail.id);
+};
+
 // Return the currently focused transition detail
 export const focusedDetail = (state: State): null | string => state.entities.transitionDetails.focused;
 
@@ -99,6 +115,8 @@ export const transitionDetailsReducer = (state: State, action: Action): Transiti
       return focusTransitionDetail(state, action.payload.id);
     case A.BLUR_TRANSITION_DETAIL:
       return blurTransitionDetail(state);
+    case A.MARK_DUPLICATE_TRANSITIONS:
+      return markDuplicateTransitions(state, action.payload.ids);
     default:
       return state.entities.transitionDetails;
   }
@@ -149,4 +167,12 @@ const focusTransitionDetail = (state: State, id: string): TransitionDetailState 
 const blurTransitionDetail = (state: State): TransitionDetailState => ({
   ...state.entities.transitionDetails,
   focused: null,
+});
+
+const markDuplicateTransitions = (state: State, ids: string[]): TransitionDetailState => ({
+  ...state.entities.transitionDetails,
+  byId: _.mapValues(state.entities.transitionDetails.byId, detail => ({
+    ...detail,
+    isDuplicate: ids.includes(detail.id),
+  })),
 });
