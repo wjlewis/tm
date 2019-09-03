@@ -1,7 +1,12 @@
 .transition-detail {
   display: inline-flex;
   outline: none;
+  border: 1px solid transparent;
   padding: 0.1em;
+}
+
+.transition-detail--active {
+  border: 1px solid red;
 }
 
 /*

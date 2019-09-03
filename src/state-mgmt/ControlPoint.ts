@@ -59,12 +59,7 @@ export interface FixedOffset {
 export const initControlPointState: ControlPointState = {
   wip: null,
   committed: {
-    byId: {
-      'q0->q1': { id: 'q0->q1', arrow: 'q0->q1', pos: new Vector(340, 100) },
-      'q1->q2': { id: 'q1->q2', arrow: 'q1->q2', pos: new Vector(400, 360) },
-      'q1->q1': { id: 'q1->q1', arrow: 'q1->q1', pos: new Vector(600, 200) },
-      'q1->q0': { id: 'q1->q0', arrow: 'q1->q0', pos: new Vector(300, 230) },
-    },
+    byId: {},
     selected: null,
     selectedOffset: null,
     fullOffsets: {},

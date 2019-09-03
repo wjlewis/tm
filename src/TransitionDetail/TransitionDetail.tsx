@@ -14,6 +14,7 @@ export interface TransitionDetailProps {
   detail: TransitionDetailInfo;
   isFocused: boolean;
   isEditable: boolean;
+  isActive: boolean;
   onFocus?: () => void;
   onBlur?: () => void;
   onChange?: (value: TransitionDetailInfo) => void;
@@ -26,22 +27,28 @@ class TransitionDetail extends React.Component<TransitionDetailProps> {
   render() {
     const { read, write, move } = this.props.detail;
 
+    const className = classNames('transition-detail', {
+      'transition-detail--active': this.props.isActive,
+    });
+
     const inputClassName = classNames('transition-detail__input', {
       'transition-detail__input--focus': this.props.isFocused,
       'transition-detail__input--editable': this.props.isEditable,
     });
+
     // We create a special className for the read input in order to distinguish
     // inputs in an "error" state.
     const readInputClassName = classNames(inputClassName, {
       'transition-detail__input--error': this.props.detail.isDuplicate,
     })
+
     const selectorClassName = classNames('transition-detail__selector', {
       'transition-detail__selector--focus': this.props.isFocused,
       'transition-detail__selector--editable': this.props.isEditable,
     });
 
     return (
-      <div className="transition-detail">
+      <div className={className}>
         <input className={readInputClassName}
                ref={this.readRef}
                disabled={!this.props.isEditable}
@@ -65,9 +72,8 @@ class TransitionDetail extends React.Component<TransitionDetailProps> {
                 disabled={!this.props.isEditable}
                 value={move}
                 onChange={this.handleSelectChange}>
-          <option value="←">←</option>
-          <option value="→">→</option>
-          <option value="↮">↮</option>
+          <option value="L">←</option>
+          <option value="R">→</option>
         </select>
         {this.props.isEditable &&
           <button className="transition-detail__button"

@@ -35,11 +35,7 @@ export interface Node {
 export const initNodeState: NodeState = {
   wip: null,
   committed: {
-    byId: {
-      'q0': { id: 'q0', mnemonic: 'q0', pos: new Vector(100, 100), isFinal: false, },
-      'q1': { id: 'q1', mnemonic: 'q1', pos: new Vector(520, 300), isFinal: true },
-      'q2': { id: 'q2', mnemonic: 'q2', pos: new Vector(300, 400), isFinal: false },
-    },
+    byId: {},
     selected: [],
     offsets: {},
     startNode: null,
@@ -65,6 +61,11 @@ export const isNodeSelected = (state: State, id: string): boolean => (
   currentLatest(state.entities.nodes).selected.includes(id)
 );
 
+// Check if the given node is final ("accepting").
+export const isNodeFinal = (state: State, id: string): boolean => (
+  currentLatest(state.entities.nodes).byId[id].isFinal
+);
+
 // Return an array containing the IDs of all selected nodes.
 export const selectedNodes = (state: State): string[] => (
   currentLatest(state.entities.nodes).selected
@@ -80,6 +81,14 @@ export const isStartNode = (state: State, id: string): boolean => {
 export const hasStartNode = (state: State): boolean => (
   currentLatest(state.entities.nodes).startNode !== null
 );
+
+export const startNode = (state: State): string => {
+  const start = currentLatest(state.entities.nodes).startNode;
+  if (start === null) {
+    throw new Error('No start node has been distinguished.');
+  }
+  return start;
+};
 
 export const nodesReducer = (state: State, action: Action): NodeState => {
   if (isInEditMode(state)) {

@@ -6,6 +6,7 @@ import { State } from '../state-mgmt/state';
 import * as A from '../state-mgmt/actions';
 import { Node as NodeDetails, isNodeSelected, isStartNode } from '../state-mgmt/Node';
 import { isInEditMode } from '../state-mgmt/Mode';
+import { isNodeActive } from '../state-mgmt/Sim';
 import Vector from '../tools/Vector';
 import './Node.css';
 
@@ -19,6 +20,7 @@ export interface NodeProps {
   isSelected: boolean;
   isStart: boolean;
   isEditable: boolean;
+  isActive: boolean;
   changeMnemonic: (value: string) => void;
   blurMnemonic: () => void;
   mouseDown: () => void;
@@ -33,6 +35,7 @@ class Node extends React.Component<NodeProps> {
     const className = classNames('node', {
       'node--selected': this.props.isSelected,
       'node--editable': this.props.isEditable,
+      'node--active': !this.props.isEditable && this.props.isActive,
     });
 
     const mnemonicClassName = classNames('node__mnemonic-input', {
@@ -125,6 +128,7 @@ const mapStateToProps = (state: State, ownProps: any) => ({
   isSelected: isNodeSelected(state, ownProps.details.id),
   isStart: isStartNode(state, ownProps.details.id),
   isEditable: isInEditMode(state),
+  isActive: isNodeActive(state, ownProps.details.id),
 });
 
 const mapDispatchToProps = (dispatch: Dispatch, ownProps: any) => ({

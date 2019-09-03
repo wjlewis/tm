@@ -4,6 +4,7 @@ import { State } from './state';
 import { Action } from './actions';
 import * as A from './actions';
 import { isInEditMode } from './Mode';
+import { arrowById } from './Arrow';
 
 // A transition detail provides the information that is missing in an arrow: an
 // arrow indicates the start and end states for a number of transitions; a
@@ -26,48 +27,7 @@ export interface TransitionDetail {
 }
 
 export const initTransitionDetailState: TransitionDetailState = {
-  byId: {
-    'q0->q1.0': {
-      id: 'q0->q1.0',
-      arrow: 'q0->q1',
-      read: 'A',
-      write: 'B',
-      move: 'L',
-      isDuplicate: false,
-    },
-    'q0->q1.1': {
-      id: 'q0->q1.1',
-      arrow: 'q0->q1',
-      read: 'B',
-      write: 'A',
-      move: 'R',
-      isDuplicate: false,
-    },
-    'q1->q2.0': {
-      id: 'q1->q2.0',
-      arrow: 'q1->q2',
-      read: '0',
-      write: '1',
-      move: 'N',
-      isDuplicate: false,
-    },
-    'q1->q1.0': {
-      id: 'q1->q1.0',
-      arrow: 'q1->q1',
-      read: '1',
-      write: '1',
-      move: 'R',
-      isDuplicate: false,
-    },
-    'q1->q0.0': {
-      id: 'q1->q0.0',
-      arrow: 'q1->q0',
-      read: '0',
-      write: ' ',
-      move: 'L',
-      isDuplicate: false,
-    },
-  },
+  byId: {},
   focused: null,
 };
 
@@ -87,11 +47,15 @@ export const transitionDetailsForArrow = (state: State, arrow: string): Transiti
   allGroupedTransitionDetails(state)[arrow]
 );
 
+export const transitionDetailsByStart = (state: State): { [key: string]: TransitionDetail[] } => (
+  _.groupBy(allTransitionDetails(state), detail => arrowById(state, detail.arrow).start)
+);
+
 // Return an array of IDs of transition details that share "read" symbols with
 // at least one other detail.
 export const duplicateTransitionDetails = (state: State): string[] => {
-  const byArrow = Object.values(allGroupedTransitionDetails(state));
-  const byReadSym = byArrow.map(ds => Object.values(_.groupBy(ds, detail => detail.read)));
+  const byStart = Object.values(transitionDetailsByStart(state));
+  const byReadSym = byStart.map(ds => Object.values(_.groupBy(ds, detail => detail.read)));
   const duplicates = byReadSym.map(ds => ds.filter(group => group.length > 1)); 
   const flattened = _.flattenDeep(duplicates) as TransitionDetail[];
   return flattened.map(detail => detail.id);
@@ -130,7 +94,7 @@ export const transitionDetailsReducer = (state: State, action: Action): Transiti
 
 const addTransitionDetail = (state: State, arrow: string): TransitionDetailState => {
   const id = uuid();
-  const detail = { id, arrow, read: '', write: '', move: '', isFocused: false };
+  const detail = { id, arrow, read: '', write: '', move: 'L', isFocused: false };
   return _.merge({}, state.entities.transitionDetails, {
     byId: {
       [id]: detail,

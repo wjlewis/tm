@@ -2,3 +2,7 @@
   fill: none;
   stroke: var(--base-dk);
 }
+
+.arrow--active {
+  stroke: red;
+}

@@ -1,5 +1,6 @@
 import Vector from '../tools/Vector';
 import { TransitionDetail as TransitionDetailInfo } from './TransitionDetail';
+import { Mode } from './Mode';
 
 // Many actions are specific to a particular part of the state (e.g. to nodes,
 // or arrows), and I've grouped these for easy access. However, a number of
@@ -204,12 +205,48 @@ export const stepSim = (): Action => ({
   type: STEP_SIM,
 });
 
-export const TOGGLE_PLAY_PAUSE_SIM = 'TOGGLE_PLAY_PAUSE_SIM';
-export const togglePlayPauseSim = (): Action => ({
-  type: TOGGLE_PLAY_PAUSE_SIM,
+export const PLAY_SIM = 'PLAY_SIM';
+export const playSim = (): Action => ({
+  type: PLAY_SIM,
+});
+
+export const PAUSE_SIM = 'PAUSE_SIM';
+export const pauseSim = (): Action => ({
+  type: PAUSE_SIM,
 });
 
 export const RESET_SIM = 'RESET_SIM';
 export const resetSim = (): Action => ({
   type: RESET_SIM,
+});
+
+export const SET_CURRENT_STATE = 'SET_CURRENT_STATE';
+export const setCurrentState = (id: string): Action => ({
+  type: SET_CURRENT_STATE,
+  payload: { id },
+});
+
+export const SET_ACTIVE_NODE = 'SET_ACTIVE_NODE';
+export const setActiveNode = (id: null | string): Action => ({
+  type: SET_ACTIVE_NODE,
+  payload: { id },
+});
+
+export const SET_ACTIVE_TRANSITION_DETAIL = 'SET_ACTIVE_TRANSITION_DETAIL';
+export const setActiveTransitionDetail = (id: null | string): Action => ({
+  type: SET_ACTIVE_TRANSITION_DETAIL,
+  payload: { id },
+});
+
+export const SET_ACTIVE_ARROW = 'SET_ACTIVE_ARROW';
+export const setActiveArrow = (id: null | string): Action => ({
+  type: SET_ACTIVE_ARROW,
+  payload: { id },
+});
+
+// Mode actions:
+export const SWITCH_MODE = 'SWITCH_MODE';
+export const switchMode = (mode: Mode): Action => ({
+  type: SWITCH_MODE,
+  payload: { mode },
 });

@@ -20,10 +20,14 @@
   stroke: var(--primary-md);
 }
 
+.node--active {
+  fill: red;
+}
+
 /*
  * When a node is selected, we change its fill.
  */
-.node--selected {
+.node--editable.node--selected {
   fill: var(--primary-lt);
 }
 

@@ -21,12 +21,7 @@ export interface Arrow {
 }
 
 export const initArrowState: ArrowState = {
-  byId: {
-    'q0->q1': { id: 'q0->q1', start: 'q0', end: 'q1' },
-    'q1->q2': { id: 'q1->q2', start: 'q1', end: 'q2' },
-    'q1->q1': { id: 'q1->q1', start: 'q1', end: 'q1' },
-    'q1->q0': { id: 'q1->q0', start: 'q1', end: 'q0' },
-  },
+  byId: {},
 };
 
 // Return an array containing all arrows in existence.
@@ -55,6 +50,11 @@ export const arrowForEndpoints = (state: State, startId: string, endId: string):
   const arrow = allArrows(state).find(a => a.start === startId && a.end === endId);
   return arrow || null;
 };
+
+// Return an array containing all arrows starting at the given node.
+export const arrowsForStart = (state: State, nodeId: string): Arrow[] => (
+  allArrows(state).filter(arrow => arrow.start === nodeId)
+);
 
 export const arrowsReducer = (state: State, action: Action): ArrowState => {
   if (isInEditMode(state)) {

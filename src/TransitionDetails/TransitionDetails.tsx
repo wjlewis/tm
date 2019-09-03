@@ -11,6 +11,7 @@ import { controlPointForArrow } from '../state-mgmt/ControlPoint';
 import Vector from '../tools/Vector';
 import TransitionDetail from '../TransitionDetail/TransitionDetail';
 import { isInEditMode } from '../state-mgmt/Mode';
+import { activeTransitionDetail } from '../state-mgmt/Sim';
 import './TransitionDetails.css';
 
 // A single arrow between nodes can represent any number of transitions. In
@@ -33,6 +34,7 @@ export interface TransitionDetailsProps {
   isSelfLoop: boolean;
   focusedDetail: null | string;
   isEditable: boolean;
+  activeDetail: null | string;
   changeDetail: (detail: TransitionDetailInfo) => void;
   deleteDetail: (id: string, arrow: string) => void;
   addDetail: (arrow: string) => void;
@@ -65,6 +67,7 @@ class TransitionDetails extends React.Component<TransitionDetailsProps> {
                             detail={detail}
                             isFocused={this.props.focusedDetail === detail.id}
                             isEditable={this.props.isEditable}
+                            isActive={!this.props.isEditable && this.props.activeDetail === detail.id}
                             onChange={this.handleDetailChange}
                             onDelete={this.handleDetailDelete(detail.id, detail.arrow)}
                             onFocus={this.handleDetailFocus(detail.id)}
@@ -170,6 +173,7 @@ const mapStateToProps = (state: State, ownProps: any) => {
     isSelfLoop: start.id === end.id,
     focusedDetail: focusedDetail(state),
     isEditable: isInEditMode(state),
+    activeDetail: activeTransitionDetail(state),
   };
 };
 

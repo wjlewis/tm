@@ -17,7 +17,7 @@ export interface TapeProps {
 }
 
 export const CELL_WIDTH = 36;
-export const CELL_COUNT = 12;
+export const CELL_COUNT = 16;
 
 class Tape extends React.Component<TapeProps> {
   private tapeRef: React.RefObject<HTMLDivElement> = React.createRef();

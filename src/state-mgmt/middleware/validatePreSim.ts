@@ -6,7 +6,7 @@ import MissingStartState from '../../ErrorReport/MissingStartState';
 import NondeterministicTransition from '../../ErrorReport/NondeterministicTransition';
 
 export const validatePreSim: Middleware = api => next => action => {
-  if (![A.STEP_SIM, A.TOGGLE_PLAY_PAUSE_SIM].includes(action.type)) return next(action);
+  if (![A.STEP_SIM, A.PLAY_SIM].includes(action.type)) return next(action);
 
   const state = api.getState();
   if (!hasStartNode(state)) {
