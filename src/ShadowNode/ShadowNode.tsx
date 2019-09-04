@@ -22,11 +22,13 @@ class ShadowNode extends React.Component<ShadowNodeProps> {
   render() {
     const { isVisible, pos } = this.props;
     return (isVisible &&
-      <circle className="shadow-node"
-              cx={pos.x}
-              cy={pos.y}
-              r={NODE_RADIUS}
-              onMouseUp={this.handleMouseUp} />
+      <div className="shadow-node"
+           onMouseUp={this.handleMouseUp}
+           style={{
+             position: 'absolute',
+             left: pos.x - NODE_RADIUS,
+             top: pos.y - NODE_RADIUS - 2,
+           }}/>
     );
   }
 

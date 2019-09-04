@@ -4,3 +4,71 @@
   left: 10px;
   height: 32px;
 }
+
+.edit-controls__button {
+  background-color: transparent;
+  border: none;
+  outline: none;
+  cursor: pointer;
+
+  width: 30px;
+  height: 30px;
+  margin: 2px 12px;
+  background-image: url(./sprite.png);
+}
+
+.edit-controls__button-ADD_STATE {
+  background-position: 0 0;
+}
+
+.edit-controls__button-ADD_STATE:hover {
+  background-position: -32px 0;
+}
+
+.edit-controls__button-REMOVE_STATE {
+  background-position: 0 -32px;
+}
+
+.edit-controls__button-REMOVE_STATE:hover {
+  background-position: -32px -32px;
+}
+
+.edit-controls__button-REMOVE_STATES {
+  background-position: 0 -160px;
+}
+
+.edit-controls__button-REMOVE_STATES:hover {
+  background-position: -32px -160px;
+}
+
+.edit-controls__button-ADD_SELF_TRANSITION {
+  background-position: 0 -64px;
+}
+
+.edit-controls__button-ADD_SELF_TRANSITION:hover {
+  background-position: -32px -64px;
+}
+
+.edit-controls__button-ADD_TRANSITION {
+  background-position: 0 -192px;
+}
+
+.edit-controls__button-ADD_TRANSITION:hover {
+  background-position: -32px -192px;
+}
+
+.edit-controls__button-MAKE_START {
+  background-position: 0 -96px;
+}
+
+.edit-controls__button-MAKE_START:hover {
+  background-position: -32px -96px;
+}
+
+.edit-controls__button-TOGGLE_ACCEPTING {
+  background-position: 0 -128px;
+}
+
+.edit-controls__button-TOGGLE_ACCEPTING:hover {
+  background-position: -32px -128px;
+}

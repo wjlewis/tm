@@ -27,13 +27,15 @@ export interface NodeProps {
   mouseUp: () => void;
 }
 
-export const NODE_RADIUS = 20;
+export const NODE_RADIUS = 21;
 
 class Node extends React.Component<NodeProps> {
   render() {
     const { pos, mnemonic } = this.props.details;
     const className = classNames('node', {
       'node--selected': this.props.isSelected,
+      'node--final': this.props.details.isFinal,
+      'node--start': this.props.isStart,
       'node--editable': this.props.isEditable,
       'node--active': !this.props.isEditable && this.props.isActive,
     });
@@ -42,61 +44,33 @@ class Node extends React.Component<NodeProps> {
       'node__mnemonic-input--editable': this.props.isEditable,
     });
 
-    // This was determined experimentally, although it is obviously related to NODE_RADIUS.
-    const mnemonicPos = pos.plus(new Vector(-20, 22));
+    const mnemonicPos = pos.plus(new Vector(-NODE_RADIUS + 2, NODE_RADIUS + 3));
 
     return (
-      <g>
-        <g onMouseDown={this.handleMouseDown}
-           onMouseUp={this.handleMouseUp}>
-          <circle className={className}
-                  cx={pos.x}
-                  cy={pos.y}
-                  r={NODE_RADIUS} />
-          {this.props.isStart && this.renderStartArrow()}
-          {this.props.details.isFinal && this.renderFinalCircle()}
-        </g>
-        <foreignObject x={mnemonicPos.x} y={mnemonicPos.y} width="100" height="100">
-          <input className={mnemonicClassName}
-                 disabled={!this.props.isEditable}
-                 value={mnemonic}
-                 onChange={this.handleInputChange}
-                 onBlur={this.handleInputBlur}
-                 type="text"
-                 maxLength={4} />
-        </foreignObject>
-      </g>
+      <div className="node__container">
+        <div className={className}
+             onMouseDown={this.handleMouseDown}
+             onMouseUp={this.handleMouseUp}
+             style={{
+               position: 'absolute',
+               left: pos.x - NODE_RADIUS,
+               top: pos.y - NODE_RADIUS,
+             }} />
+        <input className={mnemonicClassName}
+               disabled={!this.props.isEditable}
+               value={mnemonic}
+               onChange={this.handleInputChange}
+               onBlur={this.handleInputBlur}
+               type="text"
+               maxLength={4}
+               style={{
+                 position: 'absolute',
+                 left: mnemonicPos.x,
+                 top: mnemonicPos.y,
+               }}/>
+      </div>
     );
   }
-
-  // In order to distinguish the starting state from other states, we render a
-  // small arrow to the left of it. This arrow consists of two parts: a head and
-  // a line.
-  private renderStartArrow = () => {
-    const { pos } = this.props.details;
-    const lineLength =  25;
-    const headLength = 15;
-    const wingLength = 5;
-    const tip = pos.minus(new Vector(NODE_RADIUS, 0));
-    const end = tip.minus(new Vector(lineLength, 0));
-    const wing1 = tip.plus(new Vector(-headLength, -wingLength));
-    const wing2 = tip.plus(new Vector(-headLength, wingLength));
-
-    return (
-      <g>
-        <line className="node__start-arrow-line" x1={tip.x} y1={tip.y} x2={end.x} y2={end.y} />
-        <path className="node__start-arrow-head"
-              d={`M ${tip.x} ${tip.y} L ${wing1.x} ${wing1.y} L ${wing2.x} ${wing2.y}`} />
-      </g>
-    );
-  };
-
-  // If the node is represents an accepting (or "final") state, then we render
-  // an additional circle inside of it, as is customary.
-  private renderFinalCircle = () => {
-    const { pos } = this.props.details;
-    return <circle className="node__final-circle" cx={pos.x} cy={pos.y} r={NODE_RADIUS-3} />;
-  };
 
   // We call "preventDefault" on this event to prevent the ugly text
   // highlighting behavior that occurs when a user drags the mouse across the

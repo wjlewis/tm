@@ -1,4 +1,5 @@
 .shadow-node {
-  fill: var(--primary-lt);
-  stroke: var(--primary-md);
+  width: 42px;
+  height: 47px;
+  background: url(../Node/sprite.png) -132px 0;
 }

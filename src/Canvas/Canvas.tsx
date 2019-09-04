@@ -31,13 +31,13 @@ export interface CanvasProps {
 class Canvas extends React.Component<CanvasProps> {
   render() {
     const { arrows, nodes, controlPoints, transitionDetails } = this.props;
-    // This configuration probably warrants an explanation. Most of the machine
-    // components (e.g. arrows, nodes, control points) need to be rendered in an
-    // SVG context. However, we cannot render the transition details inside of
-    // one (strictly speaking, we could use "foreignObject" elements, but this
-    // proved to be far more complicated). Therefore, we render an SVG element
-    // inside of a containing div, and render the transition details inside of
-    // the latter.
+    // This configuration probably warrants an explanation. Some of the machine
+    // components (e.g. arrows, control points) need to be rendered in an SVG
+    // context. However, we cannot render the nodes and transition details
+    // inside of one (strictly speaking, we could use "foreignObject" elements,
+    // but this proved to be far more complicated). Therefore, we render an SVG
+    // element inside of a containing div, and render the HTML elements inside
+    // of the latter.
     return (
       <div className="canvas"
              onMouseDown={this.handleMouseDown}
@@ -47,13 +47,13 @@ class Canvas extends React.Component<CanvasProps> {
              width="100%"
              height="100%">
           {arrows.map(details => <Arrow key={details.id} details={details} />)}
-          {nodes.map(details => <Node key={details.id} details={details} />)}
           {controlPoints.map(details => <ControlPoint key={details.id} details={details} />)}
-          <ShadowNode />
         </svg>
+        {nodes.map(details => <Node key={details.id} details={details} />)}
         {Object.keys(transitionDetails).map(arrowId => (
           <TransitionDetails key={arrowId} arrowId={arrowId} details={transitionDetails[arrowId]} />
         ))}
+        <ShadowNode />
       </div>
     );
   }

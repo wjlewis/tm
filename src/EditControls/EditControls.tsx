@@ -22,8 +22,9 @@ class EditControls extends React.Component<EditControlsProps> {
     return (
       <div className="edit-controls">
         {this.props.inEditMode && this.props.buttonTypes.map(type => (
-          <button key={type}
-                  onClick={this.actions[type]}>{type}</button>
+          <button className={`edit-controls__button edit-controls__button-${type}`}
+                  key={type}
+                  onClick={this.actions[type]} />
         ))}
       </div>
     );

@@ -6,14 +6,14 @@
 :root {
   --code-font: 'Roboto Mono', monospace;
   --main-font: 'Fira Sans', sans-serif;
-  --bg: #fff;
-  --base-dk: #33373d;
-  --base-md: #b1b6bd;
+  --bg: #f3f3f3;
+  --base-dk: #5d544e;
+  --base-md: #81756d;
   --base-lt: #dcdde0;
   --error-md: #f56f42;
   --primary-dk: #626770;
-  --primary-md: #466ea6;
-  --primary-lt: #a8c3f7;
+  --primary-md: #8a4ad8;
+  --primary-lt: #e1cdfa;
 }
 
 html, body, #root {
@@ -21,4 +21,5 @@ html, body, #root {
   height: 100%;
   margin: 0;
   overflow: auto;
+  background-color: var(--bg);
 }

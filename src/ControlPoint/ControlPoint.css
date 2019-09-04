@@ -9,7 +9,7 @@
 }
 
 .control-point--editable:hover {
-  fill: var(--primary-dk);
+  fill: var(--base-md);
 }
 
 .control-point--editable:active {

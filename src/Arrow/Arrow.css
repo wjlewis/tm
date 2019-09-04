@@ -1,6 +1,7 @@
 .arrow {
   fill: none;
   stroke: var(--base-dk);
+  stroke-width: 1.3;
 }
 
 .arrow--active {

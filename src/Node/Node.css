@@ -1,11 +1,13 @@
 /*
- * The basic, unadorned node.
+ * To display a node, we use a sprite sheet containing a number of images laid
+ * out in a grid. To select a particular image (say, the image of a selected,
+ * final node), we simply set the "background-position" property accordingly.
  */
 .node {
-  fill: #fff;
-  stroke: var(--base-dk);
-
-  transition: stroke 0.2s, fill 0.1s;
+  width: 42px;
+  height: 44px;
+  background-image: url(./sprite.png);
+  background-position: 0 0;
 }
 
 .node--editable {
@@ -13,66 +15,51 @@
 }
 
 .node--editable:hover {
-  stroke: var(--primary-dk);
+  background-position: -44px 0;
 }
 
-.node--editable:active {
-  stroke: var(--primary-md);
-}
-
-.node--active {
-  fill: red;
-}
-
-/*
- * When a node is selected, we change its fill.
- */
+.node--editable:active,
 .node--editable.node--selected {
-  fill: var(--primary-lt);
+  background-position: -88px 0;
 }
 
-/*
- * Two embellishments: an arrow, and a concentric circle.
- */
-.node__start-arrow-line {
-  stroke: var(--base-dk);
-  transition: stroke 0.2s;
+.node--editable.node--final {
+  background-position: 0 -44px;
 }
 
-.node__start-arrow-head {
-  stroke: none;
-  fill: var(--base-dk);
-  transition: fill 0.2s;
+.node--editable.node--final:hover {
+  background-position: -44px -44px;
 }
 
-.node--editable:hover ~ g .node__start-arrow-line {
-  stroke: var(--primary-dk);
+.node--editable.node--final:active,
+.node--editable.node--final.node--selected {
+  background-position: -88px -44px;
 }
 
-.node--editable:hover ~ g .node__start-arrow-head {
-  fill: var(--primary-dk);
+.node--editable.node--start {
+  background-position: 0 -88px;
 }
 
-.node--editable:active ~ g .node__start-arrow-line {
-  stroke: var(--primary-md);
+.node--editable.node--start:hover {
+  background-position: -44px -88px;
 }
 
-.node--editable:active ~ g .node__start-arrow-head {
-  fill: var(--primary-md);
+.node--editable.node--start:active,
+.node--editable.node--start.node--selected {
+  background-position: -88px -88px;
 }
 
-.node__final-circle {
-  fill: none;
-  stroke: var(--base-dk);
-  transition: stroke 0.2s;
+.node--editable.node--start.node--final {
+  background-position: 0 -132px;
 }
 
-.node--editable:hover ~ .node__final-circle {
-  stroke: var(--primary-dk);
+.node--editable.node--start.node--final:hover {
+  background-position: -44px -132px;
 }
 
-.node--editable:active ~ .node__final-circle {
-  stroke: var(--primary-md);
+.node--editable.node--start.node-final:active,
+.node--editable.node--start.node--final.node--selected {
+  background-position: -88px -132px;
 }
 
 /*
