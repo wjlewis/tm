@@ -136,6 +136,18 @@ export const changeTapeCell = (pos: number, value: string): Action => ({
   payload: { pos, value },
 });
 
+export const MOVE_TAPE = 'MOVE_TAPE';
+export const moveTape = (direction: 'L' | 'R'): Action => ({
+  type: MOVE_TAPE,
+  payload: { direction },
+});
+
+export const WRITE_TAPE_SYMBOL = 'WRITE_TAPE_SYMBOL';
+export const writeTapeSymbol = (symbol: string): Action => ({
+  type: WRITE_TAPE_SYMBOL,
+  payload: { symbol },
+});
+
 // Canvas and UI actions:
 export const MOUSE_DOWN_CANVAS = 'MOUSE_DOWN_CANVAS';
 export const mouseDownCanvas = (pos: Vector): Action => ({
@@ -238,10 +250,26 @@ export const setActiveTransitionDetail = (id: null | string): Action => ({
   payload: { id },
 });
 
+export const SET_ACTIVE_CONTROL_POINT = 'SET_ACTIVE_CONTROL_POINT';
+export const setActiveControlPoint = (id: null | string): Action => ({
+  type: SET_ACTIVE_CONTROL_POINT,
+  payload: { id },
+});
+
 export const SET_ACTIVE_ARROW = 'SET_ACTIVE_ARROW';
 export const setActiveArrow = (id: null | string): Action => ({
   type: SET_ACTIVE_ARROW,
   payload: { id },
+});
+
+export const HALT_ACCEPT = 'HALT_ACCEPT';
+export const haltAccept = (): Action => ({
+  type: HALT_ACCEPT,
+});
+
+export const HALT_REJECT = 'HALT_REJECT';
+export const haltReject = (): Action => ({
+  type: HALT_REJECT,
 });
 
 // Mode actions:

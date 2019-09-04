@@ -23,8 +23,10 @@ class Tape extends React.Component<TapeProps> {
   private tapeRef: React.RefObject<HTMLDivElement> = React.createRef();
 
   render() {
+    const { center, isEditable } = this.props;
+
     const cellClassName = classNames('tape__cell', {
-      'tape__cell--editable': this.props.isEditable,
+      'tape__cell--editable': isEditable,
     });
 
     return (
@@ -36,7 +38,7 @@ class Tape extends React.Component<TapeProps> {
           {this.props.entries.map((l, i) => (
             <input key={i}
                    disabled={!this.props.isEditable}
-                   className={cellClassName}
+                   className={classNames(cellClassName, { 'tape__cell--active': center === i})}
                    onFocus={this.handleCellFocus(i)}
                    value={l}
                    onChange={this.handleCellChange(i)}

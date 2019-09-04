@@ -30,6 +30,10 @@ export const tapeReducer = (state: State, action: Action): TapeState => {
       return setTapeCenter(state, action.payload.pos);
     case A.CHANGE_TAPE_CELL:
       return changeTapeCell(state, action.payload.pos, action.payload.value);
+    case A.MOVE_TAPE:
+      return moveTape(state, action.payload.direction);
+    case A.WRITE_TAPE_SYMBOL:
+      return writeTapeSymbol(state, action.payload.symbol);
     default:
       return state.entities.tape;
   }
@@ -44,3 +48,16 @@ const changeTapeCell = (state: State, pos: number, value: string): TapeState => 
   ...state.entities.tape,
   entries: _.update(_.clone(state.entities.tape.entries), pos, _ => value),
 });
+
+const moveTape = (state: State, direction: 'L' | 'R'): TapeState => ({
+  ...state.entities.tape,
+  center: state.entities.tape.center + (direction === 'L' ? +1 : -1),
+});
+
+const writeTapeSymbol = (state: State, symbol: string): TapeState => {
+  const { tape } = state.entities;
+  return {
+    ...tape,
+    entries: _.set(_.clone(tape.entries), tape.center, symbol),
+  };
+};

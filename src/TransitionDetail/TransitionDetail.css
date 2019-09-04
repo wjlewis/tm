@@ -6,7 +6,7 @@
 }
 
 .transition-detail--active {
-  border: 1px solid red;
+  border: 1px solid var(--active-md);
 }
 
 /*

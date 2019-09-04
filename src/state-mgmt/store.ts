@@ -17,6 +17,7 @@ const store = createStore(
     M.validateTransitionDetails,
     M.validatePreSim,
     sagaMiddleware,
+    M.halt,
   )),
 );
 

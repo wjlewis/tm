@@ -109,7 +109,7 @@ class TransitionDetail extends React.Component<TransitionDetailProps> {
     if (!this.props.onChange) return;
     this.props.onChange({
       ...this.props.detail,
-      move: evt.target.value,
+      move: evt.target.value as 'L' | 'R',
     });
   };
 

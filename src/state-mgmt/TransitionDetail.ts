@@ -22,7 +22,7 @@ export interface TransitionDetail {
   arrow: string;
   read: string;
   write: string;
-  move: string;
+  move: 'L' | 'R';
   isDuplicate: boolean;
 }
 

@@ -5,6 +5,7 @@ import { State } from '../state-mgmt/state';
 import { Arrow as ArrowDetails } from '../state-mgmt/Arrow';
 import { controlPointForArrow } from '../state-mgmt/ControlPoint';
 import { nodeById } from '../state-mgmt/Node';
+import { isInEditMode } from '../state-mgmt/Mode';
 import { isArrowActive } from '../state-mgmt/Sim';
 import Vector from '../tools/Vector';
 import './Arrow.css';
@@ -22,12 +23,14 @@ export interface ArrowProps {
   end: Vector;
   control: Vector;
   isSelfLoop: boolean;
+  isEditable: boolean;
   isActive: boolean;
 }
 
 class Arrow extends React.Component<ArrowProps> {
   render() {
     const className = classNames('arrow', {
+      'arrow--editable': this.props.isEditable,
       'arrow--active': this.props.isActive,
     });
 
@@ -80,6 +83,7 @@ const mapStateToProps = (state: State, ownProps: any) => {
     end: end.pos,
     control: controlPoint.pos,
     isSelfLoop: start.id === end.id,
+    isEditable: isInEditMode(state),
     isActive: isArrowActive(state, ownProps.details.id),
   };
 };

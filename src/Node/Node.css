@@ -23,7 +23,7 @@
   background-position: -88px 0;
 }
 
-.node--editable.node--final {
+.node.node--final {
   background-position: 0 -44px;
 }
 
@@ -36,7 +36,7 @@
   background-position: -88px -44px;
 }
 
-.node--editable.node--start {
+.node.node--start {
   background-position: 0 -88px;
 }
 
@@ -49,7 +49,7 @@
   background-position: -88px -88px;
 }
 
-.node--editable.node--start.node--final {
+.node.node--start.node--final {
   background-position: 0 -132px;
 }
 
@@ -60,6 +60,22 @@
 .node--editable.node--start.node-final:active,
 .node--editable.node--start.node--final.node--selected {
   background-position: -88px -132px;
+}
+
+.node--active {
+  background-position: -176px 0;
+}
+
+.node--active.node--final {
+  background-position: -176px -44px;
+}
+
+.node--active.node--start {
+  background-position: -176px -88px;
+}
+
+.node--active.node--start.node--final {
+  background-position: -176px -132px;
 }
 
 /*

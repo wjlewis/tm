@@ -4,6 +4,12 @@
   stroke-width: 1.3;
 }
 
+.arrow--editable.arrow {
+  stroke: var(--base-dk);
+  stroke-width: 1.3;
+}
+
 .arrow--active {
-  stroke: red;
+  stroke: var(--active-md);
+  stroke-width: 1.6;
 }

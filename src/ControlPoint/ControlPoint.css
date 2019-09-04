@@ -4,7 +4,8 @@
   transition: fill 0.2s;
 }
 
-.control-point--editable {
+.control-point.control-point--editable {
+  fill: var(--base-dk);
   cursor: pointer;
 }
 
@@ -14,4 +15,8 @@
 
 .control-point--editable:active {
   fill: var(--primary-md);
+}
+
+.control-point--active {
+  fill: var(--active-md);
 }

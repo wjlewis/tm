@@ -1,0 +1,11 @@
+.halt-report__result {
+  text-transform: uppercase;
+}
+
+.halt-report__result--accepted {
+  color: var(--success-md);
+}
+
+.halt-report__result--rejected {
+  color: var(--error-md);
+}

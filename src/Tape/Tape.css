@@ -48,13 +48,13 @@
 
 .tape__cell--editable:hover, .tape__cell--editable:focus {
   color: var(--base-dk);
-  border-bottom: 1px solid var(--primary-md);
-}
-
-.tape__cell--editable:focus {
-  background-color: var(--primary-lt);
 }
 
 .tape__padding-right {
   border-right: none;
+}
+
+.tape__cell--active {
+  background-color: var(--active-md);
+  color: var(--base-dk);
 }
