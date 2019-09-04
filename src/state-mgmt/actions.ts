@@ -167,9 +167,9 @@ export const mouseMoveCanvas = (pos: Vector): Action => ({
 });
 
 export const KEY_DOWN = 'KEY_DOWN';
-export const keyDown = (key: string): Action => ({
+export const keyDown = (key: string, event: React.KeyboardEvent): Action => ({
   type: KEY_DOWN,
-  payload: { key },
+  payload: { key, event },
 });
 
 export const KEY_UP = 'KEY_UP';

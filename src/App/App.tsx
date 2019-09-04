@@ -15,7 +15,7 @@ import './App.css';
 // resetting the machine.
 
 export interface AppProps {
-  keyDown: (key: string) => void;
+  keyDown: (key: string, event: React.KeyboardEvent) => void;
   keyUp: (key: string) => void;
 }
 
@@ -45,7 +45,7 @@ class App extends React.Component<AppProps> {
   }
 
   private handleKeyDown = (e: React.KeyboardEvent) => {
-    this.props.keyDown(e.key);
+    this.props.keyDown(e.key, e);
   };
 
   private handleKeyUp = (e: React.KeyboardEvent) => {
@@ -54,7 +54,7 @@ class App extends React.Component<AppProps> {
 }
 
 const mapDispatchToProps = (dispatch: Dispatch) => ({
-  keyDown: (key: string) => dispatch(keyDown(key)),
+  keyDown: (key: string, event: React.KeyboardEvent) => dispatch(keyDown(key, event)),
   keyUp: (key: string) => dispatch(keyUp(key)),
 });
 
