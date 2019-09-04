@@ -23,32 +23,49 @@ class Tape extends React.Component<TapeProps> {
   private tapeRef: React.RefObject<HTMLDivElement> = React.createRef();
 
   render() {
-    const { center, isEditable } = this.props;
+    const { isEditable } = this.props;
 
     const cellClassName = classNames('tape__cell', {
       'tape__cell--editable': isEditable,
     });
 
     return (
-      <div className="tape"
-           ref={this.tapeRef}
-           style={{ width: `${CELL_WIDTH * CELL_COUNT}px` }}>
-        <div className="tape__cells">
-          <div className="tape__padding-left" style={{ width: `${CELL_WIDTH / 2}px` }} />
-          {this.props.entries.map((l, i) => (
-            <input key={i}
-                   disabled={!this.props.isEditable}
-                   className={classNames(cellClassName, { 'tape__cell--active': center === i})}
-                   onFocus={this.handleCellFocus(i)}
-                   value={l}
-                   onChange={this.handleCellChange(i)}
-                   style={{ width: `${CELL_WIDTH}px` }}
-                   type="text"
-                   maxLength={1} />
-          ))}
-          <div className="tape__padding-right" style={{ width: `${CELL_WIDTH / 2}px` }} />
+      <>
+        <div className={`tape-reader${!isEditable ? ' tape-reader--active' : ''}`}
+             style={{
+               position: 'absolute',
+               left: `calc(50% - ${CELL_WIDTH / 2}px)`,
+             }} />
+        <div className="tape"
+             ref={this.tapeRef}
+             style={{ width: `${CELL_WIDTH * CELL_COUNT}px` }}>
+          <div className="tape__cells">
+            <div className="tape__padding-left" style={{ width: `${CELL_WIDTH / 2}px` }} />
+            {this.props.entries.map((l, i) => (
+              <input key={i}
+                     disabled={!this.props.isEditable}
+                     className={cellClassName}
+                     onFocus={this.handleCellFocus(i)}
+                     value={l}
+                     onChange={this.handleCellChange(i)}
+                     style={{ width: `${CELL_WIDTH}px` }}
+                     type="text"
+                     maxLength={1} />
+            ))}
+            <div className="tape__padding-right" style={{ width: `${CELL_WIDTH / 2}px` }} />
+          </div>
         </div>
-      </div>
+        <div className="tape-feed tape-feed__left"
+             style={{
+               position: 'absolute',
+               left: `calc(50% - ${CELL_WIDTH * CELL_COUNT / 2 + 4}px)`,
+             }} />
+        <div className="tape-feed tape-feed__right"
+             style={{
+               position: 'absolute',
+               left: `calc(50% + ${CELL_WIDTH * CELL_COUNT / 2 - 4}px)`,
+             }} />
+      </>
     );
   }
 
