@@ -1,0 +1,53 @@
+.app-controls {
+  position: absolute;
+  top: 10px;
+  right: 20px;
+  display: flex;
+  align-items: center;
+}
+
+.app-controls__button {
+  outline: none;
+  border: none;
+  background-color: transparent;
+  cursor: pointer;
+
+  width: 20px;
+  height: 24px;
+  margin: 2px 8px;
+  background-image: url(./sprite.png);
+}
+
+.app-controls__download-button {
+  background-position: 0 0;
+}
+
+.app-controls__download-button:hover {
+  background-position: -20px 0;
+}
+
+.app-controls__upload-button {
+  background-position: 0 -24px;
+}
+
+.app-controls__upload-button:hover {
+  background-position: -20px -24px;
+}
+
+.app-controls__link {
+  font-family: var(--main-font);
+  font-size: 11pt;
+  color: var(--base-md);
+  text-decoration: none;
+
+  display: inline-block;
+  margin: 0 7px;
+}
+
+.app-controls__link:hover {
+  color: var(--base-dk);
+}
+
+.app-controls__link.app-controls__source-link {
+  font-family: var(--code-font);
+}

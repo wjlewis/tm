@@ -4,6 +4,7 @@ import { Dispatch } from 'redux';
 import { keyDown, keyUp } from '../state-mgmt/actions';
 import Canvas from '../Canvas/Canvas';
 import EditControls from '../EditControls/EditControls';
+import AppControls from '../AppControls/AppControls';
 import Tape from '../Tape/Tape';
 import SimControls from '../SimControls/SimControls';
 import Message from '../Message/Message';
@@ -26,6 +27,7 @@ class App extends React.Component<AppProps> {
         <Canvas />
         <Tape />
         <EditControls />
+        <AppControls />
         <SimControls />
         <Message />
       </div>
