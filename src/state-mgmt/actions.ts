@@ -124,16 +124,16 @@ export const markDuplicateTransitions = (ids: string[]): Action => ({
 });
 
 // Tape actions:
-export const SET_TAPE_CENTER = 'SET_TAPE_CENTER';
-export const setTapeCenter = (pos: number): Action => ({
-  type: SET_TAPE_CENTER,
-  payload: { pos },
-});
-
 export const CHANGE_TAPE_CELL = 'CHANGE_TAPE_CELL';
 export const changeTapeCell = (pos: number, value: string): Action => ({
   type: CHANGE_TAPE_CELL,
   payload: { pos, value },
+});
+
+export const UPDATE_SCROLL_LEFT = 'UPDATE_SCROLL_LEFT';
+export const updateScrollLeft = (scrollLeft: number): Action => ({
+  type: UPDATE_SCROLL_LEFT,
+  payload: { scrollLeft },
 });
 
 export const MOVE_TAPE = 'MOVE_TAPE';

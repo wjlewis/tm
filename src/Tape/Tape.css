@@ -31,6 +31,14 @@
   box-sizing: border-box;
 }
 
+.tape__padding-left {
+  font-family: var(--main-font);
+  color: var(--base-lt);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
 .tape__cell {
   outline: none;
   background-color: transparent;
@@ -59,9 +67,9 @@
 }
 
 .tape-feed {
-  width: 8px;
-  height: 57px;
-  bottom: 86px;
+  width: 12px;
+  height: 61px;
+  bottom: 84px;
   background-image: url(./sprite.png);
 }
 
@@ -70,7 +78,7 @@
 }
 
 .tape-feed__right {
-  background-position: -8px 0;
+  background-position: -12px 0;
 }
 
 .tape-reader {
@@ -78,7 +86,7 @@
   height: 72px;
   bottom: 79px;
   background-image: url(./sprite.png);
-  background-position: -16px 0;
+  background-position: -24px 0;
 }
 
 .tape-reader--active {

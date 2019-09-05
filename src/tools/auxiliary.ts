@@ -11,3 +11,13 @@ export const mod2Include = <A>(x: A, xs: A[]): A[] => (
 export const xOr = (x: boolean, y: boolean): boolean => (
   (x || y) && !(x && y)
 );
+
+// repeat(what, times) constructs an Array containing "what" repeated "times"
+// times.
+export const repeat = <A>(what: A, times: number): A[] => {
+  const res = new Array(times);
+  for (let i = 0; i < times; i++) {
+    res[i] = what;
+  }
+  return res;
+};
