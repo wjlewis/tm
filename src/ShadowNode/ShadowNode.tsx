@@ -33,7 +33,6 @@ class ShadowNode extends React.Component<ShadowNodeProps> {
   }
 
   private handleMouseUp = (e: React.MouseEvent) => {
-    e.stopPropagation();
     this.props.add(this.props.pos);
   };
 }

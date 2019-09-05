@@ -14,6 +14,7 @@ export interface UIState {
   isMouseDownNode: boolean;
   isMouseDownControlPoint: boolean;
   isAddingNode: boolean;
+  wasMouseReleasedOverNode: boolean;
 }
 
 export const initUIState: UIState = {
@@ -22,6 +23,7 @@ export const initUIState: UIState = {
   isMouseDownNode: false,
   isMouseDownControlPoint: false,
   isAddingNode: false,
+  wasMouseReleasedOverNode: false,
 };
 
 // Return the current mouse position.
@@ -38,6 +40,8 @@ export const isMouseDownControlPoint = (state: State): boolean => state.ui.isMou
 
 // Test if we are in the process of adding a node.
 export const isAddingNode = (state: State): boolean => state.ui.isAddingNode;
+
+export const wasMouseReleasedOverNode = (state: State): boolean => state.ui.wasMouseReleasedOverNode;
 
 export const uiReducer = (state: State, action: Action): UIState => {
   if (isInEditMode(state)) {
@@ -89,6 +93,7 @@ const mouseDownNode = (state: State): UIState => ({
 const mouseUpNode = (state: State): UIState => ({
   ...state.ui,
   isMouseDownNode: false,
+  wasMouseReleasedOverNode: true,
 });
 
 const mouseDownControlPoint = (state: State): UIState => ({
@@ -105,6 +110,7 @@ const mouseUpCanvas = (state: State): UIState => ({
   ...state.ui,
   isMouseDownNode: false,
   isMouseDownControlPoint: false,
+  wasMouseReleasedOverNode: false,
 });
 
 const startAddingNode = (state: State): UIState => ({
@@ -115,6 +121,7 @@ const startAddingNode = (state: State): UIState => ({
 const addNode = (state: State): UIState => ({
   ...state.ui,
   isAddingNode: false,
+  wasMouseReleasedOverNode: true,
 });
 
 const mouseMoveCanvas = (state: State, pos: Vector): UIState => ({

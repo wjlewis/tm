@@ -72,20 +72,11 @@ class Node extends React.Component<NodeProps> {
     );
   }
 
-  // We call "preventDefault" on this event to prevent the ugly text
-  // highlighting behavior that occurs when a user drags the mouse across the
-  // screen.
   private handleMouseDown = (e: React.MouseEvent) => {
-    e.preventDefault();
     this.props.mouseDown();
   };
 
-  // We call "stopPropagation" on this event to prevent it from bubbling to the
-  // canvas component. This is because it is useful to be able to detect if the
-  // mouse has been released over the canvas and NOT over a node or control
-  // point.
   private handleMouseUp = (e: React.MouseEvent) => {
-    e.stopPropagation();
     this.props.mouseUp();
   };
 

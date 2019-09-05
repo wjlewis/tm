@@ -76,10 +76,7 @@ class ControlPoint extends React.Component<ControlPointProps> {
     return `M ${p1.x} ${p1.y} L ${tip.x} ${tip.y} L ${p2.x} ${p2.y}`;
   }
 
-  // As for nodes, we call "preventDefault" on the event in order to prevent the
-  // annoying text-highlighting that occurs when a user drags the mouse around.
   private handleMouseDown = (e: React.MouseEvent) => {
-    e.preventDefault();
     this.props.mouseDown();
   };
 

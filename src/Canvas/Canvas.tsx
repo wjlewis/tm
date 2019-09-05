@@ -66,7 +66,11 @@ class Canvas extends React.Component<CanvasProps> {
     this.props.mouseUp();
   };
 
+  // We call "preventDefault" on the event in order to prevent the annoying text
+  // highlighting behavior that occurs when the user drags entities around on
+  // the screen.
   private handleMouseMove = (e: React.MouseEvent) => {
+    e.preventDefault();
     this.props.mouseMove(this.computeMousePos(e));
   };
 

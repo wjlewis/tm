@@ -6,7 +6,7 @@ import { Transient, currentLatest } from './auxiliary';
 import { State } from './state';
 import Vector from '../tools/Vector';
 import { mod2Include } from '../tools/auxiliary';
-import { isMultiselect, isMouseDownNode } from './UI';
+import { isMultiselect, isMouseDownNode, wasMouseReleasedOverNode } from './UI';
 import { isInEditMode } from './Mode';
 
 // A node represents a machine state in the TM formalism. Each node is
@@ -115,7 +115,6 @@ export const nodesReducer = (state: State, action: Action): NodeState => {
       case A.MOUSE_DOWN_CANVAS:
         return mouseDownCanvas(state, action.payload.pos);
       case A.MOUSE_UP_CANVAS:
-      case A.MOUSE_UP_CONTROL_POINT:
         return mouseUpCanvas(state);
       case A.MOUSE_MOVE_CANVAS:
         return mouseMoveCanvas(state, action.payload.pos);
@@ -262,13 +261,17 @@ const mouseDownCanvas = (state: State, mousePos: Vector): NodeState => {
 // and revert to the last committed state. We can be assured that the mouse was
 // NOT released over a node, since we stopped the event from propagating in the
 // node component.
-const mouseUpCanvas = (state: State): NodeState => ({
-  wip: null,
-  committed: {
-    ...state.entities.nodes.committed,
-    selected: [],
-  },
-});
+const mouseUpCanvas = (state: State): NodeState => (
+  wasMouseReleasedOverNode(state)
+  ? state.entities.nodes
+  : {
+    wip: null,
+    committed: {
+      ...state.entities.nodes.committed,
+      selected: [],
+    },
+  }
+);
 
 // If the mouse is moved while it is down over a node, we update all of the
 // selected nodes in the WIP state using the offsets computed when the mouse was
