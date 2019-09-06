@@ -119,13 +119,18 @@ const addArrow = (state: State, start: string, end: string, arrow: string): Cont
   const constructStandardPos = (start: Vector, end: Vector): Vector => {
     const diff = end.minus(start);
     // We offset the control point ever so slightly from the line joining the
-    // endpoints; this forces the transition details into a better position.
-    const perp = diff.perp().normalize().scale(1);
+    // endpoints; this forces the transition details into a better position. In
+    // the event that both endpoints are on top of each other (this is
+    // incredibly rare if not impossible), we add the control point a certain
+    // vertical distance away.
+    const perp = diff.magnitude() !== 0
+      ? diff.perp().normalize().scale(1)
+      : new Vector(0, -1);
     return diff.scale(1 / 2).plus(perp).plus(start);
   };
 
   const controlPos = start === end
-  ? startPos.minus(new Vector(0, 120))
+  ? startPos.minus(new Vector(0, 90))
   : constructStandardPos(startPos, endPos);
 
   return {
@@ -323,7 +328,11 @@ const moveIndirect = (state: State, mousePos: Vector): ControlPointState => {
     const newPos = mousePos.plus(movingOffset);
     const diff = fixedPos.minus(newPos);
     const alongDiff = diff.scale(fractionAlong).plus(newPos);
-    const updatedPos = diff.perp().normalize().scale(perpLength).plus(alongDiff);
+    // If the start and end points are the same, we simply place the control
+    // point a certain vertical distance away from them.
+    const updatedPos = diff.magnitude() !== 0
+      ? diff.perp().normalize().scale(perpLength).plus(alongDiff)
+      : new Vector(0, -80).plus(alongDiff);
 
     return {
       ...acc,

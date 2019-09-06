@@ -67,7 +67,11 @@ class Arrow extends React.Component<ArrowProps> {
     const { start, control } = this.props;
     const v1 = control.minus(start).scale(4 / 3);
     const separation = 80;
-    const v2 = v1.perp().normalize().scale(separation);
+    // If the control point is on top of its associated node, we place the
+    // bezier control points horizontally to the left and right.
+    const v2 = v1.magnitude() !== 0
+      ? v1.perp().normalize().scale(separation)
+      : new Vector(separation, 0);
     const ctrl1 = start.plus(v1).plus(v2);
     const ctrl2 = start.plus(v1).minus(v2);
     return `M ${start.x} ${start.y} C ${ctrl1.x} ${ctrl1.y} ${ctrl2.x} ${ctrl2.y} ${start.x} ${start.y}`;

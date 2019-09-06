@@ -55,7 +55,12 @@ class ControlPoint extends React.Component<ControlPointProps> {
   private computeQuadraticPathString() {
     const { start, end } = this.props;
     const { pos } = this.props.details;
-    const v1 = end.minus(start).normalize().scale(ARROW_LENGTH);
+    const diff = end.minus(start);
+    // If the two endpoints are on top of each other, we simply create a
+    // horizontal arrow.
+    const v1 = diff.magnitude() !== 0
+      ? diff.normalize().scale(ARROW_LENGTH)
+      : new Vector(ARROW_LENGTH, 0);
     const v2 = v1.perp().scale(1 / 3);
     const p1 = pos.minus(v1).plus(v2);
     const p2 = pos.minus(v1).minus(v2);
@@ -68,7 +73,12 @@ class ControlPoint extends React.Component<ControlPointProps> {
   private computeCubicString() {
     const { start } = this.props;
     const { pos } = this.props.details;
-    const v1 = pos.minus(start).normalize();
+    const diff = pos.minus(start);
+    // If the control point is on top of its associated node, we simply create a
+    // horizontal arrow.
+    const v1 = diff.magnitude() !== 0
+      ? diff.normalize()
+      : new Vector(0, 1);
     const v2 = v1.perp().scale(ARROW_LENGTH);
     const tip = pos.plus(v2.scale(1 / 2));
     const p1 = tip.minus(v2).plus(v1.scale(ARROW_LENGTH / 3));
