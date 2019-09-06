@@ -2,11 +2,11 @@
  * The tape container
  */
 .tape {
-  height: 60px;
+  height: 67px;
   border: none;
 
   position: absolute;
-  bottom: 80px;
+  bottom: 73px;
   left: 50%;
   transform: translateX(-50%);
 
@@ -16,8 +16,26 @@
 
 .tape__cells {
   display: flex;
-  height: 85%;
+  height: 51px;
   position: absolute;
+}
+
+.tape__clear-button {
+  bottom: 104px;
+
+  outline: none;
+  border: none;
+  background-color: transparent;
+  cursor: pointer;
+
+  width: 41px;
+  height: 24px;
+  background-image: url(./sprite.png);
+  background-position: -95px 0;
+}
+
+.tape__clear-button:hover {
+  background-position: -95px -24px;
 }
 
 /*

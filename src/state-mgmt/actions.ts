@@ -130,10 +130,21 @@ export const changeTapeCell = (pos: number, value: string): Action => ({
   payload: { pos, value },
 });
 
+export const CLEAR_TAPE = 'CLEAR_TAPE';
+export const clearTape = (): Action => ({
+  type: CLEAR_TAPE,
+});
+
 export const UPDATE_SCROLL_LEFT = 'UPDATE_SCROLL_LEFT';
 export const updateScrollLeft = (scrollLeft: number): Action => ({
   type: UPDATE_SCROLL_LEFT,
   payload: { scrollLeft },
+});
+
+export const FOCUS_TAPE_CELL = 'FOCUS_TAPE_CELL';
+export const focusTapeCell = (pos: number): Action => ({
+  type: FOCUS_TAPE_CELL,
+  payload: { pos },
 });
 
 export const MOVE_TAPE = 'MOVE_TAPE';

@@ -8,6 +8,7 @@ export interface TapeState {
   entries: string[];
   scrollLeft: number;
   active: number;
+  focused: number | null;
 }
 
 export const CELL_WIDTH = 36;
@@ -16,7 +17,8 @@ export const VISIBLE_CELL_COUNT = 20;
 export const initTapeState: TapeState = {
   entries: repeat('', VISIBLE_CELL_COUNT),
   scrollLeft: 0,
-  active: 15,
+  active: 0,
+  focused: null,
 };
 
 // Return an array containing all of the tape entries, along with entries
@@ -24,6 +26,8 @@ export const initTapeState: TapeState = {
 export const tapeEntries = (state: State): string[] => state.entities.tape.entries;
 
 export const activeTapeCell = (state: State): number => state.entities.tape.active;
+
+export const focusedTapeCell = (state: State): null | number => state.entities.tape.focused;
 
 export const currentReadSymbol = (state: State): string => {
   const { tape } = state.entities;
@@ -36,6 +40,10 @@ export const tapeReducer = (state: State, action: Action): TapeState => {
       return changeTapeCell(state, action.payload.pos, action.payload.value);
     case A.UPDATE_SCROLL_LEFT:
       return updateScrollLeft(state, action.payload.scrollLeft);
+    case A.FOCUS_TAPE_CELL:
+      return focusTapeCell(state, action.payload.pos);
+    case A.CLEAR_TAPE:
+      return clearTape(state);
     case A.MOVE_TAPE:
       return moveTape(state, action.payload.direction);
     case A.WRITE_TAPE_SYMBOL:
@@ -48,7 +56,17 @@ export const tapeReducer = (state: State, action: Action): TapeState => {
 const changeTapeCell = (state: State, pos: number, value: string): TapeState => ({
   ...state.entities.tape,
   entries: _.update(_.clone(state.entities.tape.entries), pos, _ => value),
+  focused: value.length > 0 && state.entities.tape.focused !== null
+    ? state.entities.tape.focused + 1
+    : state.entities.tape.focused,
 });
+
+const focusTapeCell = (state: State, pos: number): TapeState => ({
+  ...state.entities.tape,
+  focused: pos,
+});
+
+const clearTape = (state: State): TapeState => initTapeState;
 
 const updateScrollLeft = (state: State, scrollLeft: number): TapeState => ({
   ...state.entities.tape,

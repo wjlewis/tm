@@ -25,9 +25,9 @@
      borderopacity="1.0"
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
-     inkscape:zoom="6.7027027"
-     inkscape:cx="27.901844"
-     inkscape:cy="43.333481"
+     inkscape:zoom="13.405405"
+     inkscape:cx="108.41146"
+     inkscape:cy="29.518061"
      inkscape:document-units="px"
      inkscape:current-layer="layer1"
      showgrid="true"
@@ -37,10 +37,10 @@
      inkscape:window-y="0"
      inkscape:window-maximized="1"
      units="px"
-     inkscape:object-nodes="true"
+     inkscape:object-nodes="false"
      inkscape:snap-intersection-paths="false"
-     inkscape:snap-smooth-nodes="true"
-     inkscape:object-paths="true"
+     inkscape:snap-smooth-nodes="false"
+     inkscape:object-paths="false"
      showguides="true"
      inkscape:guide-bbox="true"
      inkscape:snap-others="false"
@@ -72,14 +72,17 @@
        d="m -6,1005.3622 6,0 c 0,0 -1e-7,-6 -6,-6 -6,0 -6,6 -6,6 l 0,49 c 0,0 0,6 6,6 6,0 6,-6 6,-6 l -6,0 z"
        id="path4228"
        inkscape:connector-curvature="0"
-       sodipodi:nodetypes="cczcczccc" />
+       sodipodi:nodetypes="cczcczccc"
+       inkscape:export-filename="/Users/whiskey/Programs/tm/src/Tape/sprite.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90" />
     <path
        sodipodi:nodetypes="ccccccc"
        inkscape:connector-curvature="0"
        id="path4801"
        d="m 12,1004.1512 4,3 27,0 4,-3 0,-4 -35,0 z"
        style="fill:#4c443e;fill-opacity:1;fill-rule:evenodd;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
-       inkscape:export-filename="/Users/whiskey/Programs/machinations/src/Tape/sprite.png"
+       inkscape:export-filename="/Users/whiskey/Programs/tm/src/Tape/sprite.png"
        inkscape:export-xdpi="90"
        inkscape:export-ydpi="90" />
     <path
@@ -88,7 +91,7 @@
        id="path4797"
        inkscape:connector-curvature="0"
        sodipodi:nodetypes="ccccccc"
-       inkscape:export-filename="/Users/whiskey/Programs/machinations/src/Tape/sprite.png"
+       inkscape:export-filename="/Users/whiskey/Programs/tm/src/Tape/sprite.png"
        inkscape:export-xdpi="90"
        inkscape:export-ydpi="90" />
     <path
@@ -97,7 +100,7 @@
        id="path4803"
        inkscape:connector-curvature="0"
        sodipodi:nodetypes="ccccccc"
-       inkscape:export-filename="/Users/whiskey/Programs/machinations/src/Tape/sprite.png"
+       inkscape:export-filename="/Users/whiskey/Programs/tm/src/Tape/sprite.png"
        inkscape:export-xdpi="90"
        inkscape:export-ydpi="90" />
     <path
@@ -106,14 +109,14 @@
        id="path4799"
        d="m 12,1066.3622 4,-3 27,0 4,3 0,4 -35,0 z"
        style="fill:#5d544e;fill-opacity:1;fill-rule:evenodd;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
-       inkscape:export-filename="/Users/whiskey/Programs/machinations/src/Tape/sprite.png"
+       inkscape:export-filename="/Users/whiskey/Programs/tm/src/Tape/sprite.png"
        inkscape:export-xdpi="90"
        inkscape:export-ydpi="90" />
     <path
        sodipodi:nodetypes="ccccc"
        inkscape:export-ydpi="90"
        inkscape:export-xdpi="90"
-       inkscape:export-filename="/Users/whiskey/Programs/machinations/src/Tape/sprite.png"
+       inkscape:export-filename="/Users/whiskey/Programs/tm/src/Tape/sprite.png"
        inkscape:connector-curvature="0"
        id="path4805"
        d="m 82,1003.3622 0,63 -35,0 0,-63 z"
@@ -121,7 +124,7 @@
     <path
        inkscape:export-ydpi="90"
        inkscape:export-xdpi="90"
-       inkscape:export-filename="/Users/whiskey/Programs/machinations/src/Tape/sprite.png"
+       inkscape:export-filename="/Users/whiskey/Programs/tm/src/Tape/sprite.png"
        style="fill:#4c443e;fill-opacity:1;fill-rule:evenodd;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
        d="m 47,1004.1512 4,3 27,0 4,-3 0,-4 -35,0 z"
        id="path4807"
@@ -130,7 +133,7 @@
     <path
        inkscape:export-ydpi="90"
        inkscape:export-xdpi="90"
-       inkscape:export-filename="/Users/whiskey/Programs/machinations/src/Tape/sprite.png"
+       inkscape:export-filename="/Users/whiskey/Programs/tm/src/Tape/sprite.png"
        sodipodi:nodetypes="ccccccc"
        inkscape:connector-curvature="0"
        id="path4809"
@@ -139,7 +142,7 @@
     <path
        inkscape:export-ydpi="90"
        inkscape:export-xdpi="90"
-       inkscape:export-filename="/Users/whiskey/Programs/machinations/src/Tape/sprite.png"
+       inkscape:export-filename="/Users/whiskey/Programs/tm/src/Tape/sprite.png"
        sodipodi:nodetypes="ccccccc"
        inkscape:connector-curvature="0"
        id="path4811"
@@ -148,7 +151,7 @@
     <path
        inkscape:export-ydpi="90"
        inkscape:export-xdpi="90"
-       inkscape:export-filename="/Users/whiskey/Programs/machinations/src/Tape/sprite.png"
+       inkscape:export-filename="/Users/whiskey/Programs/tm/src/Tape/sprite.png"
        style="fill:#5d544e;fill-opacity:1;fill-rule:evenodd;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
        d="m 47,1066.3622 4,-3 27,0 4,3 0,4 -35,0 z"
        id="path4813"
@@ -158,39 +161,57 @@
        style="fill:#4d423b;fill-opacity:1;fill-rule:evenodd;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
        d="m -6,1054.3622 5.7246094,1.7168 C -0.0150355,1055.1179 0,1054.3622 0,1054.3622 l -6,0 z"
        id="path4234"
-       inkscape:connector-curvature="0" />
+       inkscape:connector-curvature="0"
+       inkscape:export-filename="/Users/whiskey/Programs/tm/src/Tape/sprite.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90" />
     <path
        sodipodi:nodetypes="cczcczccc"
        inkscape:connector-curvature="0"
        id="path4239"
        d="m 6,1005.3622 -6,0 c 0,0 1e-7,-6 6,-6 6,0 6,6 6,6 l 0,49 c 0,0 0,6 -6,6 -6,0 -6,-6 -6,-6 l 6,0 z"
-       style="fill:#5d544e;fill-opacity:1;fill-rule:evenodd;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1" />
+       style="fill:#5d544e;fill-opacity:1;fill-rule:evenodd;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       inkscape:export-filename="/Users/whiskey/Programs/tm/src/Tape/sprite.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90" />
     <path
        id="path4241"
        d="m 6,1054.3622 -5.7246094,1.7168 C 0.0150355,1055.1179 0,1054.3622 0,1054.3622 l 6,0 z"
        style="fill:#4d423b;fill-opacity:1;fill-rule:evenodd;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
-       inkscape:connector-curvature="0" />
+       inkscape:connector-curvature="0"
+       inkscape:export-filename="/Users/whiskey/Programs/tm/src/Tape/sprite.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90" />
     <rect
        style="opacity:1;fill:#3f3a3a;fill-opacity:0.06214689;stroke:none;stroke-width:0.69999999;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
        id="rect5382"
        width="4.0833335"
        height="49"
        x="-6"
-       y="1005.3622" />
+       y="1005.3622"
+       inkscape:export-filename="/Users/whiskey/Programs/tm/src/Tape/sprite.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90" />
     <rect
        y="1005.3622"
        x="-6"
        height="49"
        width="2"
        id="rect5384"
-       style="opacity:1;fill:#3f3a3a;fill-opacity:0.09039548;stroke:none;stroke-width:0.69999999;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1" />
+       style="opacity:1;fill:#3f3a3a;fill-opacity:0.09039548;stroke:none;stroke-width:0.69999999;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
+       inkscape:export-filename="/Users/whiskey/Programs/tm/src/Tape/sprite.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90" />
     <rect
        style="opacity:1;fill:#3f3a3a;fill-opacity:0.09039546;stroke:none;stroke-width:0.69999999;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
        id="rect5386"
        width="1.0505381"
        height="49"
        x="-6"
-       y="1005.3622" />
+       y="1005.3622"
+       inkscape:export-filename="/Users/whiskey/Programs/tm/src/Tape/sprite.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90" />
     <rect
        y="1005.3622"
        x="-5.8900204"
@@ -198,7 +219,10 @@
        width="4.0833335"
        id="rect5388"
        style="opacity:1;fill:#3f3a3a;fill-opacity:0.06214689;stroke:none;stroke-width:0.69999999;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
-       transform="scale(-1,1)" />
+       transform="scale(-1,1)"
+       inkscape:export-filename="/Users/whiskey/Programs/tm/src/Tape/sprite.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90" />
     <rect
        style="opacity:1;fill:#3f3a3a;fill-opacity:0.09039546;stroke:none;stroke-width:0.69999999;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
        id="rect5390"
@@ -206,13 +230,191 @@
        height="49"
        x="-5.8900204"
        y="1005.3622"
-       transform="scale(-1,1)" />
+       transform="scale(-1,1)"
+       inkscape:export-filename="/Users/whiskey/Programs/tm/src/Tape/sprite.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90" />
     <rect
        y="1005.3622"
        x="4.8394823"
        height="49"
        width="1.0505381"
        id="rect5392"
-       style="opacity:1;fill:#3f3a3a;fill-opacity:0.09039546;stroke:none;stroke-width:0.69999999;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1" />
+       style="opacity:1;fill:#3f3a3a;fill-opacity:0.09039546;stroke:none;stroke-width:0.69999999;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
+       inkscape:export-filename="/Users/whiskey/Programs/tm/src/Tape/sprite.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90" />
+    <path
+       style="fill:#f3f3f3;fill-opacity:1;fill-rule:evenodd;stroke:#a6a09b;stroke-width:0.2;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       d="m 86.844757,1005.3622 0,12 8,0 0,-12 z"
+       id="path4161"
+       inkscape:connector-curvature="0"
+       inkscape:export-filename="/Users/whiskey/Programs/tm/src/Tape/sprite.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90" />
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-weight:normal;font-size:12.47409058px;line-height:125%;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#a6a09b;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       x="87.148216"
+       y="1015.1267"
+       id="text5374"
+       sodipodi:linespacing="125%"
+       inkscape:export-filename="/Users/whiskey/Programs/tm/src/Tape/sprite.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90"><tspan
+         sodipodi:role="line"
+         id="tspan5376"
+         x="87.148216"
+         y="1015.1267"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:'Source Code Pro';-inkscape-font-specification:'Source Code Pro';fill:#a6a09b;fill-opacity:1">1</tspan></text>
+    <path
+       inkscape:connector-curvature="0"
+       id="path5360"
+       d="m 94.844757,1005.3622 0,12 8.000003,0 0,-12 z"
+       style="fill:#f3f3f3;fill-opacity:1;fill-rule:evenodd;stroke:#a6a09b;stroke-width:0.2;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       inkscape:export-filename="/Users/whiskey/Programs/tm/src/Tape/sprite.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90" />
+    <path
+       style="fill:#f3f3f3;fill-opacity:1;fill-rule:evenodd;stroke:#a6a09b;stroke-width:0.2;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       d="m 102.84476,1005.3622 0,12 8,0 0,-12 z"
+       id="path5362"
+       inkscape:connector-curvature="0"
+       inkscape:export-filename="/Users/whiskey/Programs/tm/src/Tape/sprite.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90" />
+    <path
+       inkscape:connector-curvature="0"
+       id="path5364"
+       d="m 110.84476,1005.3622 0,12 8,0 0,-12 z"
+       style="fill:#f3f3f3;fill-opacity:1;fill-rule:evenodd;stroke:#a6a09b;stroke-width:0.2;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       inkscape:export-filename="/Users/whiskey/Programs/tm/src/Tape/sprite.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90" />
+    <path
+       style="fill:#f3f3f3;fill-opacity:1;fill-rule:evenodd;stroke:#a6a09b;stroke-width:0.2;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       d="m 123.84476,1005.3622 -5,0 0,12 5,0"
+       id="path5366"
+       inkscape:connector-curvature="0"
+       sodipodi:nodetypes="cccc"
+       inkscape:export-filename="/Users/whiskey/Programs/tm/src/Tape/sprite.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90" />
+    <path
+       sodipodi:nodetypes="cccc"
+       inkscape:connector-curvature="0"
+       id="path5370"
+       d="m 81.844757,1005.3622 5,0 0,12 -5,0"
+       style="fill:#f3f3f3;fill-opacity:1;fill-rule:evenodd;stroke:#a6a09b;stroke-width:0.2;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       inkscape:export-filename="/Users/whiskey/Programs/tm/src/Tape/sprite.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90" />
+    <path
+       style="fill:#a6a09b;fill-opacity:1;fill-rule:evenodd;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       d="m 108.78532,999.45447 5.94054,5.94043 -5.94054,5.9408 5.94054,5.9405 -5.94054,5.9405 -5.94056,-5.9405 -5.940563,5.9405 -5.94054,-5.9405 5.94054,-5.9405 -5.94054,-5.9408 5.94054,-5.94043 5.940563,5.94043 z"
+       id="path5372"
+       inkscape:connector-curvature="0"
+       inkscape:export-filename="/Users/whiskey/Programs/tm/src/Tape/sprite.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90" />
+    <path
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:medium;line-height:125%;font-family:'Source Code Pro';-inkscape-font-specification:'Source Code Pro';letter-spacing:0px;word-spacing:0px;fill:#a6a09b;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       d="m 81.844757,1006.9442 0,2.6016 c 0.173141,-0.579 0.348915,-1.1505 0.515625,-1.7539 l 0.05078,0 c 0.249481,0.9481 0.523642,1.8453 0.810547,2.7559 l 0.386719,1.248 -1.763672,0 0,0.8359 2.025391,0 0.773437,2.4942 1.097656,0 -2.757812,-8.1817 -1.138672,0 z"
+       id="path5385"
+       inkscape:connector-curvature="0"
+       inkscape:export-filename="/Users/whiskey/Programs/tm/src/Tape/sprite.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90" />
+    <path
+       inkscape:connector-curvature="0"
+       id="path5405"
+       d="m 86.844757,1029.3622 0,12 8,0 0,-12 z"
+       style="fill:#f3f3f3;fill-opacity:1;fill-rule:evenodd;stroke:#a6a09b;stroke-width:0.2;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       inkscape:export-filename="/Users/whiskey/Programs/tm/src/Tape/sprite.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90" />
+    <text
+       sodipodi:linespacing="125%"
+       id="text5407"
+       y="1039.1267"
+       x="87.148216"
+       style="font-style:normal;font-weight:normal;font-size:12.47409058px;line-height:125%;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#5d544e;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;"
+       xml:space="preserve"
+       inkscape:export-filename="/Users/whiskey/Programs/tm/src/Tape/sprite.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90"><tspan
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:'Source Code Pro';-inkscape-font-specification:'Source Code Pro';fill:#5d544e;fill-opacity:1;"
+         y="1039.1267"
+         x="87.148216"
+         id="tspan5409"
+         sodipodi:role="line">1</tspan></text>
+    <path
+       style="fill:#f3f3f3;fill-opacity:1;fill-rule:evenodd;stroke:#a6a09b;stroke-width:0.2;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       d="m 94.844757,1029.3622 0,12 8.000003,0 0,-12 z"
+       id="path5411"
+       inkscape:connector-curvature="0"
+       inkscape:export-filename="/Users/whiskey/Programs/tm/src/Tape/sprite.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90" />
+    <path
+       inkscape:connector-curvature="0"
+       id="path5413"
+       d="m 102.84476,1029.3622 0,12 8,0 0,-12 z"
+       style="fill:#f3f3f3;fill-opacity:1;fill-rule:evenodd;stroke:#a6a09b;stroke-width:0.2;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       inkscape:export-filename="/Users/whiskey/Programs/tm/src/Tape/sprite.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90" />
+    <path
+       style="fill:#f3f3f3;fill-opacity:1;fill-rule:evenodd;stroke:#a6a09b;stroke-width:0.2;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       d="m 110.84476,1029.3622 0,12 8,0 0,-12 z"
+       id="path5415"
+       inkscape:connector-curvature="0"
+       inkscape:export-filename="/Users/whiskey/Programs/tm/src/Tape/sprite.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90" />
+    <path
+       sodipodi:nodetypes="cccc"
+       inkscape:connector-curvature="0"
+       id="path5417"
+       d="m 123.84476,1029.3622 -5,0 0,12 5,0"
+       style="fill:#f3f3f3;fill-opacity:1;fill-rule:evenodd;stroke:#a6a09b;stroke-width:0.2;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       inkscape:export-filename="/Users/whiskey/Programs/tm/src/Tape/sprite.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90" />
+    <path
+       style="fill:#f3f3f3;fill-opacity:1;fill-rule:evenodd;stroke:#a6a09b;stroke-width:0.2;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       d="m 81.844757,1029.3622 5,0 0,12 -5,0"
+       id="path5419"
+       inkscape:connector-curvature="0"
+       sodipodi:nodetypes="cccc"
+       inkscape:export-filename="/Users/whiskey/Programs/tm/src/Tape/sprite.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90" />
+    <path
+       inkscape:connector-curvature="0"
+       id="path5421"
+       d="m 108.78532,1023.4545 5.94054,5.9404 -5.94054,5.9408 5.94054,5.9405 -5.94054,5.9405 -5.94056,-5.9405 -5.940563,5.9405 -5.94054,-5.9405 5.94054,-5.9405 -5.94054,-5.9408 5.94054,-5.9404 5.940563,5.9404 z"
+       style="fill:#f86a4e;fill-opacity:1;fill-rule:evenodd;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       inkscape:export-filename="/Users/whiskey/Programs/tm/src/Tape/sprite.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90" />
+    <path
+       inkscape:connector-curvature="0"
+       id="path5423"
+       d="m 81.844757,1030.9442 0,2.6016 c 0.173141,-0.579 0.348915,-1.1505 0.515625,-1.7539 l 0.05078,0 c 0.249481,0.9481 0.523642,1.8453 0.810547,2.7559 l 0.386719,1.248 -1.763672,0 0,0.8359 2.025391,0 0.773437,2.4942 1.097656,0 -2.757812,-8.1817 -1.138672,0 z"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:medium;line-height:125%;font-family:'Source Code Pro';-inkscape-font-specification:'Source Code Pro';letter-spacing:0px;word-spacing:0px;fill:#5d544e;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       inkscape:export-filename="/Users/whiskey/Programs/tm/src/Tape/sprite.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90" />
+    <path
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:medium;line-height:125%;font-family:'Source Code Pro';-inkscape-font-specification:'Source Code Pro';letter-spacing:0px;word-spacing:0px;fill:#a6a09b;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       d="M 122.66797 3.65625 C 120.89665 3.65625 119.8125 5.0903656 119.8125 7.7597656 C 119.8125 10.404266 120.89665 11.914062 122.66797 11.914062 C 123.10462 11.914062 123.49842 11.820414 123.8457 11.642578 L 123.8457 10.523438 C 123.52955 10.898417 123.12911 11.091797 122.66797 11.091797 C 121.55778 11.091797 120.77344 10.042566 120.77344 7.7597656 C 120.77344 5.4645656 121.55778 4.4804688 122.66797 4.4804688 C 123.12941 4.4804688 123.52946 4.6616119 123.8457 5.0253906 L 123.8457 3.9160156 C 123.49843 3.7446864 123.10459 3.65625 122.66797 3.65625 z M 122.66797 6.8496094 C 122.25632 6.8496094 121.89453 7.1624281 121.89453 7.6738281 C 121.89453 8.1977281 122.25632 8.5097656 122.66797 8.5097656 C 123.07961 8.5097656 123.44141 8.1977281 123.44141 7.6738281 C 123.44141 7.1624281 123.07961 6.8496094 122.66797 6.8496094 z "
+       transform="translate(0,1003.3622)"
+       id="path5434" />
+    <path
+       id="path5440"
+       d="m 122.66797,1031.2333 c -1.77132,0 -2.85547,1.4341 -2.85547,4.1035 0,2.6445 1.08415,4.1543 2.85547,4.1543 0.43665,0 0.83045,-0.094 1.17773,-0.2715 l 0,-1.1191 c -0.31615,0.375 -0.71659,0.5684 -1.17773,0.5684 -1.11019,0 -1.89453,-1.0493 -1.89453,-3.3321 0,-2.2952 0.78434,-3.2793 1.89453,-3.2793 0.46144,0 0.86149,0.1812 1.17773,0.5449 l 0,-1.1093 c -0.34727,-0.1714 -0.74111,-0.2598 -1.17773,-0.2598 z m 0,3.1934 c -0.41165,0 -0.77344,0.3128 -0.77344,0.8242 0,0.5239 0.36179,0.8359 0.77344,0.8359 0.41164,0 0.77344,-0.312 0.77344,-0.8359 0,-0.5114 -0.3618,-0.8242 -0.77344,-0.8242 z"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:medium;line-height:125%;font-family:'Source Code Pro';-inkscape-font-specification:'Source Code Pro';letter-spacing:0px;word-spacing:0px;fill:#5d544e;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       inkscape:connector-curvature="0" />
   </g>
 </svg>

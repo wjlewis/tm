@@ -45,6 +45,8 @@ export const undoRedoReducer = (state: State, action: Action): UndoRedoState => 
         return addRecord(state, 'change transition');
       case A.CHANGE_TAPE_CELL:
         return addRecord(state, 'change tape cell');
+      case A.CLEAR_TAPE:
+        return addRecord(state, 'clear tape');
       default:
         return state.undoRedo;
     }
