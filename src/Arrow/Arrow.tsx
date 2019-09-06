@@ -83,9 +83,9 @@ const mapStateToProps = (state: State, ownProps: any) => {
   const end = nodeById(state, ownProps.details.end);
   const controlPoint = controlPointForArrow(state, ownProps.details.id);
   return {
-    start: start.pos,
-    end: end.pos,
-    control: controlPoint.pos,
+    start: Vector.from(start.pos),
+    end: Vector.from(end.pos),
+    control: Vector.from(controlPoint.pos),
     isSelfLoop: start.id === end.id,
     isEditable: isInEditMode(state),
     isActive: isArrowActive(state, ownProps.details.id),

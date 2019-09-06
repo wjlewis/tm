@@ -1,14 +1,14 @@
 import _ from 'lodash';
 import { takeEvery, take, select, fork, put, cancel, delay } from 'redux-saga/effects';
-import * as A from './actions';
-import { State } from './state';
-import { Modes } from './Mode';
-import { currentState } from './Sim';
-import { currentReadSymbol } from './Tape';
-import { isNodeFinal } from './Node';
-import { arrowsForStart } from './Arrow';
-import { transitionDetailsForArrow } from './TransitionDetail';
-import { controlPointForArrow } from './ControlPoint';
+import * as A from '../actions';
+import { State } from '../state';
+import { Modes } from '../Mode';
+import { currentState } from '../Sim';
+import { currentReadSymbol } from '../Tape';
+import { isNodeFinal } from '../Node';
+import { arrowsForStart } from '../Arrow';
+import { transitionDetailsForArrow } from '../TransitionDetail';
+import { controlPointForArrow } from '../ControlPoint';
 
 function* play(singleStep: boolean) {
   const playTask = yield fork(playSim, singleStep);
@@ -101,7 +101,7 @@ const availableTransitionInfo = (state: State, current: string, readSymbol: stri
   };
 };
 
-export default function* saga() {
+export default function* sim() {
   yield takeEvery(A.STEP_SIM, play, true);
   yield takeEvery(A.PLAY_SIM, play, false);
 }

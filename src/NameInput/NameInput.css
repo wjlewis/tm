@@ -1,0 +1,23 @@
+.name-input {
+  position: absolute;
+  left: 10%;
+  top: 10%;
+
+  outline: none;
+  border: none;
+  font-family: var(--main-font);
+  font-size: 18pt;
+  background-color: transparent;
+  color: var(--base-md);
+
+  transition: color 0.2s;
+}
+
+.name-input:hover,
+.name-input:focus {
+  color: var(--base-dk);
+}
+
+.name-input::placeholder {
+  color: var(--base-lt);
+}

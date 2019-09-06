@@ -54,7 +54,7 @@ class ControlPoint extends React.Component<ControlPointProps> {
   // two nodes that its arrow joins.
   private computeQuadraticPathString() {
     const { start, end } = this.props;
-    const { pos } = this.props.details;
+    const pos = Vector.from(this.props.details.pos);
     const diff = end.minus(start);
     // If the two endpoints are on top of each other, we simply create a
     // horizontal arrow.
@@ -72,7 +72,7 @@ class ControlPoint extends React.Component<ControlPointProps> {
   // connects.
   private computeCubicString() {
     const { start } = this.props;
-    const { pos } = this.props.details;
+    const pos = Vector.from(this.props.details.pos);
     const diff = pos.minus(start);
     // If the control point is on top of its associated node, we simply create a
     // horizontal arrow.
@@ -100,8 +100,8 @@ const mapStateToProps = (state: State, ownProps: any) => {
   const start = nodeById(state, arrow.start);
   const end = nodeById(state, arrow.end);
   return {
-    start: start.pos,
-    end: end.pos,
+    start: Vector.from(start.pos),
+    end: Vector.from(end.pos),
     isSelfLoop: start.id === end.id,
     isEditable: isInEditMode(state),
     isActive: isControlPointActive(state, ownProps.details.id),

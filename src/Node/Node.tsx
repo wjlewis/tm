@@ -31,7 +31,7 @@ export const NODE_RADIUS = 21;
 
 class Node extends React.Component<NodeProps> {
   render() {
-    const { pos, mnemonic } = this.props.details;
+    const { mnemonic } = this.props.details;
     const className = classNames('node', {
       'node--selected': this.props.isSelected,
       'node--final': this.props.details.isFinal,
@@ -44,6 +44,7 @@ class Node extends React.Component<NodeProps> {
       'node__mnemonic-input--editable': this.props.isEditable,
     });
 
+    const pos = Vector.from(this.props.details.pos);
     const mnemonicPos = pos.plus(new Vector(-NODE_RADIUS + 2, NODE_RADIUS + 3));
 
     return (

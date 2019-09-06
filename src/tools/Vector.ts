@@ -5,6 +5,10 @@
 class Vector {
   constructor(public x: number, public y: number) {}
 
+  static from({ x, y }: SerializableVector): Vector {
+    return new Vector(x, y);
+  }
+
   // Return the length of this vector.
   magnitude() {
     return Math.sqrt(this.x * this.x + this.y * this.y);
@@ -54,6 +58,14 @@ class Vector {
   dot(v: Vector) {
     return this.x * v.x + this.y * v.y;
   }
+}
+
+// A RawVector contains the same data as a Vector (i.e. an x and y coordinate),
+// but has none of the associated methods. It is suitable for serialization, and
+// for this reason, we use it everywhere we might need a serializable vector.
+export interface SerializableVector {
+  x: number;
+  y: number;
 }
 
 export default Vector;

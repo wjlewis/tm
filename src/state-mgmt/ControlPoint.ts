@@ -7,7 +7,7 @@ import { arrowById } from './Arrow';
 import { nodeById, selectedNodes } from './Node';
 import { isMouseDownNode, isMouseDownControlPoint } from './UI';
 import { State } from './state';
-import Vector from '../tools/Vector';
+import Vector, { SerializableVector } from '../tools/Vector';
 import { xOr } from '../tools/auxiliary';
 import { isInEditMode } from './Mode';
 
@@ -28,15 +28,15 @@ export interface ControlPointState extends Transient<ControlPointInfo> {}
 export interface ControlPointInfo {
   byId: { [key: string]: ControlPoint };
   selected: null | string;
-  selectedOffset: null | Vector;
-  fullOffsets: { [key: string]: Vector };
+  selectedOffset: null | SerializableVector;
+  fullOffsets: { [key: string]: SerializableVector };
   halfOffsets: { [key: string]: FixedOffset };
 }
 
 export interface ControlPoint {
   id: string;
   arrow: string;
-  pos: Vector;
+  pos: SerializableVector;
 }
 
 // Suppose we move a node away from another node, and imagine that both of these
@@ -113,8 +113,8 @@ export const controlPointsReducer = (state: State, action: Action): ControlPoint
 // start and end nodes, and whether the transition is a self-loop or not.
 const addArrow = (state: State, start: string, end: string, arrow: string): ControlPointState => {
   const id = uuid();
-  const startPos = nodeById(state, start).pos;
-  const endPos = start === end ? startPos : nodeById(state, end).pos;
+  const startPos = Vector.from(nodeById(state, start).pos);
+  const endPos = start === end ? startPos : Vector.from(nodeById(state, end).pos);
 
   const constructStandardPos = (start: Vector, end: Vector): Vector => {
     const diff = end.minus(start);
@@ -195,7 +195,7 @@ const prepForDirectMove = (state: State, mousePos: Vector): ControlPointState =>
     return state.entities.controlPoints;
   }
   const controlPoint = controlPoints.byId[controlPoints.selected];
-  const selectedOffset = controlPoint.pos.minus(mousePos);
+  const selectedOffset = Vector.from(controlPoint.pos).minus(mousePos);
   return {
     ...state.entities.controlPoints,
     wip: _.merge({}, controlPoints, {
@@ -239,11 +239,11 @@ const prepForIndirectMove = (state: State, mousePos: Vector): ControlPointState 
       return acc;
     }
 
-    const fixedPos = nodeById(state, includesEnd ? arrow.start : arrow.end).pos;
-    const movingPos = nodeById(state, includesStart ? arrow.start : arrow.end).pos;
+    const fixedPos = Vector.from(nodeById(state, includesEnd ? arrow.start : arrow.end).pos);
+    const movingPos = Vector.from(nodeById(state, includesStart ? arrow.start : arrow.end).pos);
     const movingOffset = movingPos.minus(mousePos);
     const diff = fixedPos.minus(movingPos);
-    const toCP = p.pos.minus(movingPos);
+    const toCP = Vector.from(p.pos).minus(movingPos);
     const cpShadow = toCP.project(diff);
     const fractionAlong = cpShadow.magnitude() / diff.magnitude();
     const perp = toCP.minus(cpShadow);
@@ -291,7 +291,7 @@ const moveDirect = (state: State, mousePos: Vector): ControlPointState => {
   }
 
   const controlPoint = controlPoints.wip.byId[controlPoints.wip.selected];
-  const updatedPos = mousePos.plus(controlPoints.wip.selectedOffset);
+  const updatedPos = mousePos.plus(Vector.from(controlPoints.wip.selectedOffset));
 
   return {
     ...controlPoints,
@@ -315,7 +315,7 @@ const moveIndirect = (state: State, mousePos: Vector): ControlPointState => {
 
   const fullMoved = Object.keys(controlPoints.wip.fullOffsets).reduce((acc, id) => {
     const controlPoint = controlPoints.wip!.byId[id];
-    const updatedPos = mousePos.plus(controlPoints.wip!.fullOffsets[id]);
+    const updatedPos = mousePos.plus(Vector.from(controlPoints.wip!.fullOffsets[id]));
     return {
       ...acc,
       [id]: { ...controlPoint, pos: updatedPos },

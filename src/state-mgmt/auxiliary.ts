@@ -1,3 +1,6 @@
+import _ from 'lodash';
+import { State } from './state';
+
 // This file contains state-management functions and type definitions that are
 // general-purpose enough to be useful in a number of places.
 
@@ -27,3 +30,22 @@ export const currentLatest = <A>(state: Transient<A>): A => (
 export interface IDAble {
   id: string;
 }
+
+// A "snapshot" is a record of all of the entities in play.
+export const getSnapshot = (state: State) => _.get(state, 'entities');
+
+// There are several situations in which we wish to revert to a previous
+// snapshot of the state (e.g. undo/redo, upload). Doing so is fairly
+// straightforward, but we must mindful to throw away any "WIP" states.
+export const revertToSnapshot = (state: State, snapshot: any): State => {
+  const toplevelIteratee = (value: any) => (
+    _.mapValues(value, (value, key) => (
+      key === 'wip' ? null : value
+    ))
+  );
+
+  return {
+    ...state,
+    entities: _.mapValues(snapshot, toplevelIteratee),
+  } as State;
+};

@@ -8,6 +8,7 @@ import { UndoRedoState, initUndoRedoState } from './UndoRedo';
 import { MessageState, initMessageState } from './Message';
 import { ModeState, initModeState } from './Mode';
 import { SimState, initSimState } from './Sim';
+import { MetaDataState, initMetaDataState } from './MetaData';
 
 // The application state consists of a number of "entities" (objects -- in the
 // general sense -- that are displayed and interacted with), along with some UI
@@ -20,6 +21,7 @@ export interface State {
     controlPoints: ControlPointState;
     transitionDetails: TransitionDetailState;
     tape: TapeState;
+    metaData: MetaDataState;
   }
   ui: UIState;
   undoRedo: UndoRedoState;
@@ -35,6 +37,7 @@ export const initState: State = {
     controlPoints: initControlPointState,
     transitionDetails: initTransitionDetailState,
     tape: initTapeState,
+    metaData: initMetaDataState,
   },
   ui: initUIState,
   undoRedo: initUndoRedoState,

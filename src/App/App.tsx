@@ -1,12 +1,13 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { Dispatch } from 'redux';
-import { keyDown, keyUp } from '../state-mgmt/actions';
+import * as A from '../state-mgmt/actions';
 import Canvas from '../Canvas/Canvas';
 import EditControls from '../EditControls/EditControls';
 import AppControls from '../AppControls/AppControls';
 import Tape from '../Tape/Tape';
 import SimControls from '../SimControls/SimControls';
+import NameInput from '../NameInput/NameInput';
 import Message from '../Message/Message';
 import './App.css';
 
@@ -18,6 +19,7 @@ import './App.css';
 export interface AppProps {
   keyDown: (key: string, event: React.KeyboardEvent) => void;
   keyUp: (key: string) => void;
+  loadSaved: () => void;
 }
 
 class App extends React.Component<AppProps> {
@@ -25,6 +27,7 @@ class App extends React.Component<AppProps> {
     return (
       <div className="app">
         <Canvas />
+        <NameInput />
         <Tape />
         <EditControls />
         <AppControls />
@@ -39,6 +42,7 @@ class App extends React.Component<AppProps> {
   componentDidMount() {
     document.addEventListener('keydown', this.handleKeyDown as unknown as EventListener);
     document.addEventListener('keyup', this.handleKeyUp as unknown as EventListener);
+    this.props.loadSaved();
   }
 
   componentWillUnmount() {
@@ -56,8 +60,9 @@ class App extends React.Component<AppProps> {
 }
 
 const mapDispatchToProps = (dispatch: Dispatch) => ({
-  keyDown: (key: string, event: React.KeyboardEvent) => dispatch(keyDown(key, event)),
-  keyUp: (key: string) => dispatch(keyUp(key)),
+  keyDown: (key: string, event: React.KeyboardEvent) => dispatch(A.keyDown(key, event)),
+  keyUp: (key: string) => dispatch(A.keyUp(key)),
+  loadSaved: () => dispatch(A.loadSnapshot()),
 });
 
 export default connect(

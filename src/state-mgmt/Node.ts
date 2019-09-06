@@ -4,7 +4,7 @@ import { Action } from './actions';
 import * as A from './actions';
 import { Transient, currentLatest } from './auxiliary';
 import { State } from './state';
-import Vector from '../tools/Vector';
+import Vector, { SerializableVector } from '../tools/Vector';
 import { mod2Include } from '../tools/auxiliary';
 import { isMultiselect, isMouseDownNode, wasMouseReleasedOverNode } from './UI';
 import { isInEditMode } from './Mode';
@@ -28,7 +28,7 @@ export interface NodeInfo {
 export interface Node {
   id: string;
   mnemonic: string;
-  pos: Vector;
+  pos: SerializableVector;
   isFinal: boolean;
 }
 
@@ -258,7 +258,7 @@ const mouseDownCanvas = (state: State, mousePos: Vector): NodeState => {
     const node = nodes.committed.byId[nodeId];
     return {
       ...acc,
-      [nodeId]: node.pos.minus(mousePos),
+      [nodeId]: Vector.from(node.pos).minus(mousePos),
     };
   }, {});
 

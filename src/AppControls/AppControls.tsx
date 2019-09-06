@@ -1,7 +1,13 @@
 import React from 'react';
+import { connect } from 'react-redux';
+import { Dispatch } from 'redux';
+import * as A from '../state-mgmt/actions';
 import './AppControls.css';
 
-export interface AppControlsProps {}
+export interface AppControlsProps {
+  download: () => void;
+  upload: () => void;
+}
 
 class AppControls extends React.Component<AppControlsProps> {
   render() {
@@ -9,10 +15,12 @@ class AppControls extends React.Component<AppControlsProps> {
       <div className="app-controls">
         <div className="app-controls__buttons">
           <button className="app-controls__button app-controls__download-button"
-                  title="download machine (JSON)">
+                  title="download machine (JSON)"
+                  onClick={this.handleDownloadClick}>
           </button>
           <button className="app-controls__button app-controls__upload-button"
-                  title="upload machine (JSON)">
+                  title="upload machine (JSON)"
+                  onClick={this.handleUploadClick}>
           </button>
         </div>
 
@@ -29,6 +37,22 @@ class AppControls extends React.Component<AppControlsProps> {
       </div>
     );
   }
+
+  private handleDownloadClick = () => {
+    this.props.download();
+  };
+
+  private handleUploadClick = () => {
+    this.props.upload();
+  };
 }
 
-export default AppControls;
+const mapDispatchToProps = (dispatch: Dispatch) => ({
+  download: () => dispatch(A.downloadMachine()),
+  upload: () => dispatch(A.uploadMachine()),
+});
+
+export default connect(
+  null,
+  mapDispatchToProps,
+)(AppControls);

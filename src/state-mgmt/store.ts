@@ -3,7 +3,7 @@ import createSagaMiddleware from 'redux-saga';
 import { composeWithDevTools } from 'redux-devtools-extension';
 import reducer from './reducer';
 import * as M from './middleware';
-import saga from './saga';
+import mainSaga from './sagas';
 
 const sagaMiddleware = createSagaMiddleware();
 
@@ -18,9 +18,13 @@ const store = createStore(
     M.validatePreSim,
     sagaMiddleware,
     M.halt,
+    M.loadSnapshot,
+    M.saveSnapshot,
+    M.download,
+    M.upload,
   )),
 );
 
-sagaMiddleware.run(saga);
+sagaMiddleware.run(mainSaga);
 
 export default store;

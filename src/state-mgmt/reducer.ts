@@ -11,6 +11,8 @@ import { undoRedoReducer, undo, redo } from './UndoRedo';
 import { messageReducer } from './Message';
 import { modeReducer } from './Mode';
 import { simReducer } from './Sim';
+import { metaDataReducer } from './MetaData';
+import { revertToSnapshot } from './auxiliary';
 
 const reducer = (state: State=initState, action: Action): State => {
   switch (action.type) {
@@ -18,6 +20,8 @@ const reducer = (state: State=initState, action: Action): State => {
       return undo(state);
     case A.REDO:
       return redo(state);
+    case A.INSTALL_SNAPSHOT:
+      return revertToSnapshot(state, action.payload.snapshot);
     default:
       return {
         ...state,
@@ -28,6 +32,7 @@ const reducer = (state: State=initState, action: Action): State => {
           controlPoints: controlPointsReducer(state, action),
           transitionDetails: transitionDetailsReducer(state, action),
           tape: tapeReducer(state, action),
+          metaData: metaDataReducer(state, action),
         },
         ui: uiReducer(state, action),
         undoRedo: undoRedoReducer(state, action),

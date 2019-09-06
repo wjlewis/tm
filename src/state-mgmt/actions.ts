@@ -289,3 +289,37 @@ export const switchMode = (mode: Mode): Action => ({
   type: SWITCH_MODE,
   payload: { mode },
 });
+
+// Machine metadata actions:
+export const CHANGE_MACHINE_NAME = 'CHANGE_MACHINE_NAME';
+export const changeMachineName = (name: string): Action => ({
+  type: CHANGE_MACHINE_NAME,
+  payload: { name },
+});
+
+// Save, Load, Download, and Upload actions:
+export const SAVE_SNAPSHOT = 'SAVE_SNAPSHOT';
+export const saveSnapshot = (): Action => ({
+  type: SAVE_SNAPSHOT,
+});
+
+export const LOAD_SNAPSHOT = 'LOAD_SNAPSHOT';
+export const loadSnapshot = (): Action => ({
+  type: LOAD_SNAPSHOT,
+});
+
+export const INSTALL_SNAPSHOT = 'INSTALL_SNAPSHOT';
+export const installSnapshot = (snapshot: any): Action => ({
+  type: INSTALL_SNAPSHOT,
+  payload: { snapshot },
+});
+
+export const DOWNLOAD_MACHINE = 'DOWNLOAD_MACHINE';
+export const downloadMachine = (): Action => ({
+  type: DOWNLOAD_MACHINE,
+});
+
+export const UPLOAD_MACHINE = 'UPLOAD_MACHINE';
+export const uploadMachine = (): Action => ({
+  type: UPLOAD_MACHINE,
+});

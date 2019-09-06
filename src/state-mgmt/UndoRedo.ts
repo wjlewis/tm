@@ -1,9 +1,9 @@
-import _ from 'lodash';
 import { Action } from './actions';
 import * as A from './actions';
 import { State } from './state';
 import { isInEditMode } from './Mode';
 import { wasMouseDragged, wasMnemonicChanged } from './UI';
+import { getSnapshot, revertToSnapshot } from './auxiliary';
 
 export interface UndoRedoState {
   actions: ActionRecord[];
@@ -47,6 +47,8 @@ export const undoRedoReducer = (state: State, action: Action): UndoRedoState => 
         return addRecord(state, 'change tape cell');
       case A.CLEAR_TAPE:
         return addRecord(state, 'clear tape');
+      case A.INSTALL_SNAPSHOT:
+        return addRecord(state, 'install snapshot');
       default:
         return state.undoRedo;
     }
@@ -121,25 +123,4 @@ const addRecord = (state: State, description?: string): UndoRedoState => {
     // Each time we add a record to the undo stack, we clear the redo stack.
     redoable: [],
   };
-};
-
-// Each time we add a record to the sequence of actions, we store a "snapshot"
-// of the application state. In our case, we store all entities.
-const getSnapshot = (state: State) => _.get(state, 'entities');
-
-// In order to undo or redo an action, we need to revert the state to the
-// snapshot recorded with the action. This is *relatively* straightforward: we
-// replace the current entities list with the snapshot, overwriting any WIP
-// states to null.
-const revertToSnapshot = (state: State, snapshot: any): State => {
-  const toplevelIteratee = (value: any) => (
-    _.mapValues(value, (value, key) => (
-      key === 'wip' ? null : value
-    ))
-  );
-
-  return {
-    ...state,
-    entities: _.mapValues(snapshot, toplevelIteratee),
-  } as State;
 };
