@@ -38,6 +38,14 @@
   background-position: -20px -24px;
 }
 
+.app-controls__new-button {
+  background-position: 0 -48px;
+}
+
+.app-controls__new-button:hover {
+  background-position: -20px -48px;
+}
+
 .app-controls__link {
   font-family: var(--main-font);
   font-size: 11pt;

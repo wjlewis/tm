@@ -64,6 +64,11 @@ export const toggleSelectedFinalNodes = (): Action => ({
   type: TOGGLE_SELECTED_FINAL_NODES,
 });
 
+export const SELECT_ALL_NODES = 'SELECT_ALL_NODES';
+export const selectAllNodes = (): Action => ({
+  type: SELECT_ALL_NODES,
+});
+
 // Arrow actions:
 // We include the arrow's ID as part of the payload because when we create a new
 // arrow, we also create a control point and transition detail for it as well
@@ -297,7 +302,12 @@ export const changeMachineName = (name: string): Action => ({
   payload: { name },
 });
 
-// Save, Load, Download, and Upload actions:
+// New, Save, Load, Download, and Upload actions:
+export const NEW_MACHINE = 'NEW_MACHINE';
+export const newMachine = (): Action => ({
+  type: NEW_MACHINE,
+});
+
 export const SAVE_SNAPSHOT = 'SAVE_SNAPSHOT';
 export const saveSnapshot = (): Action => ({
   type: SAVE_SNAPSHOT,

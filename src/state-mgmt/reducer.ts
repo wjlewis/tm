@@ -7,12 +7,12 @@ import { controlPointsReducer } from './ControlPoint';
 import { transitionDetailsReducer } from './TransitionDetail';
 import { tapeReducer } from './Tape';
 import { uiReducer } from './UI';
-import { undoRedoReducer, undo, redo } from './UndoRedo';
+import { undoRedoReducer, undo, redo, addRecord } from './UndoRedo';
 import { messageReducer } from './Message';
 import { modeReducer } from './Mode';
 import { simReducer } from './Sim';
 import { metaDataReducer } from './MetaData';
-import { revertToSnapshot } from './auxiliary';
+import { getSnapshot, revertToSnapshot } from './auxiliary';
 
 const reducer = (state: State=initState, action: Action): State => {
   switch (action.type) {
@@ -21,7 +21,9 @@ const reducer = (state: State=initState, action: Action): State => {
     case A.REDO:
       return redo(state);
     case A.INSTALL_SNAPSHOT:
-      return revertToSnapshot(state, action.payload.snapshot);
+      return installSnapshot(state, action.payload.snapshot);
+    case A.NEW_MACHINE:
+      return newMachine(state);
     default:
       return {
         ...state,
@@ -41,6 +43,21 @@ const reducer = (state: State=initState, action: Action): State => {
         sim: simReducer(state, action),
       };
   }
+};
+
+// We manually add action records for these actions since they affect the entire
+// state (the entities, at least).
+const installSnapshot = (state: State, snapshot: any): State => ({
+  ...revertToSnapshot(state, snapshot),
+  undoRedo: addRecord(state, 'install entity snapshot'),
+});
+
+const newMachine = (state: State): State => {
+  const freshSnapshot = getSnapshot(initState);
+  return {
+    ...revertToSnapshot(state, freshSnapshot),
+    undoRedo: addRecord(state, 'create new machine'),
+  };
 };
 
 export default reducer;

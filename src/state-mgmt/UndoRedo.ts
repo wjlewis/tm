@@ -47,8 +47,6 @@ export const undoRedoReducer = (state: State, action: Action): UndoRedoState => 
         return addRecord(state, 'change tape cell');
       case A.CLEAR_TAPE:
         return addRecord(state, 'clear tape');
-      case A.INSTALL_SNAPSHOT:
-        return addRecord(state, 'install snapshot');
       default:
         return state.undoRedo;
     }
@@ -113,7 +111,7 @@ export const redo = (state: State): State => {
 
 const MAX_UNDOS = 32;
 
-const addRecord = (state: State, description?: string): UndoRedoState => {
+export const addRecord = (state: State, description?: string): UndoRedoState => {
   const record = { description, value: getSnapshot(state) };
   return {
     // In order to prevent excessive memory usage, we limit the number of undos.

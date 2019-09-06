@@ -7,8 +7,14 @@ import { selectedNodes } from '../Node';
 // Each key may be "bound" to an alternative redux action, such that when the
 // user presses it, the action is dispatched.
 const keyBindings: { [key: string]: KeyHandler } = {
-  'Backspace': st => {
-    if (selectedNodes(st).length > 0) {
+  'a': (_, e) => {
+    if (e.ctrlKey) {
+      return A.selectAllNodes();
+    }
+    return null;
+  },
+  'x': (_, e) => {
+    if (e.ctrlKey) {
       return A.deleteSelectedNodes();
     }
     return null;
@@ -26,7 +32,19 @@ const keyBindings: { [key: string]: KeyHandler } = {
       e.preventDefault();
       return A.addTransitionBetweenSelected();
     }
-    else return null;
+    return null;
+  },
+  'f': (st, e) => {
+    if (selectedNodes(st).length > 0 && e.ctrlKey) {
+      return A.toggleSelectedFinalNodes();
+    }
+    return null;
+  },
+  'i': (st, e) => {
+    if (selectedNodes(st).length === 1 && e.ctrlKey) {
+      return A.makeSelectedStartNode();
+    }
+    return null;
   },
   'z': (_, e) => {
     if (e.ctrlKey || e.metaKey) return A.undo();

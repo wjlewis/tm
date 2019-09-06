@@ -5,6 +5,7 @@ import * as A from '../state-mgmt/actions';
 import './AppControls.css';
 
 export interface AppControlsProps {
+  newMachine: () => void;
   download: () => void;
   upload: () => void;
 }
@@ -14,14 +15,15 @@ class AppControls extends React.Component<AppControlsProps> {
     return (
       <div className="app-controls">
         <div className="app-controls__buttons">
+          <button className="app-controls__button app-controls__new-button"
+                  title="new empty machine"
+                  onClick={this.handleNewClick} />
           <button className="app-controls__button app-controls__download-button"
                   title="download machine (JSON)"
-                  onClick={this.handleDownloadClick}>
-          </button>
+                  onClick={this.handleDownloadClick} />
           <button className="app-controls__button app-controls__upload-button"
                   title="upload machine (JSON)"
-                  onClick={this.handleUploadClick}>
-          </button>
+                  onClick={this.handleUploadClick} />
         </div>
 
         <a className="app-controls__link" href="#examples">Examples</a>
@@ -38,6 +40,10 @@ class AppControls extends React.Component<AppControlsProps> {
     );
   }
 
+  private handleNewClick = () => {
+    this.props.newMachine();
+  };
+
   private handleDownloadClick = () => {
     this.props.download();
   };
@@ -48,6 +54,7 @@ class AppControls extends React.Component<AppControlsProps> {
 }
 
 const mapDispatchToProps = (dispatch: Dispatch) => ({
+  newMachine: () => dispatch(A.newMachine()),
   download: () => dispatch(A.downloadMachine()),
   upload: () => dispatch(A.uploadMachine()),
 });
