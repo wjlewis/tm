@@ -25,9 +25,9 @@
      borderopacity="1.0"
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
-     inkscape:zoom="1.6756757"
-     inkscape:cx="108.41146"
-     inkscape:cy="29.518061"
+     inkscape:zoom="2.3697633"
+     inkscape:cx="80.713938"
+     inkscape:cy="40.441502"
      inkscape:document-units="px"
      inkscape:current-layer="layer1"
      showgrid="true"
@@ -37,7 +37,7 @@
      inkscape:window-y="0"
      inkscape:window-maximized="1"
      units="px"
-     inkscape:object-nodes="false"
+     inkscape:object-nodes="true"
      inkscape:snap-intersection-paths="false"
      inkscape:snap-smooth-nodes="false"
      inkscape:object-paths="false"
@@ -58,7 +58,7 @@
         <dc:format>image/svg+xml</dc:format>
         <dc:type
            rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
-        <dc:title />
+        <dc:title></dc:title>
       </cc:Work>
     </rdf:RDF>
   </metadata>
@@ -246,7 +246,7 @@
        inkscape:export-ydpi="90" />
     <path
        style="fill:#f3f3f3;fill-opacity:1;fill-rule:evenodd;stroke:#a6a09b;stroke-width:0.2;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
-       d="m 86.844757,1005.3622 0,12 8,0 0,-12 z"
+       d="m 87,1005.3622 0,12 8,0 0,-12 z"
        id="path4161"
        inkscape:connector-curvature="0"
        inkscape:export-filename="/Users/whiskey/Programs/tm/src/Tape/sprite.png"
@@ -255,8 +255,8 @@
     <text
        xml:space="preserve"
        style="font-style:normal;font-weight:normal;font-size:12.47409058px;line-height:125%;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#a6a09b;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
-       x="87.148216"
-       y="1015.1267"
+       x="87.303459"
+       y="1015.6542"
        id="text5374"
        sodipodi:linespacing="125%"
        inkscape:export-filename="/Users/whiskey/Programs/tm/src/Tape/sprite.png"
@@ -264,20 +264,20 @@
        inkscape:export-ydpi="90"><tspan
          sodipodi:role="line"
          id="tspan5376"
-         x="87.148216"
-         y="1015.1267"
-         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:'Source Code Pro';-inkscape-font-specification:'Source Code Pro';fill:#a6a09b;fill-opacity:1">1</tspan></text>
+         x="87.303459"
+         y="1015.6542"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:Roboto;-inkscape-font-specification:Roboto;fill:#a6a09b;fill-opacity:1">1</tspan></text>
     <path
        inkscape:connector-curvature="0"
        id="path5360"
-       d="m 94.844757,1005.3622 0,12 8.000003,0 0,-12 z"
+       d="m 95,1005.3622 0,12 8,0 0,-12 z"
        style="fill:#f3f3f3;fill-opacity:1;fill-rule:evenodd;stroke:#a6a09b;stroke-width:0.2;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
        inkscape:export-filename="/Users/whiskey/Programs/tm/src/Tape/sprite.png"
        inkscape:export-xdpi="90"
        inkscape:export-ydpi="90" />
     <path
        style="fill:#f3f3f3;fill-opacity:1;fill-rule:evenodd;stroke:#a6a09b;stroke-width:0.2;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
-       d="m 102.84476,1005.3622 0,12 8,0 0,-12 z"
+       d="m 103,1005.3622 0,12 8,0 0,-12 z"
        id="path5362"
        inkscape:connector-curvature="0"
        inkscape:export-filename="/Users/whiskey/Programs/tm/src/Tape/sprite.png"
@@ -286,14 +286,14 @@
     <path
        inkscape:connector-curvature="0"
        id="path5364"
-       d="m 110.84476,1005.3622 0,12 8,0 0,-12 z"
+       d="m 111,1005.3622 0,12 8,0 0,-12 z"
        style="fill:#f3f3f3;fill-opacity:1;fill-rule:evenodd;stroke:#a6a09b;stroke-width:0.2;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
        inkscape:export-filename="/Users/whiskey/Programs/tm/src/Tape/sprite.png"
        inkscape:export-xdpi="90"
        inkscape:export-ydpi="90" />
     <path
        style="fill:#f3f3f3;fill-opacity:1;fill-rule:evenodd;stroke:#a6a09b;stroke-width:0.2;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
-       d="m 123.84476,1005.3622 -5,0 0,12 5,0"
+       d="m 124,1005.3622 -5,0 0,12 5,0"
        id="path5366"
        inkscape:connector-curvature="0"
        sodipodi:nodetypes="cccc"
@@ -304,23 +304,15 @@
        sodipodi:nodetypes="cccc"
        inkscape:connector-curvature="0"
        id="path5370"
-       d="m 81.844757,1005.3622 5,0 0,12 -5,0"
+       d="m 82,1005.3622 5,0 0,12 -5,0"
        style="fill:#f3f3f3;fill-opacity:1;fill-rule:evenodd;stroke:#a6a09b;stroke-width:0.2;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
        inkscape:export-filename="/Users/whiskey/Programs/tm/src/Tape/sprite.png"
        inkscape:export-xdpi="90"
        inkscape:export-ydpi="90" />
     <path
        style="fill:#a6a09b;fill-opacity:1;fill-rule:evenodd;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
-       d="m 108.78532,999.45447 5.94054,5.94043 -5.94054,5.9408 5.94054,5.9405 -5.94054,5.9405 -5.94056,-5.9405 -5.940563,5.9405 -5.94054,-5.9405 5.94054,-5.9405 -5.94054,-5.9408 5.94054,-5.94043 5.940563,5.94043 z"
+       d="m 108.94056,999.45447 5.94054,5.94043 -5.94054,5.9408 5.94054,5.9405 -5.94054,5.9405 -5.94056,-5.9405 -5.94056,5.9405 -5.94054,-5.9405 5.94054,-5.9405 -5.94054,-5.9408 5.94054,-5.94043 5.94056,5.94043 z"
        id="path5372"
-       inkscape:connector-curvature="0"
-       inkscape:export-filename="/Users/whiskey/Programs/tm/src/Tape/sprite.png"
-       inkscape:export-xdpi="90"
-       inkscape:export-ydpi="90" />
-    <path
-       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:medium;line-height:125%;font-family:'Source Code Pro';-inkscape-font-specification:'Source Code Pro';letter-spacing:0px;word-spacing:0px;fill:#a6a09b;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
-       d="m 81.844757,1006.9442 0,2.6016 c 0.173141,-0.579 0.348915,-1.1505 0.515625,-1.7539 l 0.05078,0 c 0.249481,0.9481 0.523642,1.8453 0.810547,2.7559 l 0.386719,1.248 -1.763672,0 0,0.8359 2.025391,0 0.773437,2.4942 1.097656,0 -2.757812,-8.1817 -1.138672,0 z"
-       id="path5385"
        inkscape:connector-curvature="0"
        inkscape:export-filename="/Users/whiskey/Programs/tm/src/Tape/sprite.png"
        inkscape:export-xdpi="90"
@@ -328,29 +320,14 @@
     <path
        inkscape:connector-curvature="0"
        id="path5405"
-       d="m 86.844757,1029.3622 0,12 8,0 0,-12 z"
+       d="m 87,1029.3622 0,12 8,0 0,-12 z"
        style="fill:#f3f3f3;fill-opacity:1;fill-rule:evenodd;stroke:#a6a09b;stroke-width:0.2;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
        inkscape:export-filename="/Users/whiskey/Programs/tm/src/Tape/sprite.png"
        inkscape:export-xdpi="90"
        inkscape:export-ydpi="90" />
-    <text
-       sodipodi:linespacing="125%"
-       id="text5407"
-       y="1039.1267"
-       x="87.148216"
-       style="font-style:normal;font-weight:normal;font-size:12.47409058px;line-height:125%;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#5d544e;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;"
-       xml:space="preserve"
-       inkscape:export-filename="/Users/whiskey/Programs/tm/src/Tape/sprite.png"
-       inkscape:export-xdpi="90"
-       inkscape:export-ydpi="90"><tspan
-         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:'Source Code Pro';-inkscape-font-specification:'Source Code Pro';fill:#5d544e;fill-opacity:1;"
-         y="1039.1267"
-         x="87.148216"
-         id="tspan5409"
-         sodipodi:role="line">1</tspan></text>
     <path
        style="fill:#f3f3f3;fill-opacity:1;fill-rule:evenodd;stroke:#a6a09b;stroke-width:0.2;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
-       d="m 94.844757,1029.3622 0,12 8.000003,0 0,-12 z"
+       d="m 95,1029.3622 0,12 8,0 0,-12 z"
        id="path5411"
        inkscape:connector-curvature="0"
        inkscape:export-filename="/Users/whiskey/Programs/tm/src/Tape/sprite.png"
@@ -359,14 +336,14 @@
     <path
        inkscape:connector-curvature="0"
        id="path5413"
-       d="m 102.84476,1029.3622 0,12 8,0 0,-12 z"
+       d="m 103,1029.3622 0,12 8,0 0,-12 z"
        style="fill:#f3f3f3;fill-opacity:1;fill-rule:evenodd;stroke:#a6a09b;stroke-width:0.2;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
        inkscape:export-filename="/Users/whiskey/Programs/tm/src/Tape/sprite.png"
        inkscape:export-xdpi="90"
        inkscape:export-ydpi="90" />
     <path
        style="fill:#f3f3f3;fill-opacity:1;fill-rule:evenodd;stroke:#a6a09b;stroke-width:0.2;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
-       d="m 110.84476,1029.3622 0,12 8,0 0,-12 z"
+       d="m 111,1029.3622 0,12 8,0 0,-12 z"
        id="path5415"
        inkscape:connector-curvature="0"
        inkscape:export-filename="/Users/whiskey/Programs/tm/src/Tape/sprite.png"
@@ -376,14 +353,14 @@
        sodipodi:nodetypes="cccc"
        inkscape:connector-curvature="0"
        id="path5417"
-       d="m 123.84476,1029.3622 -5,0 0,12 5,0"
+       d="m 124,1029.3622 -5,0 0,12 5,0"
        style="fill:#f3f3f3;fill-opacity:1;fill-rule:evenodd;stroke:#a6a09b;stroke-width:0.2;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
        inkscape:export-filename="/Users/whiskey/Programs/tm/src/Tape/sprite.png"
        inkscape:export-xdpi="90"
        inkscape:export-ydpi="90" />
     <path
        style="fill:#f3f3f3;fill-opacity:1;fill-rule:evenodd;stroke:#a6a09b;stroke-width:0.2;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
-       d="m 81.844757,1029.3622 5,0 0,12 -5,0"
+       d="m 82,1029.3622 5,0 0,12 -5,0"
        id="path5419"
        inkscape:connector-curvature="0"
        sodipodi:nodetypes="cccc"
@@ -393,31 +370,95 @@
     <path
        inkscape:connector-curvature="0"
        id="path5421"
-       d="m 108.78532,1023.4545 5.94054,5.9404 -5.94054,5.9408 5.94054,5.9405 -5.94054,5.9405 -5.94056,-5.9405 -5.940563,5.9405 -5.94054,-5.9405 5.94054,-5.9405 -5.94054,-5.9408 5.94054,-5.9404 5.940563,5.9404 z"
+       d="m 108.94056,1023.4545 5.94054,5.9404 -5.94054,5.9408 5.94054,5.9405 -5.94054,5.9405 -5.94056,-5.9405 -5.94056,5.9405 -5.94054,-5.9405 5.94054,-5.9405 -5.94054,-5.9408 5.94054,-5.9404 5.94056,5.9404 z"
        style="fill:#f86a4e;fill-opacity:1;fill-rule:evenodd;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
        inkscape:export-filename="/Users/whiskey/Programs/tm/src/Tape/sprite.png"
        inkscape:export-xdpi="90"
        inkscape:export-ydpi="90" />
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-weight:normal;font-size:40px;line-height:125%;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       x="134"
+       y="1016.3622"
+       id="text4183"
+       sodipodi:linespacing="125%"><tspan
+         sodipodi:role="line"
+         id="tspan4185"
+         x="134"
+         y="1016.3622" /></text>
+    <text
+       inkscape:export-ydpi="90"
+       inkscape:export-xdpi="90"
+       inkscape:export-filename="/Users/whiskey/Programs/tm/src/Tape/sprite.png"
+       sodipodi:linespacing="125%"
+       id="text4188"
+       y="1013.8581"
+       x="111.85025"
+       style="font-style:normal;font-weight:normal;font-size:7.34387541px;line-height:125%;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#dcdde0;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       xml:space="preserve"><tspan
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:Roboto;-inkscape-font-specification:Roboto;fill:#dcdde0;fill-opacity:1"
+         y="1013.8581"
+         x="111.85025"
+         id="tspan4190"
+         sodipodi:role="line">∅</tspan></text>
     <path
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:medium;line-height:125%;font-family:Roboto;-inkscape-font-specification:Roboto;letter-spacing:0px;word-spacing:0px;fill:#a6a09b;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       d="m 82.676727,1006.6649 c -0.241331,0 -0.466624,0.019 -0.675781,0.059 l 0,1.0039 c 0.195432,-0.087 0.417721,-0.1367 0.675781,-0.1367 0.580663,0 1.00544,0.2177 1.273438,0.6563 0.267998,0.4344 0.40039,1.1297 0.40039,2.084 l 0,1.8457 c -0.01218,0.9258 -0.153722,1.6028 -0.425781,2.0332 -0.267998,0.4304 -0.680029,0.6464 -1.236328,0.6464 -0.260556,0 -0.487517,-0.053 -0.6875,-0.1503 l 0,1.0039 c 0.213015,0.042 0.441182,0.066 0.6875,0.066 0.958296,0 1.662557,-0.3213 2.113281,-0.9629 0.450724,-0.6416 0.675782,-1.6217 0.675782,-2.9414 l 0,-1.4629 c -0.01218,-1.275 -0.242636,-2.2171 -0.69336,-2.8262 -0.450724,-0.6131 -1.153186,-0.918 -2.107422,-0.918 z"
+       id="path4208"
        inkscape:connector-curvature="0"
-       id="path5423"
-       d="m 81.844757,1030.9442 0,2.6016 c 0.173141,-0.579 0.348915,-1.1505 0.515625,-1.7539 l 0.05078,0 c 0.249481,0.9481 0.523642,1.8453 0.810547,2.7559 l 0.386719,1.248 -1.763672,0 0,0.8359 2.025391,0 0.773437,2.4942 1.097656,0 -2.757812,-8.1817 -1.138672,0 z"
-       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:medium;line-height:125%;font-family:'Source Code Pro';-inkscape-font-specification:'Source Code Pro';letter-spacing:0px;word-spacing:0px;fill:#5d544e;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
        inkscape:export-filename="/Users/whiskey/Programs/tm/src/Tape/sprite.png"
        inkscape:export-xdpi="90"
        inkscape:export-ydpi="90" />
     <path
-       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:medium;line-height:125%;font-family:'Source Code Pro';-inkscape-font-specification:'Source Code Pro';letter-spacing:0px;word-spacing:0px;fill:#a6a09b;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
-       d="M 122.66797 3.65625 C 120.89665 3.65625 119.8125 5.0903656 119.8125 7.7597656 C 119.8125 10.404266 120.89665 11.914062 122.66797 11.914062 C 123.10462 11.914062 123.49842 11.820414 123.8457 11.642578 L 123.8457 10.523438 C 123.52955 10.898417 123.12911 11.091797 122.66797 11.091797 C 121.55778 11.091797 120.77344 10.042566 120.77344 7.7597656 C 120.77344 5.4645656 121.55778 4.4804688 122.66797 4.4804688 C 123.12941 4.4804688 123.52946 4.6616119 123.8457 5.0253906 L 123.8457 3.9160156 C 123.49843 3.7446864 123.10459 3.65625 122.66797 3.65625 z M 122.66797 6.8496094 C 122.25632 6.8496094 121.89453 7.1624281 121.89453 7.6738281 C 121.89453 8.1977281 122.25632 8.5097656 122.66797 8.5097656 C 123.07961 8.5097656 123.44141 8.1977281 123.44141 7.6738281 C 123.44141 7.1624281 123.07961 6.8496094 122.66797 6.8496094 z "
-       transform="translate(0,1003.3622)"
-       id="path5434"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:medium;line-height:125%;font-family:Roboto;-inkscape-font-specification:Roboto;letter-spacing:0px;word-spacing:0px;fill:#a6a09b;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       d="m 123.55563,1006.6649 c -0.96235,0 -1.66841,0.3159 -2.11914,0.9493 -0.45072,0.6334 -0.67578,1.6027 -0.67578,2.9062 l 0,1.5039 c 0.0162,1.2466 0.25224,2.1851 0.70703,2.8145 0.45478,0.6253 1.15349,0.9375 2.09961,0.9375 0.15461,0 0.2922,-0.022 0.43359,-0.039 l 0,-0.9375 c -0.13395,0.034 -0.27671,0.057 -0.43359,0.057 -0.56442,0 -0.98545,-0.2268 -1.26563,-0.6816 -0.27612,-0.4589 -0.41406,-1.1687 -0.41406,-2.127 l 0,-1.8027 c 0.008,-0.9015 0.14427,-1.5694 0.4082,-2.0039 0.26394,-0.4345 0.68317,-0.6504 1.25977,-0.6504 0.16146,0 0.30803,0.021 0.44531,0.055 l 0,-0.9434 c -0.14503,-0.017 -0.28629,-0.037 -0.44531,-0.037 z"
+       id="path4201"
+       inkscape:connector-curvature="0"
+       inkscape:export-filename="/Users/whiskey/Programs/tm/src/Tape/sprite.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90" />
+    <text
+       inkscape:export-ydpi="90"
+       inkscape:export-xdpi="90"
+       inkscape:export-filename="/Users/whiskey/Programs/tm/src/Tape/sprite.png"
+       sodipodi:linespacing="125%"
+       id="text4216"
+       y="1039.6542"
+       x="87.303459"
+       style="font-style:normal;font-weight:normal;font-size:12.47409058px;line-height:125%;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#a6a09b;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       xml:space="preserve"><tspan
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:Roboto;-inkscape-font-specification:Roboto;fill:#a6a09b;fill-opacity:1"
+         y="1039.6542"
+         x="87.303459"
+         id="tspan4218"
+         sodipodi:role="line">1</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-weight:normal;font-size:7.34387541px;line-height:125%;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#dcdde0;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       x="111.85025"
+       y="1037.8582"
+       id="text4231"
+       sodipodi:linespacing="125%"
+       inkscape:export-filename="/Users/whiskey/Programs/tm/src/Tape/sprite.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90"><tspan
+         sodipodi:role="line"
+         id="tspan4233"
+         x="111.85025"
+         y="1037.8582"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:Roboto;-inkscape-font-specification:Roboto;fill:#dcdde0;fill-opacity:1">∅</tspan></text>
+    <path
+       id="path4235"
+       d="m 82.676727,1030.665 c -0.241331,0 -0.466624,0.019 -0.675781,0.059 l 0,1.0039 c 0.195432,-0.087 0.417721,-0.1367 0.675781,-0.1367 0.580663,0 1.00544,0.2177 1.273438,0.6562 0.267998,0.4345 0.40039,1.1297 0.40039,2.084 l 0,1.8457 c -0.01218,0.9258 -0.153722,1.6028 -0.425781,2.0332 -0.267998,0.4305 -0.680029,0.6465 -1.236328,0.6465 -0.260556,0 -0.487517,-0.054 -0.6875,-0.1504 l 0,1.0039 c 0.213015,0.042 0.441182,0.066 0.6875,0.066 0.958296,0 1.662557,-0.3213 2.113281,-0.9629 0.450724,-0.6415 0.675782,-1.6217 0.675782,-2.9414 l 0,-1.4629 c -0.01218,-1.275 -0.242636,-2.2171 -0.69336,-2.8262 -0.450724,-0.6131 -1.153186,-0.9179 -2.107422,-0.9179 z"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:medium;line-height:125%;font-family:Roboto;-inkscape-font-specification:Roboto;letter-spacing:0px;word-spacing:0px;fill:#a6a09b;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       inkscape:connector-curvature="0"
        inkscape:export-filename="/Users/whiskey/Programs/tm/src/Tape/sprite.png"
        inkscape:export-xdpi="90"
        inkscape:export-ydpi="90" />
     <path
-       id="path5440"
-       d="m 122.66797,1031.2333 c -1.77132,0 -2.85547,1.4341 -2.85547,4.1035 0,2.6445 1.08415,4.1543 2.85547,4.1543 0.43665,0 0.83045,-0.094 1.17773,-0.2715 l 0,-1.1191 c -0.31615,0.375 -0.71659,0.5684 -1.17773,0.5684 -1.11019,0 -1.89453,-1.0493 -1.89453,-3.3321 0,-2.2952 0.78434,-3.2793 1.89453,-3.2793 0.46144,0 0.86149,0.1812 1.17773,0.5449 l 0,-1.1093 c -0.34727,-0.1714 -0.74111,-0.2598 -1.17773,-0.2598 z m 0,3.1934 c -0.41165,0 -0.77344,0.3128 -0.77344,0.8242 0,0.5239 0.36179,0.8359 0.77344,0.8359 0.41164,0 0.77344,-0.312 0.77344,-0.8359 0,-0.5114 -0.3618,-0.8242 -0.77344,-0.8242 z"
-       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:medium;line-height:125%;font-family:'Source Code Pro';-inkscape-font-specification:'Source Code Pro';letter-spacing:0px;word-spacing:0px;fill:#5d544e;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       id="path4237"
+       d="m 123.55563,1030.665 c -0.96235,0 -1.66841,0.3158 -2.11914,0.9492 -0.45072,0.6335 -0.67578,1.6028 -0.67578,2.9062 l 0,1.5039 c 0.0162,1.2466 0.25224,2.1851 0.70703,2.8145 0.45478,0.6253 1.15349,0.9375 2.09961,0.9375 0.15461,0 0.2922,-0.022 0.43359,-0.039 l 0,-0.9375 c -0.13395,0.034 -0.27671,0.057 -0.43359,0.057 -0.56442,0 -0.98545,-0.2269 -1.26563,-0.6817 -0.27612,-0.4588 -0.41406,-1.1686 -0.41406,-2.1269 l 0,-1.8027 c 0.008,-0.9015 0.14427,-1.5695 0.4082,-2.004 0.26394,-0.4344 0.68317,-0.6503 1.25977,-0.6503 0.16146,0 0.30803,0.021 0.44531,0.055 l 0,-0.9433 c -0.14503,-0.017 -0.28629,-0.037 -0.44531,-0.037 z"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:medium;line-height:125%;font-family:Roboto;-inkscape-font-specification:Roboto;letter-spacing:0px;word-spacing:0px;fill:#a6a09b;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
        inkscape:connector-curvature="0"
        inkscape:export-filename="/Users/whiskey/Programs/tm/src/Tape/sprite.png"
        inkscape:export-xdpi="90"
