@@ -25,7 +25,7 @@
      borderopacity="1.0"
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
-     inkscape:zoom="13.405405"
+     inkscape:zoom="1.6756757"
      inkscape:cx="108.41146"
      inkscape:cy="29.518061"
      inkscape:document-units="px"
@@ -410,11 +410,17 @@
        style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:medium;line-height:125%;font-family:'Source Code Pro';-inkscape-font-specification:'Source Code Pro';letter-spacing:0px;word-spacing:0px;fill:#a6a09b;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
        d="M 122.66797 3.65625 C 120.89665 3.65625 119.8125 5.0903656 119.8125 7.7597656 C 119.8125 10.404266 120.89665 11.914062 122.66797 11.914062 C 123.10462 11.914062 123.49842 11.820414 123.8457 11.642578 L 123.8457 10.523438 C 123.52955 10.898417 123.12911 11.091797 122.66797 11.091797 C 121.55778 11.091797 120.77344 10.042566 120.77344 7.7597656 C 120.77344 5.4645656 121.55778 4.4804688 122.66797 4.4804688 C 123.12941 4.4804688 123.52946 4.6616119 123.8457 5.0253906 L 123.8457 3.9160156 C 123.49843 3.7446864 123.10459 3.65625 122.66797 3.65625 z M 122.66797 6.8496094 C 122.25632 6.8496094 121.89453 7.1624281 121.89453 7.6738281 C 121.89453 8.1977281 122.25632 8.5097656 122.66797 8.5097656 C 123.07961 8.5097656 123.44141 8.1977281 123.44141 7.6738281 C 123.44141 7.1624281 123.07961 6.8496094 122.66797 6.8496094 z "
        transform="translate(0,1003.3622)"
-       id="path5434" />
+       id="path5434"
+       inkscape:export-filename="/Users/whiskey/Programs/tm/src/Tape/sprite.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90" />
     <path
        id="path5440"
        d="m 122.66797,1031.2333 c -1.77132,0 -2.85547,1.4341 -2.85547,4.1035 0,2.6445 1.08415,4.1543 2.85547,4.1543 0.43665,0 0.83045,-0.094 1.17773,-0.2715 l 0,-1.1191 c -0.31615,0.375 -0.71659,0.5684 -1.17773,0.5684 -1.11019,0 -1.89453,-1.0493 -1.89453,-3.3321 0,-2.2952 0.78434,-3.2793 1.89453,-3.2793 0.46144,0 0.86149,0.1812 1.17773,0.5449 l 0,-1.1093 c -0.34727,-0.1714 -0.74111,-0.2598 -1.17773,-0.2598 z m 0,3.1934 c -0.41165,0 -0.77344,0.3128 -0.77344,0.8242 0,0.5239 0.36179,0.8359 0.77344,0.8359 0.41164,0 0.77344,-0.312 0.77344,-0.8359 0,-0.5114 -0.3618,-0.8242 -0.77344,-0.8242 z"
        style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:medium;line-height:125%;font-family:'Source Code Pro';-inkscape-font-specification:'Source Code Pro';letter-spacing:0px;word-spacing:0px;fill:#5d544e;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
-       inkscape:connector-curvature="0" />
+       inkscape:connector-curvature="0"
+       inkscape:export-filename="/Users/whiskey/Programs/tm/src/Tape/sprite.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90" />
   </g>
 </svg>

@@ -3,6 +3,8 @@
   top: 10px;
   left: 10%;
   height: 32px;
+  display: flex;
+  align-items: center;
 }
 
 .edit-controls__button {
@@ -17,58 +19,109 @@
   background-image: url(./sprite.png);
 }
 
-.edit-controls__button-ADD_STATE {
+.edit-controls__add-state-button {
   background-position: 0 0;
 }
 
-.edit-controls__button-ADD_STATE:hover {
+.edit-controls__add-state-button:hover {
   background-position: -32px 0;
 }
 
-.edit-controls__button-REMOVE_STATE {
+.edit-controls__remove-state-button {
   background-position: 0 -32px;
 }
 
-.edit-controls__button-REMOVE_STATE:hover {
+.edit-controls__remove-state-button:hover {
   background-position: -32px -32px;
 }
 
-.edit-controls__button-REMOVE_STATES {
+.edit-controls__remove-two-states-button {
+  background-position: 0 -224px;
+}
+
+.edit-controls__remove-two-states-button:hover {
+  background-position: -32px -224px;
+}
+
+.edit-controls__remove-many-states-button {
   background-position: 0 -160px;
 }
 
-.edit-controls__button-REMOVE_STATES:hover {
+.edit-controls__remove-many-states-button:hover {
   background-position: -32px -160px;
 }
 
-.edit-controls__button-ADD_SELF_TRANSITION {
+.edit-controls__add-self-transition-button {
   background-position: 0 -64px;
 }
 
-.edit-controls__button-ADD_SELF_TRANSITION:hover {
+.edit-controls__add-self-transition-button:hover {
   background-position: -32px -64px;
 }
 
-.edit-controls__button-ADD_TRANSITION {
+.edit-controls__add-transition-button {
   background-position: 0 -192px;
 }
 
-.edit-controls__button-ADD_TRANSITION:hover {
+.edit-controls__add-transition-button:hover {
   background-position: -32px -192px;
 }
 
-.edit-controls__button-MAKE_START {
+.edit-controls__make-start-button {
   background-position: 0 -96px;
 }
 
-.edit-controls__button-MAKE_START:hover {
+.edit-controls__make-start-button:hover {
   background-position: -32px -96px;
 }
 
-.edit-controls__button-TOGGLE_ACCEPTING {
+.edit-controls__toggle-accepting-button {
   background-position: 0 -128px;
 }
 
-.edit-controls__button-TOGGLE_ACCEPTING:hover {
+.edit-controls__toggle-accepting-button:hover {
   background-position: -32px -128px;
+}
+
+.edit-controls__toggle-two-accepting-button {
+  background-position: 0 -128px;
+}
+
+.edit-controls__toggle-two-accepting-button:hover {
+  background-position: -32px -128px;
+}
+
+.edit-controls__toggle-many-accepting-button {
+  background-position: 0 -128px;
+}
+
+.edit-controls__toggle-many-accepting-button:hover {
+  background-position: -32px -128px;
+}
+
+.edit-controls__undo-redo-buttons {
+  margin-right: 20px;
+}
+
+.edit-controls__undo-button,
+.edit-controls__redo-button {
+  width: 18px;
+  height: 18px;
+  margin: 0 6px;
+}
+
+.edit-controls__undo-button {
+  background-position: -64px 0;
+}
+
+.edit-controls__undo-button:hover {
+  background-position: -83px 0;
+}
+
+.edit-controls__redo-button {
+  background-position: -64px -18px;
+}
+
+.edit-controls__redo-button:hover {
+  background-position: -83px -18px;
 }
