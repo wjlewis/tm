@@ -46,6 +46,7 @@ class Tape extends React.Component<TapeProps> {
                      disabled={!this.props.isEditable}
                      className={cellClassName}
                      value={l}
+                     placeholder="∅"
                      onChange={this.handleCellChange(i)}
                      onFocus={this.handleCellFocus(i)}
                      style={{ width: `${CELL_WIDTH}px` }}
@@ -85,6 +86,9 @@ class Tape extends React.Component<TapeProps> {
 
   private handleCellChange(pos: number) {
     return (e: React.ChangeEvent<HTMLInputElement>) => {
+      // We don't allow the user to input spaces, since they appear identical to
+      // the empty string and therefore create a lot of confusion.
+      if (e.target.value === ' ') return;
       this.props.changeCell(pos, e.target.value);
     };
   }

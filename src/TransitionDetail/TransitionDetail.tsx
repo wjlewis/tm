@@ -98,11 +98,14 @@ class TransitionDetail extends React.Component<TransitionDetailProps> {
   }
 
   private handleInputChange(property: 'read' | 'write') {
-    return (evt: React.ChangeEvent<HTMLInputElement>) => {
+    return (e: React.ChangeEvent<HTMLInputElement>) => {
       if (!this.props.onChange) return;
+      // We do not allow spaces, since they appear idential to the empty string
+      // and therefore result in a lot of confusion.
+      else if (e.target.value === ' ') return;
       this.props.onChange({
         ...this.props.detail,
-        [property]: evt.target.value,
+        [property]: e.target.value,
       });
     };
   }

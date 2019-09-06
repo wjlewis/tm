@@ -84,6 +84,10 @@
   color: var(--base-dk);
 }
 
+.tape__cell::placeholder {
+  color: var(--base-lt);
+}
+
 .tape-feed {
   width: 12px;
   height: 61px;
