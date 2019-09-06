@@ -96,6 +96,8 @@ export const nodesReducer = (state: State, action: Action): NodeState => {
       // These operations affect the non-positional attributes of a node.
       case A.ADD_NODE:
         return addNode(state, action.payload.pos);
+      case A.ADD_ARROW:
+        return addArrow(state, action.payload.start, action.payload.end);
       case A.DELETE_ENTITIES:
         return deleteEntities(state, action.payload.nodes);
       case A.MAKE_SELECTED_START_NODE:
@@ -142,6 +144,18 @@ const addNode = (state: State, pos: Vector): NodeState => {
     }, (_1, _2, key) => key === 'selected' ? [id] : undefined),
   };
 };
+
+// Whenever an arrow is added between two distinct nodes, we deselect the nodes.
+// This seems to be a nicer experience than keeping the nodes selected.
+const addArrow = (state: State, start: string, end: string): NodeState => ({
+  wip: null,
+  committed: {
+    ...state.entities.nodes.committed,
+    selected: start !== end
+      ? []
+      : state.entities.nodes.committed.selected,
+  },
+});
 
 const deleteEntities = (state: State, ids: string[]): NodeState => {
   const { committed } = state.entities.nodes;
