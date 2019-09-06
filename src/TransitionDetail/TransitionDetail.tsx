@@ -1,6 +1,7 @@
 import React from 'react';
 import classNames from 'classnames';
 import { TransitionDetail as TransitionDetailInfo } from '../state-mgmt/TransitionDetail';
+import { TapeDirection, TapeDirections } from '../state-mgmt/Tape';
 import './TransitionDetail.css';
 
 // Each transition consists of a pair of (not necessarily distinct) states, and
@@ -53,6 +54,7 @@ class TransitionDetail extends React.Component<TransitionDetailProps> {
                ref={this.readRef}
                disabled={!this.props.isEditable}
                value={read}
+               placeholder="∅"
                onChange={this.handleInputChange('read')}
                onFocus={this.handleFocus}
                onBlur={this.handleBlur}
@@ -62,18 +64,18 @@ class TransitionDetail extends React.Component<TransitionDetailProps> {
         <input className={inputClassName}
                disabled={!this.props.isEditable}
                value={write}
+               placeholder="∅"
                onChange={this.handleInputChange('write')}
                onFocus={this.handleFocus}
                onBlur={this.handleBlur}
                type="text"
                maxLength={1} />
-        <span className="transition-detail__separator">,</span>
         <select className={selectorClassName}
                 disabled={!this.props.isEditable}
                 value={move}
                 onChange={this.handleSelectChange}>
-          <option value="L">←</option>
-          <option value="R">→</option>
+          <option value={TapeDirections.L} onMouseDown={this.selectLeft}>←</option>
+          <option value={TapeDirections.R} onMouseDown={this.selectRight}>→</option>
         </select>
         {this.props.isEditable &&
           <button className="transition-detail__button"
@@ -105,13 +107,29 @@ class TransitionDetail extends React.Component<TransitionDetailProps> {
     };
   }
 
-  private handleSelectChange = (evt: React.ChangeEvent<HTMLSelectElement>) => {
+  private handleSelectChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
+    if (!this.props.onChange) return;
+    this.changeDirection(e.target.value as TapeDirection);
+  };
+
+  // The following two methods are a dirty hack for getting the select to update
+  // with Firefox. For some reason, Firefox is not reporting the correct value
+  // when it fires the "change" event. This seems to do the trick, though.
+  private selectLeft = () => {
+    this.changeDirection(TapeDirections.L);
+  };
+
+  private selectRight = () => {
+    this.changeDirection(TapeDirections.R);
+  };
+
+  private changeDirection(direction: TapeDirection) {
     if (!this.props.onChange) return;
     this.props.onChange({
       ...this.props.detail,
-      move: evt.target.value as 'L' | 'R',
+      move: direction,
     });
-  };
+  }
 
   private handleFocus = () => {
     if (this.props.onFocus) this.props.onFocus();

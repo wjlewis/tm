@@ -43,13 +43,25 @@
   color: var(--bg) !important;
 }
 
+.transition-detail__input::placeholder {
+  color: var(--base-lt);
+}
+
+.transition-detail__input--editable.transition-detail__input--focus::placeholder {
+  color: transparent;
+}
+
+.transition-detail__input--error::placeholder {
+  color: var(--bg) !important;
+}
+
 /*
  * Tape direction selector.
  */
 .transition-detail__selector {
   outline: none;
   border: none;
-  border-bottom: 1px solid transparent;
+  background-color: transparent;
 
   font-size: 10pt;
   color: var(--base-md);

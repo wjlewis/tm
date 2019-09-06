@@ -21,6 +21,12 @@ export const initTapeState: TapeState = {
   focused: null,
 };
 
+export type TapeDirection = 'L' | 'R';
+export const TapeDirections: { [key: string]: TapeDirection } = {
+  L: 'L',
+  R: 'R',
+};
+
 // Return an array containing all of the tape entries, along with entries
 // containing empty values for nonexistent intermediate entries.
 export const tapeEntries = (state: State): string[] => state.entities.tape.entries;

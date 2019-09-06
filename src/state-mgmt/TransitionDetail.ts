@@ -5,6 +5,7 @@ import { Action } from './actions';
 import * as A from './actions';
 import { isInEditMode } from './Mode';
 import { arrowById } from './Arrow';
+import { TapeDirection, TapeDirections } from './Tape';
 
 // A transition detail provides the information that is missing in an arrow: an
 // arrow indicates the start and end states for a number of transitions; a
@@ -22,7 +23,7 @@ export interface TransitionDetail {
   arrow: string;
   read: string;
   write: string;
-  move: 'L' | 'R';
+  move: TapeDirection;
   isDuplicate: boolean;
 }
 
@@ -94,7 +95,7 @@ export const transitionDetailsReducer = (state: State, action: Action): Transiti
 
 const addTransitionDetail = (state: State, arrow: string): TransitionDetailState => {
   const id = uuid();
-  const detail = { id, arrow, read: '', write: '', move: 'L', isFocused: false };
+  const detail = { id, arrow, read: '', write: '', move: TapeDirections.L, isFocused: false };
   return _.merge({}, state.entities.transitionDetails, {
     byId: {
       [id]: detail,
