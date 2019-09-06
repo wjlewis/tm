@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   width="512"
+   height="512"
+   viewBox="0 0 511.99999 512.00001"
+   id="svg5367"
+   version="1.1"
+   inkscape:version="0.91 r13725"
+   sodipodi:docname="favicon.svg"
+   inkscape:export-filename="/Users/whiskey/Programs/tm/graphics/favicon.png"
+   inkscape:export-xdpi="90"
+   inkscape:export-ydpi="90">
+  <defs
+     id="defs5369" />
+  <sodipodi:namedview
+     id="base"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:pageopacity="0.0"
+     inkscape:pageshadow="2"
+     inkscape:zoom="0.68500969"
+     inkscape:cx="160.84618"
+     inkscape:cy="178.34167"
+     inkscape:document-units="px"
+     inkscape:current-layer="layer1"
+     showgrid="false"
+     inkscape:window-width="1280"
+     inkscape:window-height="698"
+     inkscape:window-x="0"
+     inkscape:window-y="0"
+     inkscape:window-maximized="1"
+     units="px"
+     inkscape:snap-smooth-nodes="false"
+     inkscape:object-nodes="true">
+    <inkscape:grid
+       type="xygrid"
+       id="grid5934"
+       empspacing="4" />
+  </sodipodi:namedview>
+  <metadata
+     id="metadata5372">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title />
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <g
+     inkscape:label="Layer 1"
+     inkscape:groupmode="layer"
+     id="layer1"
+     transform="translate(0,-540.36216)">
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-weight:normal;font-size:40px;line-height:125%;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       x="-386.06451"
+       y="864.49121"
+       id="text6624"
+       sodipodi:linespacing="125%"><tspan
+         sodipodi:role="line"
+         id="tspan6626"
+         x="-386.06451"
+         y="864.49121" /></text>
+    <path
+       inkscape:connector-curvature="0"
+       style="opacity:1;fill:#685244;fill-opacity:0.49044584;stroke:none;stroke-width:20;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
+       d="M 14.641612,795.91564 A 243.82447,243.82447 0 0 0 14.256137,806.89122 243.82447,243.82447 0 0 0 258.08061,1050.7157 243.82447,243.82447 0 0 0 501.90508,806.89122 243.82447,243.82447 0 0 0 501.51961,799.13528 243.82447,243.82447 0 0 1 258.08072,1031.9842 243.82447,243.82447 0 0 1 14.641612,795.91564 Z"
+       id="path7591"
+       inkscape:export-filename="/Users/whiskey/Programs/machinations/src/Node/sprite.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90" />
+    <path
+       inkscape:connector-curvature="0"
+       style="opacity:1;fill:#5d544e;fill-opacity:1;stroke:none;stroke-width:20;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
+       d="M 258.08072,544.33522 A 243.82447,243.82447 0 0 0 14.256253,788.1597 243.82447,243.82447 0 0 0 258.08072,1031.9842 243.82447,243.82447 0 0 0 501.9052,788.1597 243.82447,243.82447 0 0 0 258.08072,544.33522 Z m 0,15.9647 c 106.97613,0 222.05444,90.40547 222.05444,216.24908 0,105.52492 -86.30063,204.63841 -222.05444,204.63841 -135.7538,0 -220.603089,-96.21081 -220.603089,-204.63841 0,-125.84361 113.626849,-216.24908 220.603089,-216.24908 z"
+       id="path7593"
+       inkscape:export-filename="/Users/whiskey/Programs/machinations/src/Node/sprite.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90" />
+    <path
+       id="path7595"
+       d="m 480.13516,776.549 c 0,105.52492 -86.30063,204.63841 -222.05444,204.63841 -135.7538,0 -220.603089,-96.21081 -220.603089,-204.63841 0,-125.84361 113.626849,-216.24908 220.603089,-216.24908 106.97613,0 222.05444,90.40547 222.05444,216.24908 z"
+       style="opacity:1;fill:#ffb438;fill-opacity:1;stroke:none;stroke-width:20;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
+       inkscape:connector-curvature="0"
+       sodipodi:nodetypes="szszs"
+       inkscape:export-filename="/Users/whiskey/Programs/machinations/src/Node/sprite.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90" />
+    <path
+       inkscape:export-ydpi="90"
+       inkscape:export-xdpi="90"
+       inkscape:export-filename="/Users/whiskey/Programs/machinations/src/Node/sprite.png"
+       style="fill:#5d544e;fill-opacity:1;fill-rule:evenodd;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       d="m 259.17155,691.82349 155.70491,78.92018 -155.70491,78.92017 8.63429,-47.35071 -165.06963,0 0,-63.13893 165.06963,0 z"
+       id="path7597"
+       inkscape:connector-curvature="0"
+       sodipodi:nodetypes="cccccccc" />
+  </g>
+</svg>
