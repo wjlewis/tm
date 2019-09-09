@@ -124,7 +124,7 @@ const addArrow = (state: State, start: string, end: string, arrow: string): Cont
     // incredibly rare if not impossible), we add the control point a certain
     // vertical distance away.
     const perp = diff.magnitude() !== 0
-      ? diff.perp().normalize().scale(1)
+      ? diff.perp().normalize().scale(-1)
       : new Vector(0, -1);
     return diff.scale(1 / 2).plus(perp).plus(start);
   };
