@@ -1,94 +1,178 @@
 import { State } from './state';
 import { Action } from './actions';
 import * as A from './actions';
-import { startNode } from './Node';
+import { tapeEntries, TapeDirection, TapeDirections } from './Tape';
+import { startNode, isStartNode } from './Node';
 
 export interface SimState {
-  currentState: null | string;
-  activeNode: null | string;
-  activeArrow: null | string;
-  activeTransitionDetail: null | string;
-  activeControlPoint: null | string;
+  hasStarted: boolean;
+  initialTapeEntries: null | string[];
+  currentNode: null | string;
+  activeTapeCell: number;
+  isTapeWriting: boolean;
+  glowingNode: null | string;
+  fadeInNode: null | string;
+  fadeOutNode: null | string;
+  glowingArrow: null | string;
+  glowingControlPoint: null | string;
+  glowingTransitionDetail: null | string;
+  interval: number;
 }
 
 export const initSimState: SimState = {
-  currentState: null,
-  activeNode: null,
-  activeArrow: null,
-  activeTransitionDetail: null,
-  activeControlPoint: null,
+  hasStarted: false,
+  initialTapeEntries: null,
+  currentNode: null,
+  activeTapeCell: 0,
+  isTapeWriting: false,
+  glowingNode: null,
+  fadeInNode: null,
+  fadeOutNode: null,
+  glowingArrow: null,
+  glowingControlPoint: null,
+  glowingTransitionDetail: null,
+  interval: 700,
 };
 
-// Return the current simulation state.
-export const currentState = (state: State): string => (
- state.sim.currentState || startNode(state)
-);
+export const isTapeWriting = (state: State): boolean => state.sim.isTapeWriting;
 
-export const isNodeActive = (state: State, id: string): boolean => (
-  state.sim.activeNode === id
-);
+export const initialTapeEntries = (state: State): null | string[] => state.sim.initialTapeEntries;
 
-export const isArrowActive = (state: State, id: string): boolean => (
-  state.sim.activeArrow === id
-);
+export const currentNode = (state: State): string => {
+  if (state.sim.currentNode) {
+    return state.sim.currentNode;
+  }
+  return startNode(state);
+};
 
-export const isControlPointActive = (state: State, id: string): boolean => (
-  state.sim.activeControlPoint === id
-);
+export const isNodeCurrent = (state: State, id: string): boolean => {
+  if (state.sim.currentNode) {
+    return state.sim.currentNode === id;
+  }
+  return isStartNode(state, id);
+};
 
-export const activeTransitionDetail = (state: State): null | string => (
-  state.sim.activeTransitionDetail
-);
+export const activeTapeCell = (state: State): number => state.sim.activeTapeCell;
+
+export const isNodeGlowing = (state: State, id: string): boolean => state.sim.glowingNode === id;
+
+export const isNodeFadingIn = (state: State, id: string): boolean => state.sim.fadeInNode === id;
+
+export const isNodeFadingOut = (state: State, id: string): boolean => state.sim.fadeOutNode === id;
+
+export const isArrowGlowing = (state: State, id: string): boolean => state.sim.glowingArrow === id;
+
+export const isControlPointGlowing = (state: State, id: string): boolean => state.sim.glowingControlPoint === id;
+
+export const glowingTransitionDetail = (state: State): null | string => state.sim.glowingTransitionDetail;
+
+export const simInterval = (state: State): number => state.sim.interval;
 
 export const simReducer = (state: State, action: Action): SimState => {
   switch (action.type) {
-    case A.SET_CURRENT_STATE:
-      return setCurrentState(state, action.payload.id);
-    case A.SET_ACTIVE_NODE:
-      return setActiveNode(state, action.payload.id);
-    case A.SET_ACTIVE_TRANSITION_DETAIL:
-      return setActiveTransitionDetail(state, action.payload.id);
-    case A.SET_ACTIVE_ARROW:
-      return setActiveArrow(state, action.payload.id);
-    case A.SET_ACTIVE_CONTROL_POINT:
-      return setActiveControlPoint(state, action.payload.id);
+    case A.STEP_SIM:
+      return stepSim(state);
+    case A.PLAY_SIM:
+      return playSim(state);
     case A.RESET_SIM:
       return resetSim(state);
+    case A.SET_CURRENT_NODE:
+      return setCurrentNode(state, action.payload.node);
+    case A.SET_TAPE_WRITING_STATUS:
+      return setTapeWritingStatus(state, action.payload.isWriting);
+    case A.MOVE_TAPE:
+      return moveTape(state, action.payload.direction);
+    case A.SET_GLOWING_NODE:
+      return setGlowingNode(state, action.payload.node);
+    case A.SET_FADE_IN_NODE:
+      return setFadeInNode(state, action.payload.node);
+    case A.SET_FADE_OUT_NODE:
+      return setFadeOutNode(state, action.payload.node);
+    case A.SET_GLOWING_ARROW:
+      return setGlowingArrow(state, action.payload.arrow);
+    case A.SET_GLOWING_CONTROL_POINT:
+      return setGlowingControlPoint(state, action.payload.controlPoint);
+    case A.SET_GLOWING_TRANSITION_DETAIL:
+      return setGlowingTransitionDetail(state, action.payload.transitionDetail);
     default:
       return state.sim;
   }
 };
 
-const setCurrentState = (state: State, id: string): SimState => ({
+const stepSim = (state: State): SimState => ({
   ...state.sim,
-  currentState: id,
+  hasStarted: true,
+  initialTapeEntries: state.sim.hasStarted
+    ? state.sim.initialTapeEntries
+    : tapeEntries(state),
 });
 
-const setActiveNode = (state: State, id: null | string): SimState => ({
+const playSim = (state: State): SimState => ({
   ...state.sim,
-  activeNode: id,
-});
-
-const setActiveTransitionDetail = (state: State, id: null | string): SimState => ({
-  ...state.sim,
-  activeTransitionDetail: id,
-});
-
-const setActiveArrow = (state: State, id: null | string): SimState => ({
-  ...state.sim,
-  activeArrow: id,
-});
-
-const setActiveControlPoint = (state: State, id: null | string): SimState => ({
-  ...state.sim,
-  activeControlPoint: id,
+  hasStarted: true,
+  initialTapeEntries: state.sim.hasStarted
+    ? state.sim.initialTapeEntries
+    : tapeEntries(state),
 });
 
 const resetSim = (state: State): SimState => ({
   ...state.sim,
-  currentState: null,
-  activeNode: null,
-  activeArrow: null,
-  activeTransitionDetail: null,
-  activeControlPoint: null,
+  hasStarted: false,
+  initialTapeEntries: null,
+  currentNode: null,
+  activeTapeCell: 0,
+  isTapeWriting: false,
+  glowingNode: null,
+  fadeInNode: null,
+  fadeOutNode: null,
+  glowingArrow: null,
+  glowingControlPoint: null,
+  glowingTransitionDetail: null,
+});
+
+const setCurrentNode = (state: State, node: null | string): SimState => ({
+  ...state.sim,
+  currentNode: node,
+});
+
+const setTapeWritingStatus = (state: State, isWriting: boolean): SimState => ({
+  ...state.sim,
+  isTapeWriting: isWriting,
+});
+
+const moveTape = (state: State, direction: TapeDirection): SimState => ({
+  ...state.sim,
+  activeTapeCell: direction === TapeDirections.R
+    ? Math.max(0, state.sim.activeTapeCell - 1)
+    : state.sim.activeTapeCell + 1,
+});
+
+const setGlowingNode = (state: State, node: null | string): SimState => ({
+  ...state.sim,
+  glowingNode: node,
+});
+
+const setFadeInNode = (state: State, node: null | string): SimState => ({
+  ...state.sim,
+  fadeInNode: node,
+});
+
+const setFadeOutNode = (state: State, node: null | string): SimState => ({
+  ...state.sim,
+  fadeOutNode: node,
+});
+
+const setGlowingArrow = (state: State, arrow: null | string): SimState => ({
+  ...state.sim,
+  glowingArrow: arrow,
+});
+
+const setGlowingControlPoint = (state: State, controlPoint: null | string): SimState => ({
+  ...state.sim,
+  glowingControlPoint: controlPoint,
+});
+
+const setGlowingTransitionDetail = (state: State, transitionDetail: null | string): SimState => ({
+  ...state.sim,
+  glowingTransitionDetail: transitionDetail,
 });

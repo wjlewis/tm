@@ -25,9 +25,9 @@
      borderopacity="1.0"
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
-     inkscape:zoom="9.4790532"
-     inkscape:cx="100.57713"
-     inkscape:cy="20.578308"
+     inkscape:zoom="4.7395266"
+     inkscape:cx="208.85891"
+     inkscape:cy="19.811983"
      inkscape:document-units="px"
      inkscape:current-layer="layer1"
      showgrid="true"
@@ -463,5 +463,41 @@
        inkscape:export-filename="/Users/whiskey/Programs/tm/src/Tape/sprite.png"
        inkscape:export-xdpi="90"
        inkscape:export-ydpi="90" />
+    <path
+       style="fill:#ffb438;fill-opacity:0.19108281;fill-rule:evenodd;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       d="m 159,1008.3622 0,54 -35,0 0,-54 z"
+       id="path5008"
+       inkscape:connector-curvature="0"
+       inkscape:export-filename="/Users/whiskey/Programs/tm/src/Tape/sprite.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90"
+       sodipodi:nodetypes="ccccc" />
+    <path
+       sodipodi:nodetypes="ccccc"
+       inkscape:export-ydpi="90"
+       inkscape:export-xdpi="90"
+       inkscape:export-filename="/Users/whiskey/Programs/tm/src/Tape/sprite.png"
+       inkscape:connector-curvature="0"
+       id="path5010"
+       d="m 194,1008.3622 0,54 -35,0 0,-54 z"
+       style="fill:#ffb438;fill-opacity:0.3566879;fill-rule:evenodd;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1" />
+    <path
+       style="fill:#ffb438;fill-opacity:0.58598727;fill-rule:evenodd;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       d="m 229,1008.3622 0,54 -35,0 0,-54 z"
+       id="path5012"
+       inkscape:connector-curvature="0"
+       inkscape:export-filename="/Users/whiskey/Programs/tm/src/Tape/sprite.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90"
+       sodipodi:nodetypes="ccccc" />
+    <path
+       sodipodi:nodetypes="ccccc"
+       inkscape:export-ydpi="90"
+       inkscape:export-xdpi="90"
+       inkscape:export-filename="/Users/whiskey/Programs/tm/src/Tape/sprite.png"
+       inkscape:connector-curvature="0"
+       id="path5014"
+       d="m 264,1008.3622 0,54 -35,0 0,-54 z"
+       style="fill:#ffb438;fill-opacity:0.77707005;fill-rule:evenodd;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1" />
   </g>
 </svg>

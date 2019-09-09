@@ -6,7 +6,7 @@ import { Arrow as ArrowDetails } from '../state-mgmt/Arrow';
 import { controlPointForArrow } from '../state-mgmt/ControlPoint';
 import { nodeById } from '../state-mgmt/Node';
 import { isInEditMode } from '../state-mgmt/Mode';
-import { isArrowActive } from '../state-mgmt/Sim';
+import { isArrowGlowing, simInterval } from '../state-mgmt/Sim';
 import Vector from '../tools/Vector';
 import './Arrow.css';
 
@@ -24,20 +24,29 @@ export interface ArrowProps {
   control: Vector;
   isSelfLoop: boolean;
   isEditable: boolean;
-  isActive: boolean;
+  isGlowing: boolean;
+  simInterval: number;
 }
 
 class Arrow extends React.Component<ArrowProps> {
+  // We need to know the arrow's length in order to animate the "glow" effect
+  // correctly. This ref allows us to compute the referenced SVG path's length.
+  private arrowRef: React.RefObject<SVGPathElement> = React.createRef();
+
   render() {
     const className = classNames('arrow', {
       'arrow--editable': this.props.isEditable,
-      'arrow--active': this.props.isActive,
     });
 
     const pathString = this.props.isSelfLoop
       ? this.computeCubicPathString()
       : this.computeQuadraticPathString();
-    return <path className={className} d={pathString} />;
+    return (
+      <g>
+        <path className={className} d={pathString} ref={this.arrowRef} />
+        {this.renderGlow(pathString)}
+      </g>
+    );
   }
 
   private computeQuadraticPathString() {
@@ -72,9 +81,25 @@ class Arrow extends React.Component<ArrowProps> {
     const v2 = v1.magnitude() !== 0
       ? v1.perp().normalize().scale(separation)
       : new Vector(separation, 0);
-    const ctrl1 = start.plus(v1).plus(v2);
-    const ctrl2 = start.plus(v1).minus(v2);
+    const ctrl1 = start.plus(v1).minus(v2);
+    const ctrl2 = start.plus(v1).plus(v2);
     return `M ${start.x} ${start.y} C ${ctrl1.x} ${ctrl1.y} ${ctrl2.x} ${ctrl2.y} ${start.x} ${start.y}`;
+  }
+
+  private renderGlow(pathString: string) {
+    if (this.props.isEditable || !this.props.isGlowing) return null;
+    // We provide a conservative fallback value in the rare (impossible?) event
+    // that the arrow's ref is not available.
+    const length = this.arrowRef.current ? this.arrowRef.current.getTotalLength() : 500;
+    return (
+      <path className="arrow__glow"
+            d={pathString}
+            style={{
+              strokeDasharray: length,
+              strokeDashoffset: length,
+              animationDuration: `${3 * this.props.simInterval / 4}ms`,
+            }} />
+    );
   }
 }
 
@@ -88,7 +113,8 @@ const mapStateToProps = (state: State, ownProps: any) => {
     control: Vector.from(controlPoint.pos),
     isSelfLoop: start.id === end.id,
     isEditable: isInEditMode(state),
-    isActive: isArrowActive(state, ownProps.details.id),
+    isGlowing: isArrowGlowing(state, ownProps.details.id),
+    simInterval: simInterval(state),
   };
 };
 

@@ -15,7 +15,7 @@ export interface TransitionDetailProps {
   detail: TransitionDetailInfo;
   isFocused: boolean;
   isEditable: boolean;
-  isActive: boolean;
+  isGlowing: boolean;
   onFocus?: () => void;
   onBlur?: () => void;
   onChange?: (value: TransitionDetailInfo) => void;
@@ -29,7 +29,7 @@ class TransitionDetail extends React.Component<TransitionDetailProps> {
     const { read, write, move } = this.props.detail;
 
     const className = classNames('transition-detail', {
-      'transition-detail--active': this.props.isActive,
+      'transition-detail--glowing': !this.props.isEditable && this.props.isGlowing,
     });
 
     const inputClassName = classNames('transition-detail__input', {
@@ -46,6 +46,10 @@ class TransitionDetail extends React.Component<TransitionDetailProps> {
     const selectorClassName = classNames('transition-detail__selector', {
       'transition-detail__selector--focus': this.props.isFocused,
       'transition-detail__selector--editable': this.props.isEditable,
+    });
+
+    const deleteButtonClassName = classNames('transition-detail__delete-button', {
+      'transition-detail__delete-button--hidden': !this.props.isEditable,
     });
 
     return (
@@ -77,11 +81,9 @@ class TransitionDetail extends React.Component<TransitionDetailProps> {
           <option value={TapeDirections.L} onMouseDown={this.selectLeft}>←</option>
           <option value={TapeDirections.R} onMouseDown={this.selectRight}>→</option>
         </select>
-        {this.props.isEditable &&
-          <button className="transition-detail__button"
-                  onClick={this.handleDeleteClick}>
-          </button>
-        }
+        <button className={deleteButtonClassName}
+                onClick={this.handleDeleteClick}>
+        </button>
       </div>
     );
   }

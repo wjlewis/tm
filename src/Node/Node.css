@@ -7,7 +7,9 @@
   width: 42px;
   height: 44px;
   background-image: url(./sprite.png);
-  background-position: 0 0;
+  background-position: var(--sprite-x) var(--sprite-y);
+  --sprite-x: 0;
+  --sprite-y: 0;
 }
 
 .node--editable {
@@ -15,67 +17,75 @@
 }
 
 .node--editable:hover {
-  background-position: -44px 0;
+  --sprite-x: -44px;
 }
 
 .node--editable:active,
 .node--editable.node--selected {
-  background-position: -88px 0;
+  --sprite-x: -88px;
 }
 
 .node.node--final {
-  background-position: 0 -44px;
-}
-
-.node--editable.node--final:hover {
-  background-position: -44px -44px;
-}
-
-.node--editable.node--final:active,
-.node--editable.node--final.node--selected {
-  background-position: -88px -44px;
+  --sprite-y: -44px;
 }
 
 .node.node--start {
-  background-position: 0 -88px;
-}
-
-.node--editable.node--start:hover {
-  background-position: -44px -88px;
-}
-
-.node--editable.node--start:active,
-.node--editable.node--start.node--selected {
-  background-position: -88px -88px;
+  --sprite-y: -88px;
 }
 
 .node.node--start.node--final {
-  background-position: 0 -132px;
+  --sprite-y: -132px;
 }
 
-.node--editable.node--start.node--final:hover {
-  background-position: -44px -132px;
+.node.node--glowing {
+  --sprite-x: -176px;
 }
 
-.node--editable.node--start.node-final:active,
-.node--editable.node--start.node--final.node--selected {
-  background-position: -88px -132px;
+.node.node--fading-in {
+  animation-name: fade-in-node;
+  animation-timing-function: step-start;
 }
 
-.node--active {
-  background-position: -176px 0;
+.node.node--fading-out {
+  animation-name: fade-in-node;
+  animation-timing-function: step-start;
+  animation-direction: reverse;
 }
 
-.node--active.node--final {
-  background-position: -176px -44px;
+@keyframes fade-in-node {
+  from {
+    --sprite-x: 0;
+  }
+
+  20% {
+    --sprite-x: -220px;
+  }
+
+  40% {
+    --sprite-x: -264px;
+  }
+
+  60% {
+    --sprite-x: -308px;
+  }
+
+  80% {
+    --sprite-x: -352px;
+  }
+
+  to {
+    --sprite-x: -176px;
+  }
 }
 
-.node--active.node--start {
-  background-position: -176px -88px;
-}
-
-.node--active.node--start.node--final {
-  background-position: -176px -132px;
+/*
+ * The marker for the current node.
+ */
+.node__current-marker {
+  width: 12px;
+  height: 18px;
+  background-image: url(./sprite.png);
+  background-position: 0 -176px;
 }
 
 /*

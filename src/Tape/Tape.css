@@ -114,3 +114,66 @@
 .tape-reader--active {
   background-position: -59px 0;
 }
+
+.tape-read-write-overlay {
+  width: 35px;
+  height: 54px;
+  bottom: 87px;
+  background-image: url(./sprite.png);
+  --reader-sprite-x: -136px;
+  --reader-sprite-y: -10px;
+  background-position: var(--reader-sprite-x) var(--reader-sprite-y);
+  display: none;
+}
+
+.tape-read-write-overlay--writing {
+  display: unset;
+  animation-name: tape-writing;
+  animation-timing-function: step-start;
+}
+
+@keyframes tape-writing {
+  from {
+    --reader-sprite-x: -136px;
+  }
+
+  10% {
+    --reader-sprite-x: -171px;
+  }
+
+  20% {
+    --reader-sprite-x: -206px;
+  }
+
+  30% {
+    --reader-sprite-x: -241px;
+  }
+
+  40% {
+    --reader-sprite-x: -276px;
+  }
+
+  50% {
+    --reader-sprite-x: -311px;
+  }
+
+  60% {
+    --reader-sprite-x: -276px;
+  }
+
+  70% {
+    --reader-sprite-x: -241px;
+  }
+
+  80% {
+    --reader-sprite-x: -206px;
+  }
+
+  90% {
+    --reader-sprite-x: -171px;
+  }
+
+  to {
+    --reader-sprite-x: -136px;
+  }
+}

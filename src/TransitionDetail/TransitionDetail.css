@@ -5,10 +5,6 @@
   padding: 0.1em;
 }
 
-.transition-detail--active {
-  border: 1px solid var(--active-md);
-}
-
 /*
  * The input boxes.
  */
@@ -62,10 +58,13 @@
   outline: none;
   border: none;
   background-color: transparent;
+  margin-left: 4px;
 
   font-size: 10pt;
   color: var(--base-md);
   font-family: var(--code-font);
+
+  transition: background-color 0.2s, color 0.2s;
 }
 
 .transition-detail:hover .transition-detail__selector--editable,
@@ -86,11 +85,11 @@
 /*
  * The delete button.
  */
-.transition-detail__button {
+.transition-detail__delete-button {
   outline: none;
   border: none;
   visibility: hidden;
-  margin-left: 0.7em;
+  margin-left: 0.3em;
   transform: translateY(2px);
 
   width: 16px;
@@ -101,10 +100,27 @@
   cursor: pointer;
 }
 
-.transition-detail:hover .transition-detail__button {
+.transition-detail:hover .transition-detail__delete-button {
   visibility: unset;
 }
 
-.transition-detail__button:hover {
+.transition-detail__delete-button:hover {
   background-image: url('./delete-button--hover.png');
+}
+
+.transition-detail__delete-button--hidden {
+  visibility: hidden;
+}
+
+/*
+ * Glowing detail
+ */
+.transition-detail--glowing .transition-detail__input,
+.transition-detail--glowing .transition-detail__selector {
+  background-color: var(--active-md);
+  color: var(--bg);
+}
+
+.transition-detail--glowing .transition-detail__input::placeholder {
+  color: var(--bg);
 }

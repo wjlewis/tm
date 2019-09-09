@@ -8,7 +8,7 @@ import { arrowById } from '../state-mgmt/Arrow';
 import { nodeById } from '../state-mgmt/Node';
 import { ControlPoint as ControlPointDetails } from '../state-mgmt/ControlPoint';
 import { isInEditMode } from '../state-mgmt/Mode';
-import { isControlPointActive } from '../state-mgmt/Sim';
+import { isControlPointGlowing } from '../state-mgmt/Sim';
 import Vector from '../tools/Vector';
 import './ControlPoint.css';
 
@@ -26,7 +26,7 @@ export interface ControlPointProps {
   end: Vector;
   isSelfLoop: boolean;
   isEditable: boolean;
-  isActive: boolean;
+  isGlowing: boolean;
   mouseDown: () => void;
   mouseUp: () => void;
 }
@@ -37,7 +37,7 @@ class ControlPoint extends React.Component<ControlPointProps> {
   render() {
     const className = classNames('control-point', {
       'control-point--editable': this.props.isEditable,
-      'control-point--active': this.props.isActive,
+      'control-point--glowing': !this.props.isEditable && this.props.isGlowing,
     });
 
     const pathString = this.props.isSelfLoop
@@ -104,7 +104,7 @@ const mapStateToProps = (state: State, ownProps: any) => {
     end: Vector.from(end.pos),
     isSelfLoop: start.id === end.id,
     isEditable: isInEditMode(state),
-    isActive: isControlPointActive(state, ownProps.details.id),
+    isGlowing: isControlPointGlowing(state, ownProps.details.id),
   };
 };
 

@@ -6,12 +6,16 @@ import { State } from '../state-mgmt/state';
 import * as A from '../state-mgmt/actions';
 import { tapeEntries, focusedTapeCell, CELL_WIDTH, VISIBLE_CELL_COUNT } from '../state-mgmt/Tape';
 import { isInEditMode } from '../state-mgmt/Mode';
+import { activeTapeCell, isTapeWriting, simInterval } from '../state-mgmt/Sim';
 import './Tape.css';
 
 export interface TapeProps {
   entries: string[];
   isEditable: boolean;
   focusedCell: null | number;
+  activeCell: number;
+  isWriting: boolean;
+  simInterval: number;
   changeCell: (pos: number, value: string) => void;
   updateScrollLeft: (scrollLeft: number) => void;
   focusCell: (pos: number) => void;
@@ -58,6 +62,7 @@ class Tape extends React.Component<TapeProps> {
         </div>
         {this.renderFeeders()}
         {this.renderClearButton()}
+        {this.renderReadWriteOverlay()}
       </>
     );
   }
@@ -71,6 +76,13 @@ class Tape extends React.Component<TapeProps> {
   componentDidUpdate(oldProps: TapeProps) {
     if (oldProps.focusedCell !== this.props.focusedCell && this.props.focusedCell !== null) {
       this.updateFocus();
+    }
+    if (oldProps.activeCell !== this.props.activeCell) {
+      this.centerActive(true);
+    }
+    // If we've just switched into "sim" mode, we need to recenter the tape
+    if (oldProps.isEditable !== this.props.isEditable && !this.props.isEditable) {
+      this.centerActive(false);
     }
   }
 
@@ -107,6 +119,20 @@ class Tape extends React.Component<TapeProps> {
     this.props.clear();
   };
 
+  private centerActive(smooth: boolean) {
+    if (this.tapeRef.current) {
+      // To center the current read/write cell, we scroll to the left according
+      // to the index of the active cell and add half a cell's width to that
+      // (this accounts for the buffer on the lefthand side).
+      const scrollLeft = this.props.activeCell * CELL_WIDTH + CELL_WIDTH / 2;
+      this.tapeRef.current.scrollTo({
+        left: scrollLeft,
+        top: 0,
+        behavior: smooth ? 'smooth' : 'auto',
+      });
+    }
+  }
+
   // The read head and feeders exist entirely for aesthetic reasons; they are
   // also unfortunately complicated-looking, due to the fact that they must be
   // positioned outside of the tape itself. For these reasons, I've relegated
@@ -120,6 +146,20 @@ class Tape extends React.Component<TapeProps> {
            style={{
              position: 'absolute',
              left: `calc(50% - ${CELL_WIDTH / 2}px)`,
+           }} />
+    );
+  }
+
+  private renderReadWriteOverlay() {
+    const className = classNames('tape-read-write-overlay', {
+      'tape-read-write-overlay--writing': this.props.isWriting,
+    });
+    return (
+      <div className={className}
+           style={{
+             position: 'absolute',
+             left: `calc(50% - ${CELL_WIDTH / 2}px)`,
+             animationDuration: `${this.props.simInterval / 2}ms`,
            }} />
     );
   }
@@ -159,6 +199,9 @@ const mapStateToProps = (state: State) => ({
   entries: tapeEntries(state),
   isEditable: isInEditMode(state),
   focusedCell: focusedTapeCell(state),
+  activeCell: activeTapeCell(state),
+  isWriting: isTapeWriting(state),
+  simInterval: simInterval(state),
 });
 
 const mapDispatchToProps = (dispatch: Dispatch) => ({

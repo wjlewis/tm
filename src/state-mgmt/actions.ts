@@ -248,34 +248,52 @@ export const resetSim = (): Action => ({
   type: RESET_SIM,
 });
 
-export const SET_CURRENT_STATE = 'SET_CURRENT_STATE';
-export const setCurrentState = (id: string): Action => ({
-  type: SET_CURRENT_STATE,
-  payload: { id },
+export const SET_CURRENT_NODE = 'SET_CURRENT_NODE';
+export const setCurrentNode = (node: null | string): Action => ({
+  type: SET_CURRENT_NODE,
+  payload: { node },
 });
 
-export const SET_ACTIVE_NODE = 'SET_ACTIVE_NODE';
-export const setActiveNode = (id: null | string): Action => ({
-  type: SET_ACTIVE_NODE,
-  payload: { id },
+export const SET_TAPE_WRITING_STATUS = 'SET_TAPE_WRITING_STATUS';
+export const setTapeWritingStatus = (isWriting: boolean): Action => ({
+  type: SET_TAPE_WRITING_STATUS,
+  payload: { isWriting },
 });
 
-export const SET_ACTIVE_TRANSITION_DETAIL = 'SET_ACTIVE_TRANSITION_DETAIL';
-export const setActiveTransitionDetail = (id: null | string): Action => ({
-  type: SET_ACTIVE_TRANSITION_DETAIL,
-  payload: { id },
+export const SET_GLOWING_NODE = 'SET_GLOWING_NODE';
+export const setGlowingNode = (node: null | string): Action => ({
+  type: SET_GLOWING_NODE,
+  payload: { node },
 });
 
-export const SET_ACTIVE_CONTROL_POINT = 'SET_ACTIVE_CONTROL_POINT';
-export const setActiveControlPoint = (id: null | string): Action => ({
-  type: SET_ACTIVE_CONTROL_POINT,
-  payload: { id },
+export const SET_FADE_IN_NODE = 'SET_FADE_IN_NODE';
+export const setFadeInNode = (node: null | string): Action => ({
+  type: SET_FADE_IN_NODE,
+  payload: { node },
 });
 
-export const SET_ACTIVE_ARROW = 'SET_ACTIVE_ARROW';
-export const setActiveArrow = (id: null | string): Action => ({
-  type: SET_ACTIVE_ARROW,
-  payload: { id },
+export const SET_FADE_OUT_NODE = 'SET_FADE_OUT_NODE';
+export const setFadeOutNode = (node: null | string): Action => ({
+  type: SET_FADE_OUT_NODE,
+  payload: { node },
+});
+
+export const SET_GLOWING_ARROW = 'SET_GLOWING_ARROW';
+export const setGlowingArrow = (arrow: null | string): Action => ({
+  type: SET_GLOWING_ARROW,
+  payload: { arrow },
+});
+
+export const SET_GLOWING_CONTROL_POINT = 'SET_GLOWING_CONTROL_POINT';
+export const setGlowingControlPoint = (controlPoint: null | string): Action => ({
+  type: SET_GLOWING_CONTROL_POINT,
+  payload: { controlPoint },
+});
+
+export const SET_GLOWING_TRANSITION_DETAIL = 'SET_GLOWING_TRANSITION_DETAIL';
+export const setGlowingTransitionDetail = (transitionDetail: null | string): Action => ({
+  type: SET_GLOWING_TRANSITION_DETAIL,
+  payload: { transitionDetail },
 });
 
 export const HALT_ACCEPT = 'HALT_ACCEPT';

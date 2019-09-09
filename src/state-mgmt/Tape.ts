@@ -3,11 +3,11 @@ import { Action } from './actions';
 import * as A from './actions';
 import { State } from './state';
 import { repeat } from '../tools/auxiliary';
+import { activeTapeCell, initialTapeEntries } from './Sim';
 
 export interface TapeState {
   entries: string[];
   scrollLeft: number;
-  active: number;
   focused: number | null;
 }
 
@@ -17,7 +17,6 @@ export const VISIBLE_CELL_COUNT = 20;
 export const initTapeState: TapeState = {
   entries: repeat('', VISIBLE_CELL_COUNT),
   scrollLeft: 0,
-  active: 0,
   focused: null,
 };
 
@@ -31,13 +30,11 @@ export const TapeDirections: { [key: string]: TapeDirection } = {
 // containing empty values for nonexistent intermediate entries.
 export const tapeEntries = (state: State): string[] => state.entities.tape.entries;
 
-export const activeTapeCell = (state: State): number => state.entities.tape.active;
-
 export const focusedTapeCell = (state: State): null | number => state.entities.tape.focused;
 
 export const currentReadSymbol = (state: State): string => {
-  const { tape } = state.entities;
-  return tape.entries[tape.active];
+  const activeCell = activeTapeCell(state);
+  return state.entities.tape.entries[activeCell];
 };
 
 export const tapeReducer = (state: State, action: Action): TapeState => {
@@ -50,10 +47,10 @@ export const tapeReducer = (state: State, action: Action): TapeState => {
       return focusTapeCell(state, action.payload.pos);
     case A.CLEAR_TAPE:
       return clearTape(state);
-    case A.MOVE_TAPE:
-      return moveTape(state, action.payload.direction);
     case A.WRITE_TAPE_SYMBOL:
       return writeTapeSymbol(state, action.payload.symbol);
+    case A.RESET_SIM:
+      return resetSim(state);
     default:
       return state.entities.tape;
   }
@@ -97,15 +94,19 @@ const updateBlocks = (entries: string[], leftPos: number): string[] => {
   return entries;
 };
 
-const moveTape = (state: State, direction: 'L' | 'R'): TapeState => ({
-  ...state.entities.tape,
-  active: state.entities.tape.active + (direction === 'L' ? +1 : -1),
-});
-
 const writeTapeSymbol = (state: State, symbol: string): TapeState => {
   const { tape } = state.entities;
+  const active = activeTapeCell(state);
   return {
     ...tape,
-    entries: _.set(_.clone(tape.entries), tape.active, symbol),
+    entries: _.set(_.clone(tape.entries), active, symbol),
+  };
+};
+
+const resetSim = (state: State): TapeState => {
+  const initialEntries = initialTapeEntries(state);
+  return {
+    ...state.entities.tape,
+    entries: initialEntries || state.entities.tape.entries,
   };
 };

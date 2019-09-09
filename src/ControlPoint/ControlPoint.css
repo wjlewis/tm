@@ -17,6 +17,6 @@
   fill: var(--primary-md);
 }
 
-.control-point--active {
+.control-point--glowing {
   fill: var(--active-md);
 }

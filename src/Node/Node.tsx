@@ -6,7 +6,7 @@ import { State } from '../state-mgmt/state';
 import * as A from '../state-mgmt/actions';
 import { Node as NodeDetails, isNodeSelected, isStartNode } from '../state-mgmt/Node';
 import { isInEditMode } from '../state-mgmt/Mode';
-import { isNodeActive } from '../state-mgmt/Sim';
+import { isNodeGlowing, isNodeCurrent, isNodeFadingIn, isNodeFadingOut, simInterval } from '../state-mgmt/Sim';
 import Vector from '../tools/Vector';
 import './Node.css';
 
@@ -20,7 +20,11 @@ export interface NodeProps {
   isSelected: boolean;
   isStart: boolean;
   isEditable: boolean;
-  isActive: boolean;
+  isCurrent: boolean;
+  isGlowing: boolean;
+  isFadingIn: boolean;
+  isFadingOut: boolean;
+  simInterval: number;
   changeMnemonic: (value: string) => void;
   blurMnemonic: () => void;
   mouseDown: () => void;
@@ -37,7 +41,9 @@ class Node extends React.Component<NodeProps> {
       'node--final': this.props.details.isFinal,
       'node--start': this.props.isStart,
       'node--editable': this.props.isEditable,
-      'node--active': !this.props.isEditable && this.props.isActive,
+      'node--glowing': !this.props.isEditable && this.props.isGlowing,
+      'node--fading-in': !this.props.isEditable && this.props.isFadingIn,
+      'node--fading-out': !this.props.isEditable && this.props.isFadingOut,
     });
 
     const mnemonicClassName = classNames('node__mnemonic-input', {
@@ -47,8 +53,19 @@ class Node extends React.Component<NodeProps> {
     const pos = Vector.from(this.props.details.pos);
     const mnemonicPos = pos.plus(new Vector(-NODE_RADIUS + 2, NODE_RADIUS + 3));
 
+    const MARKER_WIDTH = 12;
+    const MARKER_HEIGHT = 18;
+
     return (
       <div className="node__container">
+        {this.props.isCurrent && this.props.isEditable &&
+          <div className="node__current-marker"
+               style={{
+                 position: 'absolute',
+                 left: pos.x - MARKER_WIDTH / 2,
+                 top: pos.y - NODE_RADIUS - MARKER_HEIGHT - 2,
+               }} />
+        }
         <div className={className}
              onMouseDown={this.handleMouseDown}
              onMouseUp={this.handleMouseUp}
@@ -56,6 +73,7 @@ class Node extends React.Component<NodeProps> {
                position: 'absolute',
                left: pos.x - NODE_RADIUS,
                top: pos.y - NODE_RADIUS,
+               animationDuration: `${this.props.simInterval / 4}ms`,
              }} />
         <input className={mnemonicClassName}
                disabled={!this.props.isEditable}
@@ -94,7 +112,11 @@ const mapStateToProps = (state: State, ownProps: any) => ({
   isSelected: isNodeSelected(state, ownProps.details.id),
   isStart: isStartNode(state, ownProps.details.id),
   isEditable: isInEditMode(state),
-  isActive: isNodeActive(state, ownProps.details.id),
+  isCurrent: isNodeCurrent(state, ownProps.details.id),
+  isGlowing: isNodeGlowing(state, ownProps.details.id),
+  isFadingIn: isNodeFadingIn(state, ownProps.details.id),
+  isFadingOut: isNodeFadingOut(state, ownProps.details.id),
+  simInterval: simInterval(state),
 });
 
 const mapDispatchToProps = (dispatch: Dispatch, ownProps: any) => ({
