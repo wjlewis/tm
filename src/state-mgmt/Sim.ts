@@ -16,7 +16,7 @@ export interface SimState {
   glowingArrow: null | string;
   glowingControlPoint: null | string;
   glowingTransitionDetail: null | string;
-  interval: number;
+  intervalDivisor: number;
 }
 
 export const initSimState: SimState = {
@@ -31,8 +31,11 @@ export const initSimState: SimState = {
   glowingArrow: null,
   glowingControlPoint: null,
   glowingTransitionDetail: null,
-  interval: 700,
+  intervalDivisor: 4,
 };
+
+export const MIN_SIM_INTERVAL = 4000;
+export const MAX_SIM_DIVISOR = 15;
 
 export const isTapeWriting = (state: State): boolean => state.sim.isTapeWriting;
 
@@ -66,7 +69,11 @@ export const isControlPointGlowing = (state: State, id: string): boolean => stat
 
 export const glowingTransitionDetail = (state: State): null | string => state.sim.glowingTransitionDetail;
 
-export const simInterval = (state: State): number => state.sim.interval;
+export const simInterval = (state: State): number => (
+  Math.floor(MIN_SIM_INTERVAL / state.sim.intervalDivisor)
+);
+
+export const simIntervalDivisor = (state: State): number => state.sim.intervalDivisor;
 
 export const simReducer = (state: State, action: Action): SimState => {
   switch (action.type) {
@@ -76,6 +83,8 @@ export const simReducer = (state: State, action: Action): SimState => {
       return playSim(state);
     case A.RESET_SIM:
       return resetSim(state);
+    case A.SET_SIM_INTERVAL_DIVISOR:
+      return setSimIntervalDivisor(state, action.payload.divisor);
     case A.SET_CURRENT_NODE:
       return setCurrentNode(state, action.payload.node);
     case A.SET_TAPE_WRITING_STATUS:
@@ -128,6 +137,11 @@ const resetSim = (state: State): SimState => ({
   glowingArrow: null,
   glowingControlPoint: null,
   glowingTransitionDetail: null,
+});
+
+const setSimIntervalDivisor = (state: State, divisor: number): SimState => ({
+  ...state.sim,
+  intervalDivisor: divisor,
 });
 
 const setCurrentNode = (state: State, node: null | string): SimState => ({

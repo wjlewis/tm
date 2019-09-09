@@ -3,6 +3,8 @@
   left: 50%;
   transform: translateX(-50%);
   bottom: 35px;
+  display: flex;
+  align-items: center;
 }
 
 .sim-controls__button {
@@ -20,6 +22,7 @@
 }
 
 .sim-controls__reset-button {
+  margin-left: 151px;
   --sprite-y: 0;
 }
 
@@ -42,4 +45,26 @@
 .sim-controls__button:disabled {
   --sprite-x: -22px;
   cursor: unset;
+}
+
+.sim-controls__speed-control {
+  width: 80px;
+  margin-left: 60px;
+  display: flex;
+  align-items: center;
+}
+
+.sim-controls__speed-control input {
+  cursor: pointer;
+}
+
+.sim-controls__speed-control-label {
+  font-family: var(--main-font);
+  font-size: 10pt;
+  color: var(--base-lt);
+  margin: 0 10px;
+}
+
+.sim-controls__speed-control:hover .sim-controls__speed-control-label {
+  color: var(--base-md);
 }

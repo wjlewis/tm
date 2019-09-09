@@ -248,6 +248,12 @@ export const resetSim = (): Action => ({
   type: RESET_SIM,
 });
 
+export const SET_SIM_INTERVAL_DIVISOR = 'SET_SIM_INTERVAL_DIVISOR';
+export const setSimIntervalDivisor = (divisor: number): Action => ({
+  type: SET_SIM_INTERVAL_DIVISOR,
+  payload: { divisor },
+});
+
 export const SET_CURRENT_NODE = 'SET_CURRENT_NODE';
 export const setCurrentNode = (node: null | string): Action => ({
   type: SET_CURRENT_NODE,

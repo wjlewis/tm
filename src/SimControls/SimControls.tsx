@@ -5,14 +5,17 @@ import classNames from 'classnames';
 import { State } from '../state-mgmt/state';
 import * as A from '../state-mgmt/actions';
 import { isInEditMode } from '../state-mgmt/Mode';
+import { MAX_SIM_DIVISOR, simIntervalDivisor } from '../state-mgmt/Sim';
 import './SimControls.css';
 
 export interface SimControlsProps {
+  isInEditMode: boolean;
+  intervalDivisor: number;
   reset: () => void;
   pause: () => void;
   step: () => void;
   play: () => void;
-  isInEditMode: boolean;
+  setIntervalDivisor: (divisor: number) => void;
 }
 
 class SimControls extends React.Component<SimControlsProps> {
@@ -22,6 +25,7 @@ class SimControls extends React.Component<SimControlsProps> {
       'sim-controls__button', 
       isInEditMode ? 'sim-controls__play-button' : 'sim-controls__pause-button',
     );
+
     return (
       <div className="sim-controls">
         <button className="sim-controls__button sim-controls__reset-button"
@@ -34,6 +38,15 @@ class SimControls extends React.Component<SimControlsProps> {
                 title="run a single step of the simulation"
                 disabled={!isInEditMode}
                 onClick={this.step} />
+        <div className="sim-controls__speed-control">
+          <span className="sim-controls__speed-control-label">slow</span>
+          <input type="range"
+                 value={this.props.intervalDivisor}
+                 min={1}
+                 max={MAX_SIM_DIVISOR}
+                 onChange={this.handleSpeedChange} />
+          <span className="sim-controls__speed-control-label">fast</span>
+        </div>
       </div>
     );
   }
@@ -50,10 +63,15 @@ class SimControls extends React.Component<SimControlsProps> {
   private step = () => {
     this.props.step();
   };
+
+  private handleSpeedChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    this.props.setIntervalDivisor(Number(e.target.value));
+  };
 }
 
 const mapStateToProps = (state: State) => ({
   isInEditMode: isInEditMode(state),
+  intervalDivisor: simIntervalDivisor(state),
 });
 
 const mapDispatchToProps = (dispatch: Dispatch) => ({
@@ -61,6 +79,7 @@ const mapDispatchToProps = (dispatch: Dispatch) => ({
   pause: () => dispatch(A.pauseSim()),
   step: () => dispatch(A.stepSim()),
   play: () => dispatch(A.playSim()),
+  setIntervalDivisor: (divisor: number) => dispatch(A.setSimIntervalDivisor(divisor)),
 });
 
 export default connect(
