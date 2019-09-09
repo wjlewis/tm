@@ -1,0 +1,33 @@
+:root {
+  --main-font: 'Fira Sans', sans-serif;
+  --code-font: 'Roboto Mono', monospace;
+  --bg: #f3f3f3;
+  --base-dk: #5d544e;
+  --base-md: #81756d;
+  --base-lt: #dcdde0;
+  --error-md: #f56f42;
+  --success-md: #41d938;
+  --active-md: #ffb438;
+  --primary-dk: #626770;
+  --primary-md: #8a4ad8;
+  --primary-lt: #e1cdfa;
+}
+
+html {
+  background-color: var(--bg);
+}
+
+h1 {
+  font-family: var(--main-font);
+  color: var(--base-dk);
+  text-align: center;
+}
+
+code {
+  font-family: var(--code-font);
+}
+
+.tm-name {
+  font-style: italic;
+  margin-right: 0.2em; 
+}
