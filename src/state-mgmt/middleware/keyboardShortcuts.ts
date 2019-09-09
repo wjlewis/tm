@@ -13,7 +13,7 @@ const keyBindings: { [key: string]: KeyHandler } = {
     }
     return null;
   },
-  'x': (_, e) => {
+  'k': (_, e) => {
     if (e.ctrlKey) {
       return A.deleteSelectedNodes();
     }
