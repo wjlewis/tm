@@ -13,7 +13,7 @@
   border: none;
   border-bottom: 1px solid transparent;
   background-color: transparent;
-  width: 1em;
+  width: 0.8em;
   text-align: center;
 
   font-size: 10pt;
@@ -58,7 +58,7 @@
   outline: none;
   border: none;
   background-color: transparent;
-  margin-left: 4px;
+  margin-left: 3px;
 
   font-size: 10pt;
   color: var(--base-md);
@@ -76,7 +76,7 @@
  * Input separators ("/", ",").
  */
 .transition-detail__separator {
-  padding: 0 4px;
+  padding: 2px;
   font-size: 12pt;
   font-family: var(--main-font);
   color: var(--base-md);
@@ -89,7 +89,8 @@
   outline: none;
   border: none;
   visibility: hidden;
-  margin-left: 0.3em;
+  margin-top: 1px;
+  margin-left: 2px;
   transform: translateY(2px);
 
   width: 16px;

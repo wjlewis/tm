@@ -19,7 +19,7 @@
 }
 
 .transition-details--bottom-right {
-  transform: translate(calc(-100% - 2px), calc(-100% - 2px));
+  transform: translate(calc(-100% + 4px), calc(-100% - 2px));
 }
 
 /*
