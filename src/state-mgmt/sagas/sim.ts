@@ -68,7 +68,6 @@ const availableTransitionInfo = (state: State, currentNode: string, readSym: str
   const detail = details.find(detail => detail.read === readSym);
 
   if (!detail) {
-    console.log('no detail');
     return null;
   }
 
@@ -99,40 +98,49 @@ interface TransitionInfo {
 }
 
 function* nodeStep(interval: number, current: string, next: string) {
-  // Glow the current node for a short period
-  yield put(A.setGlowingNode(current));
-  yield delay(interval / 8);
+  try {
+    // Glow the current node for a short period
+    yield put(A.setGlowingNode(current));
+    yield delay(interval / 8);
 
-  // Fade the current node out
-  yield put(A.setFadeOutNode(current));
-  yield put(A.setGlowingNode(null));
-  yield delay(interval / 4);
-  yield put(A.setFadeOutNode(null));
-  yield delay(interval / 4);
+    // Fade the current node out
+    yield put(A.setFadeOutNode(current));
+    yield put(A.setGlowingNode(null));
+    yield delay(interval / 4);
+    yield put(A.setFadeOutNode(null));
+    yield delay(interval / 4);
 
-  // Set the next node as current and fade it in
-  yield put(A.setCurrentNode(next));
-  yield put(A.setFadeInNode(next));
-  yield delay(interval / 4);
-  yield put(A.setFadeInNode(null));
-  yield put(A.setGlowingNode(next));
-  yield delay(interval / 8);
+    // Set the next node as current and fade it in
+    yield put(A.setCurrentNode(next));
+    yield put(A.setFadeInNode(next));
+    yield delay(interval / 4);
+    yield put(A.setFadeInNode(null));
+    yield put(A.setGlowingNode(next));
+    yield delay(interval / 8);
+  } finally {
+    yield put(A.setCurrentNode(next));
+  }
 }
 
 function* tapeStep(interval: number, writeSymbol: string, direction: TapeDirection) {
-  yield delay(interval / 4);
-
-  // "Erase" current tape symbol
-  yield put(A.setTapeWritingStatus(true));
-  yield delay(interval / 4);
-
-  // Write new tape symbol
-  yield put(A.writeTapeSymbol(writeSymbol));
-  yield delay(interval / 4);
-  yield put(A.setTapeWritingStatus(false));
-
-  // Move the tape
-  yield put(A.moveTape(direction));
+  try {
+    yield delay(interval / 4);
+    
+    // "Erase" current tape symbol
+    yield put(A.setTapeWritingStatus(true));
+    yield delay(interval / 4);
+    
+    // Write new tape symbol
+    yield put(A.writeTapeSymbol(writeSymbol));
+    yield delay(interval / 4);
+    yield put(A.setTapeWritingStatus(false));
+    
+    // Move the tape
+    yield put(A.moveTape(direction));
+  } finally {
+    yield put(A.writeTapeSymbol(writeSymbol));
+    yield put(A.moveTape(direction));
+  }
 }
 
 function* arrowStep(interval: number, arrowId: string) {
