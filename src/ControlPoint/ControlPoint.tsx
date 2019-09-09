@@ -80,7 +80,7 @@ class ControlPoint extends React.Component<ControlPointProps> {
       ? diff.normalize()
       : new Vector(0, 1);
     const v2 = v1.perp().scale(ARROW_LENGTH);
-    const tip = pos.plus(v2.scale(1 / 2));
+    const tip = pos.plus(v2.scale(1 / 3));
     const p1 = tip.minus(v2).plus(v1.scale(ARROW_LENGTH / 3));
     const p2 = tip.minus(v2).minus(v1.scale(ARROW_LENGTH / 3));
     return `M ${p1.x} ${p1.y} L ${tip.x} ${tip.y} L ${p2.x} ${p2.y}`;
