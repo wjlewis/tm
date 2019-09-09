@@ -10,6 +10,7 @@ export const validateTransitionDetails: Middleware = api => next => action => {
     A.ADD_TRANSITION_DETAIL,
     A.CHANGE_TRANSITION_DETAIL,
     A.DELETE_TRANSITION_DETAIL,
+    A.DELETE_ENTITIES,
     A.ADD_ARROW,
   ];
   if (!validateOn.includes(action.type)) return next(action);
