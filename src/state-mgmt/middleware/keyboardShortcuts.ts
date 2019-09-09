@@ -19,7 +19,7 @@ const keyBindings: { [key: string]: KeyHandler } = {
     }
     return null;
   },
-  'n': (_, e) => {
+  ' ': (_, e) => {
     if (e.ctrlKey) {
       e.preventDefault();
       return A.startAddingNode();

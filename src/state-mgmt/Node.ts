@@ -281,10 +281,11 @@ const mouseDownCanvas = (state: State, mousePos: Vector): NodeState => {
   };
 };
 
-// When the mouse is released over the canvas, we deselect any selected nodes,
-// and revert to the last committed state. We can be assured that the mouse was
-// NOT released over a node, since we stopped the event from propagating in the
-// node component.
+// When the mouse is released over the canvas, we deselect any selected nodes as
+// long as we are node in multiselect mode, and revert to the last committed
+// state. When selecting multiple nodes, it is easy to miss a node and click the
+// canvas instead; in order to avoid an irritating deselection of all currently
+// selected nodes, we simply keep what we have so far in this case.
 const mouseUpCanvas = (state: State): NodeState => (
   wasMouseReleasedOverNode(state)
   ? state.entities.nodes
@@ -292,7 +293,7 @@ const mouseUpCanvas = (state: State): NodeState => (
     wip: null,
     committed: {
       ...state.entities.nodes.committed,
-      selected: [],
+      selected: isMultiselect(state) ? state.entities.nodes.committed.selected : [],
     },
   }
 );
