@@ -1,6 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { Dispatch } from 'redux';
+import classNames from 'classnames';
 import { State } from '../state-mgmt/state';
 import * as A from '../state-mgmt/actions';
 import { isInEditMode } from '../state-mgmt/Mode';
@@ -17,18 +18,22 @@ export interface SimControlsProps {
 class SimControls extends React.Component<SimControlsProps> {
   render() {
     const { isInEditMode } = this.props;
+    const playPauseClassName = classNames(
+      'sim-controls__button', 
+      isInEditMode ? 'sim-controls__play-button' : 'sim-controls__pause-button',
+    );
     return (
       <div className="sim-controls">
-        <button onClick={this.reset}>
-          Reset
-        </button>
-        <button onClick={this.togglePlayPause}>
-          {isInEditMode ? 'Play' : 'Pause'}
-        </button>
-        <button disabled={!isInEditMode}
-                onClick={this.step}>
-          Step
-        </button>
+        <button className="sim-controls__button sim-controls__reset-button"
+                title="reset simulation"
+                onClick={this.reset} />
+        <button className={playPauseClassName}
+                title={isInEditMode ? 'play simulation' : 'pause simulation'}
+                onClick={this.togglePlayPause} />
+        <button className="sim-controls__button sim-controls__step-button"
+                title="run a single step of the simulation"
+                disabled={!isInEditMode}
+                onClick={this.step} />
       </div>
     );
   }
