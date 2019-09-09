@@ -9,3 +9,19 @@
 .halt-report__result--rejected {
   color: var(--error-md);
 }
+
+.halt-report__title {
+  color: var(--base-dk);
+}
+
+.halt-report__tape-contents {
+  display: block;
+  font-family: var(--code-font);
+  color: var(--base-dk);
+  border: 1px solid var(--base-lt);
+  border-radius: 4px;
+  padding: 0.2em 0.5em;
+  margin: 1em 0;
+  letter-spacing: 0.1em;
+  overflow-wrap: break-word;
+}

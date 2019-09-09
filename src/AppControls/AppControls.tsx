@@ -26,10 +26,28 @@ class AppControls extends React.Component<AppControlsProps> {
                   onClick={this.handleUploadClick} />
         </div>
 
-        <a className="app-controls__link" href="#examples">Examples</a>
-        <a className="app-controls__link" href="#tutorial">Tutorial</a>
-        <a className="app-controls__link" href="#guide">Guide</a>
-        <a className="app-controls__link" href="#about">About</a>
+        <a className="app-controls__link"
+           href="#examples">
+          Examples
+        </a>
+        <a className="app-controls__link"
+           href={`${process.env.PUBLIC_URL}/tutorial.html`}
+           target="_blank"
+           rel="noopener noreferrer">
+          Tutorial
+        </a>
+        <a className="app-controls__link"
+           href={`${process.env.PUBLIC_URL}/guide.html`}
+           target="_blank"
+           rel="noopener noreferrer">
+          Guide
+        </a>
+        <a className="app-controls__link"
+           href={`${process.env.PUBLIC_URL}/about.html`}
+           target="_blank"
+           rel="noopener noreferrer">
+          About
+        </a>
         <a className="app-controls__link app-controls__source-link"
            href="https://github.com/wjlewis/tm"
            target="_blank"

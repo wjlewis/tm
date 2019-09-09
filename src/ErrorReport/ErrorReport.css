@@ -10,3 +10,8 @@
   margin: 15px 0;
   line-height: 1.4em;
 }
+
+img {
+  display: block;
+  margin: auto;
+}
