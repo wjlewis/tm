@@ -12,6 +12,7 @@ export interface SimControlsProps {
   isInEditMode: boolean;
   intervalDivisor: number;
   reset: () => void;
+  resetRunning: () => void;
   pause: () => void;
   step: () => void;
   play: () => void;
@@ -52,7 +53,11 @@ class SimControls extends React.Component<SimControlsProps> {
   }
 
   private reset = () => {
-    this.props.reset();
+    if (this.props.isInEditMode) {
+      return this.props.reset();
+    } else {
+      return this.props.resetRunning();
+    }
   };
 
   private togglePlayPause = () => {
@@ -76,6 +81,7 @@ const mapStateToProps = (state: State) => ({
 
 const mapDispatchToProps = (dispatch: Dispatch) => ({
   reset: () => dispatch(A.resetSim()),
+  resetRunning: () => dispatch(A.resetRunningSim()),
   pause: () => dispatch(A.pauseSim()),
   step: () => dispatch(A.stepSim()),
   play: () => dispatch(A.playSim()),

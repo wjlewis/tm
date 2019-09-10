@@ -243,6 +243,11 @@ export const pauseSim = (): Action => ({
   type: PAUSE_SIM,
 });
 
+export const RESET_RUNNING_SIM = 'RESET_RUNNING_SIM';
+export const resetRunningSim = (): Action => ({
+  type: RESET_RUNNING_SIM,
+});
+
 export const RESET_SIM = 'RESET_SIM';
 export const resetSim = (): Action => ({
   type: RESET_SIM,

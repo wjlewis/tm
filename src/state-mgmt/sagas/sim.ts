@@ -1,5 +1,6 @@
 import _ from 'lodash';
-import { takeEvery, take, fork, select, put, cancel, cancelled, delay } from 'redux-saga/effects';
+import { channel, Channel } from 'redux-saga';
+import { takeEvery, take, fork, select, put, call, cancel, cancelled, delay } from 'redux-saga/effects';
 import * as A from '../actions';
 import { State } from '../state';
 import { Modes } from '../Mode';
@@ -11,19 +12,26 @@ import { transitionDetailsForArrow } from '../TransitionDetail';
 import { controlPointForArrow } from '../ControlPoint';
 
 function* play(singleStep: boolean) {
-  const playTask = yield fork(playSim, singleStep);
-  yield take([A.PAUSE_SIM, A.RESET_SIM, A.HALT_ACCEPT, A.HALT_REJECT]);
+  const completedChan = yield call(channel);
+  const playTask = yield fork(playSim, singleStep, completedChan);
+  const stopAction = yield take([A.PAUSE_SIM, A.RESET_RUNNING_SIM, A.HALT_ACCEPT, A.HALT_REJECT]);
   yield cancel(playTask);
+  if (stopAction.type === A.RESET_RUNNING_SIM) {
+    // If the reset button has been clicked, we wait until we've completed all
+    // required state changes atomically, and then reset the simulation.
+    yield take(completedChan);
+    yield put(A.resetSim());
+  }
 }
 
-function* playSim(singleStep: boolean) {
+function* playSim(singleStep: boolean, completedChan: Channel<any>) {
   try {
     yield put(A.switchMode(Modes.SIM));
     if (singleStep) {
-      yield makeStep();
+      yield call(makeStep, completedChan);
     } else {
       while (true) {
-        yield makeStep();
+        yield call(makeStep, completedChan);
       }
     }
   } finally {
@@ -31,7 +39,7 @@ function* playSim(singleStep: boolean) {
   }
 }
 
-function* makeStep() {
+function* makeStep(completedChan: Channel<any>) {
   const current = yield select(currentNode);
   const readSym = yield select(currentReadSymbol);
 
@@ -56,7 +64,7 @@ function* makeStep() {
   const interval = yield select(simInterval);
 
   yield fork(nodeStep, interval, current, nodeId);
-  yield fork(tapeStep, interval, writeSymbol, tapeDirection);
+  yield fork(tapeStep, interval, writeSymbol, tapeDirection, completedChan);
   yield fork(arrowStep, interval, arrowId);
   yield fork(transitionDetailStep, interval, transitionDetailId);
   yield fork(controlPointStep, interval, controlPointId);
@@ -129,7 +137,7 @@ function* nodeStep(interval: number, current: string, next: string) {
   }
 }
 
-function* tapeStep(interval: number, writeSymbol: string, direction: TapeDirection) {
+function* tapeStep(interval: number, writeSymbol: string, direction: TapeDirection, completedChan: Channel<any>) {
   // As in the case of `nodeStep` above, we use these flags to avoid duplicating
   // state changes in the event of a simulation pause.
   let hasWrittenSymbol = false;
@@ -154,6 +162,7 @@ function* tapeStep(interval: number, writeSymbol: string, direction: TapeDirecti
     if (yield cancelled()) {
       if (!hasWrittenSymbol) yield put(A.writeTapeSymbol(writeSymbol));
       if (!hasMovedTape) yield put(A.moveTape(direction));
+      yield put(completedChan, true);
     }
   }
 }
