@@ -213,7 +213,7 @@ const changeMnemonic = (state: State, id: string, value: string): NodeState => (
 });
 
 const blurMnemonic = (state: State): NodeState => ({
-  wip: null,
+  ...state.entities.nodes,
   committed: currentLatest(state.entities.nodes),
 });
 
