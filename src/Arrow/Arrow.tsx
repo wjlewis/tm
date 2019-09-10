@@ -75,7 +75,7 @@ class Arrow extends React.Component<ArrowProps> {
     // This separation distance determines how wide the loop is.
     const { start, control } = this.props;
     const v1 = control.minus(start).scale(4 / 3);
-    const separation = 80;
+    const separation = 65;
     // If the control point is on top of its associated node, we place the
     // bezier control points horizontally to the left and right.
     const v2 = v1.magnitude() !== 0

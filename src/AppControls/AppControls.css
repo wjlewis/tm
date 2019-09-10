@@ -59,8 +59,3 @@
 .app-controls__link:hover {
   color: var(--base-dk);
 }
-
-.app-controls__link.app-controls__source-link {
-  font-family: var(--code-font);
-  font-size: 10pt;
-}

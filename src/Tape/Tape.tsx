@@ -28,8 +28,9 @@ class Tape extends React.Component<TapeProps> {
   render() {
     const { isEditable } = this.props;
 
-    const cellClassName = classNames('tape__cell', {
+    const cellClassName = (index: number) => classNames('tape__cell', {
       'tape__cell--editable': isEditable,
+      'tape__cell--active': !isEditable && index === this.props.activeCell,
     });
 
     const leftPaddingWidth = CELL_WIDTH * VISIBLE_CELL_COUNT / 2;
@@ -48,7 +49,7 @@ class Tape extends React.Component<TapeProps> {
             {this.props.entries.map((l, i) => (
               <input key={i}
                      disabled={!this.props.isEditable}
-                     className={cellClassName}
+                     className={cellClassName(i)}
                      value={l}
                      placeholder="∅"
                      onChange={this.handleCellChange(i)}

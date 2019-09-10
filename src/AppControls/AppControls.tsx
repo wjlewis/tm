@@ -48,12 +48,6 @@ class AppControls extends React.Component<AppControlsProps> {
            rel="noopener noreferrer">
           About
         </a>
-        <a className="app-controls__link app-controls__source-link"
-           href="https://github.com/wjlewis/tm"
-           target="_blank"
-           rel="noopener noreferrer">
-          &lt;Source&#47;&gt;
-        </a>
       </div>
     );
   }

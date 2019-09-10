@@ -79,13 +79,15 @@
   border-right: none;
 }
 
-.tape__cell--active {
-  background-color: var(--active-md);
+.tape__cell--active,
+.tape__cell.tape__cell--active::placeholder {
   color: var(--base-dk);
 }
 
 .tape__cell::placeholder {
   color: var(--base-lt);
+
+  transition: color 0.2s;
 }
 
 .tape-feed {
