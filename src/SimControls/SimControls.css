@@ -10,8 +10,8 @@
 .sim-controls__button {
   outline: none;
   border: none;
-  width: 22px;
-  height: 24px;
+  width: 20px;
+  height: 20px;
   background-color: transparent;
   background-image: url(./sprite.png);
   --sprite-x: 0;
@@ -23,27 +23,27 @@
 
 .sim-controls__reset-button {
   margin-left: 151px;
-  --sprite-y: 0;
+  --sprite-y: -60px;
 }
 
 .sim-controls__play-button {
-  --sprite-y: -25px;
+  --sprite-y: 0px;
 }
 
 .sim-controls__pause-button {
-  --sprite-y: -50px;
+  --sprite-y: -20px;
 }
 
 .sim-controls__step-button {
-  --sprite-y: -75px;
+  --sprite-y: -40px;
 }
 
 .sim-controls__button:hover {
-  --sprite-x: -44px;
+  --sprite-x: -20px;
 }
 
 .sim-controls__button:disabled {
-  --sprite-x: -22px;
+  --sprite-x: -40px;
   cursor: unset;
 }
 
