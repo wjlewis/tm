@@ -21,7 +21,7 @@ const reducer = (state: State=initState, action: Action): State => {
     case A.REDO:
       return redo(state);
     case A.INSTALL_SNAPSHOT:
-      return installSnapshot(state, action.payload.snapshot);
+      return installSnapshot(state, action.payload.snapshot, action.payload.undoable);
     case A.NEW_MACHINE:
       return newMachine(state);
     default:
@@ -47,9 +47,11 @@ const reducer = (state: State=initState, action: Action): State => {
 
 // We manually add action records for these actions since they affect the entire
 // state (the entities, at least).
-const installSnapshot = (state: State, snapshot: any): State => ({
+const installSnapshot = (state: State, snapshot: any, undoable: boolean): State => ({
   ...revertToSnapshot(state, snapshot),
-  undoRedo: addRecord(state, 'install entity snapshot'),
+  undoRedo: undoable
+    ? addRecord(state, 'install entity snapshot')
+    : state.undoRedo,
 });
 
 const newMachine = (state: State): State => {

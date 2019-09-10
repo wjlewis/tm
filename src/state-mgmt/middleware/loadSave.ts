@@ -8,7 +8,7 @@ export const loadSnapshot: Middleware = _ => next => action => {
     const saved = localStorage.getItem('machine');
     if (!saved) return;
     const snapshot = JSON.parse(saved);
-    next(A.installSnapshot(snapshot));
+    next(A.installSnapshot(snapshot, false));
   } catch(_) {
     localStorage.clearItem('machine');
   }

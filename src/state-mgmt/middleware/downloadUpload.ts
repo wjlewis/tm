@@ -31,7 +31,7 @@ export const upload: Middleware = _ => next => action => {
     try {
       const machineString = await this.files[0].text();
       const machine = JSON.parse(machineString);
-      return next(A.installSnapshot(machine));
+      return next(A.installSnapshot(machine, true));
     } catch (_) {
       return next(A.displayMessage(
         'Upload Error',

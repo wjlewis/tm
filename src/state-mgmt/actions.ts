@@ -343,9 +343,9 @@ export const loadSnapshot = (): Action => ({
 });
 
 export const INSTALL_SNAPSHOT = 'INSTALL_SNAPSHOT';
-export const installSnapshot = (snapshot: any): Action => ({
+export const installSnapshot = (snapshot: any, undoable: boolean): Action => ({
   type: INSTALL_SNAPSHOT,
-  payload: { snapshot },
+  payload: { snapshot, undoable },
 });
 
 export const DOWNLOAD_MACHINE = 'DOWNLOAD_MACHINE';
