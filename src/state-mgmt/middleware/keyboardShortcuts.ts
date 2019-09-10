@@ -11,20 +11,17 @@ const keyBindings: { [key: string]: KeyHandler } = {
     if (e.ctrlKey) {
       return A.selectAllNodes();
     }
-    return null;
   },
   'k': (_, e) => {
     if (e.ctrlKey) {
       return A.deleteSelectedNodes();
     }
-    return null;
   },
   ' ': (_, e) => {
     if (e.ctrlKey) {
       e.preventDefault();
       return A.startAddingNode();
     }
-    return null;
   },
   't': (st, e) => {
     const multipleSelected = selectedNodes(st).length > 0;
@@ -32,34 +29,35 @@ const keyBindings: { [key: string]: KeyHandler } = {
       e.preventDefault();
       return A.addTransitionBetweenSelected();
     }
-    return null;
   },
   'f': (st, e) => {
     if (selectedNodes(st).length > 0 && e.ctrlKey) {
       return A.toggleSelectedFinalNodes();
     }
-    return null;
   },
   'i': (st, e) => {
     if (selectedNodes(st).length === 1 && e.ctrlKey) {
       return A.makeSelectedStartNode();
     }
-    return null;
   },
   'z': (_, e) => {
     if (e.ctrlKey || e.metaKey) return A.undo();
-    return null;
   },
   'y': (_, e) => {
     if (e.ctrlKey || e.metaKey) {
       e.preventDefault();
       return A.redo();
     }
-    return null;
+  },
+  's': (_, e) => {
+    if (e.ctrlKey || e.metaKey) {
+      e.preventDefault();
+      return A.saveSnapshot();
+    }
   },
 };
 
-type KeyHandler = (state: State, event: React.KeyboardEvent) => null | Action;
+type KeyHandler = (state: State, event: React.KeyboardEvent) => undefined | Action;
 
 export const keyboardShortcuts: Middleware = api => next => action => {
   if (action.type !== A.KEY_DOWN) return next(action);
