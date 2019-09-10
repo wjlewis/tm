@@ -1,5 +1,5 @@
 import _ from 'lodash';
-import { takeEvery, take, fork, select, put, cancel, delay } from 'redux-saga/effects';
+import { takeEvery, take, fork, select, put, cancel, cancelled, delay } from 'redux-saga/effects';
 import * as A from '../actions';
 import { State } from '../state';
 import { Modes } from '../Mode';
@@ -98,6 +98,10 @@ interface TransitionInfo {
 }
 
 function* nodeStep(interval: number, current: string, next: string) {
+  // We change this flag to `true` after updating the current node to avoid
+  // duplicating this state change in the `finally` block below in the event
+  // that the user pauses the simulation.
+  let hasUpdatedCurrent = false;
   try {
     // Glow the current node for a short period
     yield put(A.setGlowingNode(current));
@@ -112,17 +116,24 @@ function* nodeStep(interval: number, current: string, next: string) {
 
     // Set the next node as current and fade it in
     yield put(A.setCurrentNode(next));
+    hasUpdatedCurrent = true;
     yield put(A.setFadeInNode(next));
     yield delay(interval / 4);
     yield put(A.setFadeInNode(null));
     yield put(A.setGlowingNode(next));
     yield delay(interval / 8);
   } finally {
-    yield put(A.setCurrentNode(next));
+    if (yield cancelled()) {
+      if (!hasUpdatedCurrent) yield put(A.setCurrentNode(next));
+    }
   }
 }
 
 function* tapeStep(interval: number, writeSymbol: string, direction: TapeDirection) {
+  // As in the case of `nodeStep` above, we use these flags to avoid duplicating
+  // state changes in the event of a simulation pause.
+  let hasWrittenSymbol = false;
+  let hasMovedTape = false;
   try {
     yield delay(interval / 4);
     
@@ -132,14 +143,18 @@ function* tapeStep(interval: number, writeSymbol: string, direction: TapeDirecti
     
     // Write new tape symbol
     yield put(A.writeTapeSymbol(writeSymbol));
+    hasWrittenSymbol = true;
     yield delay(interval / 4);
     yield put(A.setTapeWritingStatus(false));
     
     // Move the tape
     yield put(A.moveTape(direction));
+    hasMovedTape = true;
   } finally {
-    yield put(A.writeTapeSymbol(writeSymbol));
-    yield put(A.moveTape(direction));
+    if (yield cancelled()) {
+      if (!hasWrittenSymbol) yield put(A.writeTapeSymbol(writeSymbol));
+      if (!hasMovedTape) yield put(A.moveTape(direction));
+    }
   }
 }
 
