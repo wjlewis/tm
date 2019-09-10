@@ -59,3 +59,18 @@
 .app-controls__link:hover {
   color: var(--base-dk);
 }
+
+.app-controls__selector {
+  outline: none;
+  font-family: var(--main-font);
+  font-size: 9pt;
+  width: 80px;
+  margin: 0 7px;
+  color: var(--base-md);
+
+  cursor: pointer;
+}
+
+.app-controls__selector:hover {
+  color: var(--base-dk);
+}
