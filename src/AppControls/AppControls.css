@@ -1,7 +1,7 @@
 .app-controls {
   position: absolute;
   top: 10px;
-  right: 10%;
+  right: 30px;
   display: flex;
   align-items: center;
 }
@@ -58,6 +58,31 @@
 
 .app-controls__link:hover {
   color: var(--base-dk);
+}
+
+.app-controls__source-link,
+.app-controls__bug-link {
+  width: 24px;
+  height: 24px;
+  background-color: transparent;
+  background-image: url(./sprite.png);
+  margin-left: 12px;
+  /* We have provided text for the link so that it is accessible to screen
+  readers, but we hide it here */
+  color: transparent !important;
+}
+
+.app-controls__source-link {
+  background-position: -40px 0;
+}
+
+.app-controls__bug-link {
+  background-position: -64px 0;
+}
+
+.app-controls__source-link:hover,
+.app-controls__bug-link:hover {
+  background-position-y: -24px;
 }
 
 .app-controls__selector {

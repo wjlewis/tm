@@ -6,7 +6,7 @@
   border: none;
 
   position: absolute;
-  bottom: 73px;
+  bottom: 53px;
   left: 50%;
   transform: translateX(-50%);
 
@@ -18,10 +18,12 @@
   display: flex;
   height: 51px;
   position: absolute;
+  box-shadow: 0 0 9px rgba(0, 0, 0, 0.06),
+              0 0 4px rgba(0, 0, 0, 0.04); 
 }
 
 .tape__clear-button {
-  bottom: 104px;
+  bottom: 84px;
 
   outline: none;
   border: none;
@@ -93,7 +95,7 @@
 .tape-feed {
   width: 12px;
   height: 61px;
-  bottom: 84px;
+  bottom: 64px;
   background-image: url(./sprite.png);
 }
 
@@ -108,7 +110,7 @@
 .tape-reader {
   width: 35px;
   height: 72px;
-  bottom: 79px;
+  bottom: 59px;
   background-image: url(./sprite.png);
   background-position: -24px 0;
 }
@@ -120,7 +122,7 @@
 .tape-read-write-overlay {
   width: 35px;
   height: 54px;
-  bottom: 87px;
+  bottom: 67px;
   background-image: url(./sprite.png);
   --reader-sprite-x: -136px;
   --reader-sprite-y: -10px;

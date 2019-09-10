@@ -55,6 +55,20 @@ class AppControls extends React.Component<AppControlsProps> {
            rel="noopener noreferrer">
           About
         </a>
+        <a className="app-controls__link app-controls__source-link"
+           href="https://github.com/wjlewis/tm"
+           title="view source code"
+           target="_blank"
+           rel="noopener noreferrer">
+          Source
+        </a>
+        <a className="app-controls__link app-controls__bug-link"
+           href="https://github.com/wjlewis/tm/issues"
+           title="report a bug"
+           target="_blank"
+           rel="noopener noreferrer">
+          Report a bug
+        </a>
       </div>
     );
   }

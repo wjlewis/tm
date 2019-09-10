@@ -25,3 +25,7 @@
   letter-spacing: 0.1em;
   overflow-wrap: break-word;
 }
+
+.halt-report__null-tape-entry {
+  color: var(--base-lt);
+}

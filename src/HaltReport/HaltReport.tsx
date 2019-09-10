@@ -32,11 +32,20 @@ class HaltReport extends React.Component<HaltReportProps> {
     );
   }
 
-  private formatTapeEntries(entries: string[]): string {
+  private formatTapeEntries(entries: string[]): JSX.Element {
     const reversed = _.reverse(_.clone(entries));
     const trimmed = _.reverse(_.dropWhile(reversed, x => x.length === 0));
     const withExplicitNulls = trimmed.map(x => x.length === 0 ? '∅' : x);
-    return [...withExplicitNulls, '∅', '∅', '∅'].join('');
+    const withPadding = [...withExplicitNulls, '∅', '∅', '∅'];
+    return (
+      <>
+        {withPadding.map((s, i) => (
+          <span key={i} className={`halt-report__${s === '∅' ? 'null-' : ''}tape-entry`}>
+            {s}
+          </span>
+        ))}
+      </>
+    );
   }
 }
 

@@ -2,7 +2,7 @@
   position: absolute;
   left: 50%;
   transform: translateX(-50%);
-  bottom: 35px;
+  bottom: 22px;
   display: flex;
   align-items: center;
 }
