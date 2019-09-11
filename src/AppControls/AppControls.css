@@ -70,6 +70,7 @@
   /* We have provided text for the link so that it is accessible to screen
   readers, but we hide it here */
   color: transparent !important;
+  font-size: 1pt;
 }
 
 .app-controls__source-link {
