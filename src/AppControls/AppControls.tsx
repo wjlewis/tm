@@ -29,9 +29,9 @@ class AppControls extends React.Component<AppControlsProps> {
         </div>
 
         <select className="app-controls__selector"
-                defaultValue="default"
+                value="default"
                 onChange={this.handleExampleSelection}>
-          <option value="default" hidden key="default">Examples</option>
+          <option value="default" disabled key="default">Examples</option>
           {snapshots.map(s => (
             <option key={s.metaData.name} value={s.metaData.name}>{s.metaData.name}</option>
           ))}
