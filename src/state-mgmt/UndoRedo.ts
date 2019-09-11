@@ -2,7 +2,7 @@ import { Action } from './actions';
 import * as A from './actions';
 import { State } from './state';
 import { isInEditMode } from './Mode';
-import { wasMouseDragged, wasMnemonicChanged } from './UI';
+import { wasMouseDragged } from './UI';
 import { getSnapshot, revertToSnapshot } from './auxiliary';
 
 export interface UndoRedoState {
@@ -29,8 +29,6 @@ export const undoRedoReducer = (state: State, action: Action): UndoRedoState => 
         return mouseUpControlPoint(state);
       case A.ADD_NODE:
         return addRecord(state, 'add node');
-      case A.BLUR_MNEMONIC:
-        return blurMnemonic(state);
       case A.MAKE_SELECTED_START_NODE:
         return addRecord(state, 'change initial state');
       case A.TOGGLE_SELECTED_FINAL_NODES:
@@ -67,11 +65,6 @@ const mouseUpNode = (state: State): UndoRedoState => {
 
 const mouseUpControlPoint = (state: State): UndoRedoState => {
   if (wasMouseDragged(state)) return addRecord(state, 'move control point');
-  else return state.undoRedo;
-};
-
-const blurMnemonic = (state: State): UndoRedoState => {
-  if (wasMnemonicChanged(state)) return addRecord(state, 'change mnemonic');
   else return state.undoRedo;
 };
 

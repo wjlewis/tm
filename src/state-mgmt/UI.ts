@@ -16,7 +16,6 @@ export interface UIState {
   isAddingNode: boolean;
   wasMouseReleasedOverNode: boolean;
   wasMouseDragged: boolean;
-  wasMnemonicChanged: boolean;
 }
 
 export const initUIState: UIState = {
@@ -27,7 +26,6 @@ export const initUIState: UIState = {
   isAddingNode: false,
   wasMouseReleasedOverNode: false,
   wasMouseDragged: false,
-  wasMnemonicChanged: false,
 };
 
 // Return the current mouse position.
@@ -48,8 +46,6 @@ export const isAddingNode = (state: State): boolean => state.ui.isAddingNode;
 export const wasMouseReleasedOverNode = (state: State): boolean => state.ui.wasMouseReleasedOverNode;
 
 export const wasMouseDragged = (state: State): boolean => state.ui.wasMouseDragged;
-
-export const wasMnemonicChanged = (state: State): boolean => state.ui.wasMnemonicChanged;
 
 export const uiReducer = (state: State, action: Action): UIState => {
   if (isInEditMode(state)) {
@@ -76,10 +72,6 @@ export const uiReducer = (state: State, action: Action): UIState => {
         return addNode(state);
       case A.MOUSE_MOVE_CANVAS:
         return mouseMoveCanvas(state, action.payload.pos);
-      case A.CHANGE_MNEMONIC:
-        return changeMnemonic(state);
-      case A.BLUR_MNEMONIC:
-        return blurMnemonic(state);
       default:
         return state.ui;
     }
@@ -147,14 +139,4 @@ const mouseMoveCanvas = (state: State, pos: Vector): UIState => ({
   ...state.ui,
   mousePos: pos,
   wasMouseDragged: true,
-});
-
-const changeMnemonic = (state: State): UIState => ({
-  ...state.ui,
-  wasMnemonicChanged: true,
-});
-
-const blurMnemonic = (state: State): UIState => ({
-  ...state.ui,
-  wasMnemonicChanged: false,
 });

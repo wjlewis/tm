@@ -27,7 +27,6 @@ export interface NodeInfo {
 
 export interface Node {
   id: string;
-  mnemonic: string;
   pos: SerializableVector;
   isFinal: boolean;
 }
@@ -104,10 +103,6 @@ export const nodesReducer = (state: State, action: Action): NodeState => {
         return makeStartNode(state);
       case A.TOGGLE_SELECTED_FINAL_NODES:
         return toggleFinalNodes(state);
-      case A.CHANGE_MNEMONIC:
-        return changeMnemonic(state, action.payload.id, action.payload.value);
-      case A.BLUR_MNEMONIC:
-        return blurMnemonic(state);
       case A.SELECT_ALL_NODES:
         return selectAllNodes(state);
 
@@ -202,20 +197,6 @@ const toggleFinalNodes = (state: State): NodeState => {
     }),
   };
 };
-
-const changeMnemonic = (state: State, id: string, value: string): NodeState => ({
-  ...state.entities.nodes,
-  wip: _.merge({}, currentLatest(state.entities.nodes), {
-    byId: {
-      [id]: { mnemonic: value }
-    },
-  }),
-});
-
-const blurMnemonic = (state: State): NodeState => ({
-  ...state.entities.nodes,
-  committed: currentLatest(state.entities.nodes),
-});
 
 const selectAllNodes = (state: State): NodeState => ({
   wip: null,

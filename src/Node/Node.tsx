@@ -25,8 +25,6 @@ export interface NodeProps {
   isFadingIn: boolean;
   isFadingOut: boolean;
   simInterval: number;
-  changeMnemonic: (value: string) => void;
-  blurMnemonic: () => void;
   mouseDown: () => void;
   mouseUp: () => void;
 }
@@ -35,7 +33,6 @@ export const NODE_RADIUS = 21;
 
 class Node extends React.Component<NodeProps> {
   render() {
-    const { mnemonic } = this.props.details;
     const className = classNames('node', {
       'node--selected': this.props.isSelected,
       'node--final': this.props.details.isFinal,
@@ -46,12 +43,7 @@ class Node extends React.Component<NodeProps> {
       'node--fading-out': !this.props.isEditable && this.props.isFadingOut,
     });
 
-    const mnemonicClassName = classNames('node__mnemonic-input', {
-      'node__mnemonic-input--editable': this.props.isEditable,
-    });
-
     const pos = Vector.from(this.props.details.pos);
-    const mnemonicPos = pos.plus(new Vector(-NODE_RADIUS + 2, NODE_RADIUS + 3));
 
     const MARKER_WIDTH = 12;
     const MARKER_HEIGHT = 18;
@@ -75,18 +67,6 @@ class Node extends React.Component<NodeProps> {
                top: pos.y - NODE_RADIUS,
                animationDuration: `${this.props.simInterval / 4}ms`,
              }} />
-        <input className={mnemonicClassName}
-               disabled={!this.props.isEditable}
-               value={mnemonic}
-               onChange={this.handleInputChange}
-               onBlur={this.handleInputBlur}
-               type="text"
-               maxLength={4}
-               style={{
-                 position: 'absolute',
-                 left: mnemonicPos.x,
-                 top: mnemonicPos.y,
-               }}/>
       </div>
     );
   }
@@ -97,14 +77,6 @@ class Node extends React.Component<NodeProps> {
 
   private handleMouseUp = (e: React.MouseEvent) => {
     this.props.mouseUp();
-  };
-
-  private handleInputChange = (evt: React.ChangeEvent<HTMLInputElement>) => {
-    this.props.changeMnemonic(evt.target.value);
-  };
-
-  private handleInputBlur = () => {
-    this.props.blurMnemonic();
   };
 }
 
@@ -120,8 +92,6 @@ const mapStateToProps = (state: State, ownProps: any) => ({
 });
 
 const mapDispatchToProps = (dispatch: Dispatch, ownProps: any) => ({
-  changeMnemonic: (value: string) => dispatch(A.changeMnemonic(ownProps.details.id, value)),
-  blurMnemonic: () => dispatch(A.blurMnemonic()),
   mouseDown: () => dispatch(A.mouseDownNode(ownProps.details.id)),
   mouseUp: () => dispatch(A.mouseUpNode()),
 });

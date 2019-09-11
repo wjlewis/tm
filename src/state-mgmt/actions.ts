@@ -38,17 +38,6 @@ export const addNode = (pos: Vector): Action => ({
   payload: { pos },
 });
 
-export const CHANGE_MNEMONIC = 'CHANGE_MNEMONIC';
-export const changeMnemonic = (id: string, value: string): Action => ({
-  type: CHANGE_MNEMONIC,
-  payload: { id, value },
-});
-
-export const BLUR_MNEMONIC = 'BLUR_MNEMONIC';
-export const blurMnemonic = (): Action => ({
-  type: BLUR_MNEMONIC,
-});
-
 export const DELETE_SELECTED_NODES = 'DELETE_SELECTED_NODES';
 export const deleteSelectedNodes = (): Action => ({
   type: DELETE_SELECTED_NODES,
