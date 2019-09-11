@@ -2,49 +2,52 @@ import { Middleware } from 'redux';
 import { Action } from '../actions';
 import * as A from '../actions';
 import { State } from '../state';
+import { isInEditMode } from '../Mode';
 import { selectedNodes } from '../Node';
 
 // Each key may be "bound" to an alternative redux action, such that when the
 // user presses it, the action is dispatched.
 const keyBindings: { [key: string]: KeyHandler } = {
-  'a': (_, e) => {
-    if (e.ctrlKey) {
+  'a': (st, e) => {
+    if (e.ctrlKey && isInEditMode(st)) {
       return A.selectAllNodes();
     }
   },
-  'k': (_, e) => {
-    if (e.ctrlKey) {
+  'k': (st, e) => {
+    if (e.ctrlKey && isInEditMode(st)) {
       return A.deleteSelectedNodes();
     }
   },
-  ' ': (_, e) => {
-    if (e.ctrlKey) {
+  ' ': (st, e) => {
+    if (e.ctrlKey && isInEditMode(st)) {
       e.preventDefault();
       return A.startAddingNode();
     }
   },
   't': (st, e) => {
     const multipleSelected = selectedNodes(st).length > 0;
-    if (multipleSelected && e.ctrlKey) {
+    if (multipleSelected && e.ctrlKey && isInEditMode(st)) {
       e.preventDefault();
       return A.addTransitionBetweenSelected();
     }
   },
   'f': (st, e) => {
-    if (selectedNodes(st).length > 0 && e.ctrlKey) {
+    if (selectedNodes(st).length > 0 && e.ctrlKey && isInEditMode(st)) {
       return A.toggleSelectedFinalNodes();
     }
   },
   'i': (st, e) => {
-    if (selectedNodes(st).length === 1 && e.ctrlKey) {
+    if (selectedNodes(st).length === 1 && e.ctrlKey && isInEditMode(st)) {
       return A.makeSelectedStartNode();
     }
   },
-  'z': (_, e) => {
-    if (e.ctrlKey || e.metaKey) return A.undo();
+  'z': (st, e) => {
+    if ((e.ctrlKey || e.metaKey) && isInEditMode(st)) {
+      return A.undo();
+    }
   },
-  'y': (_, e) => {
-    if (e.ctrlKey || e.metaKey) {
+  'y': (st, e) => {
+    if ((e.ctrlKey || e.metaKey) && isInEditMode(st)) {
       e.preventDefault();
       return A.redo();
     }
