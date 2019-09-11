@@ -10,7 +10,7 @@ import { uiReducer } from './UI';
 import { undoRedoReducer, undo, redo, addRecord } from './UndoRedo';
 import { messageReducer } from './Message';
 import { modeReducer } from './Mode';
-import { simReducer } from './Sim';
+import { simReducer, initSimState } from './Sim';
 import { metaDataReducer } from './MetaData';
 import { getSnapshot, revertToSnapshot } from './auxiliary';
 
@@ -52,6 +52,7 @@ const installSnapshot = (state: State, snapshot: any, undoable: boolean): State 
   undoRedo: undoable
     ? addRecord(state, 'install entity snapshot')
     : state.undoRedo,
+  sim: initSimState,
 });
 
 const newMachine = (state: State): State => {
@@ -59,6 +60,7 @@ const newMachine = (state: State): State => {
   return {
     ...revertToSnapshot(state, freshSnapshot),
     undoRedo: addRecord(state, 'create new machine'),
+    sim: initSimState,
   };
 };
 
