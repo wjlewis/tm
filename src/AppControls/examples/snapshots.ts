@@ -1,7 +1,9 @@
-import copier1 from './1-symbol-copier.json';
-import multiplier from './multiplier.json';
+import copy1 from './copy-(single-symbol).json';
+import multiply from './multiply-(unary).json';
+import divBy2 from './divide-by-2-(unary).json';
 
 export default [
-  copier1,
-  multiplier,
+  divBy2,
+  copy1,
+  multiply,
 ];
