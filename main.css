@@ -15,19 +15,78 @@
 
 html {
   background-color: var(--bg);
+  display: flex;
+  justify-content: center;
+}
+
+body {
+  width: 40em;
+  word-wrap: break-word;
+}
+
+h1, h2, p {
+  font-family: var(--main-font);
+  color: var(--base-dk);
 }
 
 h1 {
-  font-family: var(--main-font);
-  color: var(--base-dk);
   text-align: center;
+}
+
+h2 {
+  font-size: 14pt;
+}
+
+p {
+  line-height: 1.5em;
 }
 
 code {
   font-family: var(--code-font);
+  color: var(--base-md);
+  background-color: #eaeaea;
+  padding: 0.1em 0.3em;
+  padding-right: 0.1em;
+  border-radius: 4px;
+  letter-spacing: 0.2em;
 }
 
 .tm-name {
+  color: var(--base-dk);
+  font-family: var(--code-font);
   font-style: italic;
   margin-right: 0.2em; 
+}
+
+.doc-link {
+  color: var(--primary-md);
+}
+
+.doc-link:hover,
+.doc-link:active {
+  color: var(--active-md);
+}
+
+.crossed-out::after {
+  content: "✗";
+  color: var(--error-md);
+  position: absolute;
+  margin-left: -13px;
+}
+
+.img-sequence {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.img-sequence__item {
+  flex: 0 1 1;
+  min-width: 0;
+}
+
+img {
+  border: 1px solid var(--base-lt);
+  max-width: 100%;
 }

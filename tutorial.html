@@ -10,5 +10,578 @@
   </head>
   <body>
     <h1>A Brief Tutorial</h1>
+
+    <p>
+      This is a tutorial describing how to construct and run a simple Turing
+      Machine with the <span class="tm-name">tm</span> application. For a
+      complete overview of editing and simulation operations, see the
+      <a class="doc-link" href="./guide.html">guide</a>. For a conceptual
+      overview of the Turing Machine formalism, see
+      <a class="doc-link" href="./about.html">about</a>.
+    </p>
+
+    <section>
+      <h2>What we'll create</h2>
+      <p>
+        This guide will walk you through the process of creating a Turing
+        Machine that decides the formal language
+        <code>A<sup>n</sup>B<sup>n</sup>C<sup>n</sup></code>. That is, we will
+        construct a machine that <i>accepts</i> all strings consisting of a
+        number of <code>A</code>s followed by the same number of
+        <code>B</code>s followed by the same number of <code>C</code>s, and
+        <i>rejects</i> all other strings.
+      </p>
+    </section>
+
+    <section>
+      <h2>Constructing the machine</h2>
+      <p>
+        Before creating the machine, it might help to walk through a simple
+        example in order to clarify our strategy. Let's consider the string
+        <code>AAABBBCCC</code>. It's large enough to (hopefully) ensure that our
+        design doesn't rely on special properties of small numbers, but small
+        enough to work with by hand.
+      </p>
+      <p>
+        Here's the core of a candidate procedure: whenever we read an
+        <code>A</code>, we cross it out and scan to the right until we see a
+        <code>B</code> (which we cross out), and then a <code>C</code> (which we
+        also cross out). After completing this process, we scan to the left to
+        the first uncrossed-out <code>A</code> and repeat. In this way, for
+        every <code>A</code>, we also verify that there is a corresponding
+        <code>B</code> and <code>C</code>.
+      </p>
+      <p>
+        We can illustrate this process with our sample string
+        <code>AAABBBCCC</code>. We cross out the leftmost <code>A</code>, after
+        which our string looks like
+        <code><span class="crossed-out">A</span>AABBBCCC</code>. We then scan to
+        the right until we see the first <span>B</span>, which we cross out,
+        yielding
+        <code><span class="crossed-out">A</span>AA<span class="crossed-out">B</span>BBCCC</code>.
+        Finally, we scan to the first <code>C</code>, and cross it out, yielding
+        <code><span class="crossed-out">A</span>AA<span class="crossed-out">B</span>BB<span class="crossed-out">C</span>CC</code>.
+        Repeating this process once more from the left yields
+        <code><span class="crossed-out">A</span><span class="crossed-out">A</span>A<span class="crossed-out">B</span><span class="crossed-out">B</span>B<span class="crossed-out">C</span><span class="crossed-out">C</span>C</code>
+        We scan through the string one final time, crossing out the remaining
+        <code>A</code>, <code>B</code>, and <code>C</code>:
+        <code><span class="crossed-out">A</span><span class="crossed-out">A</span><span class="crossed-out">A</span><span class="crossed-out">B</span><span class="crossed-out">B</span><span class="crossed-out">B</span><span class="crossed-out">C</span><span class="crossed-out">C</span><span class="crossed-out">C</span></code>
+        We can now see that because every symbol in the string has been crossed
+        out, and at no time did we cross out an <code>A</code> without also
+        crossing out a <code>B</code> and a <code>C</code>, the string
+        <code>AAABBBCCC</code> belongs to the language <code>A<sup>n</sup>B<sup>n</sup>C<sup>n</sup></code>.
+      </p>
+      <p>
+        We're now ready to construct the state diagram for this machine. If
+        you've navigated to the application (<a class="doc-link" href="./tm">wjlew.is/tm</a>),
+        you should see a screen that looks like this:
+      </p>
+
+      <div class="img-sequence">
+        <a class="img-sequence__item" href="./screenshots/fresh-open.png">
+          <img src="./screenshots/fresh-open.png" alt="The application, freshly opened" />
+        </a>
+      </div>
+
+      <p>
+        Add a machine state by clicking the "add new state" button on the lefthand side.
+      </p>
+
+      <div class="img-sequence">
+        <img class="img-sequence__item" src="./screenshots/add-new-state-button.png" alt="The 'add new state' button" />
+      </div>
+
+      <p>
+        Clicking the "add new state" button does not actually add a new state.
+        Instead, once you click the button, you can place the new state anywhere
+        on the screen by clicking on the desired location.
+      </p>
+
+      <p>
+        After adding the state, your screen should look something like this:
+      </p>
+
+      <div class="img-sequence">
+        <a class="img-sequence__item" href="./screenshots/added-first-state.png">
+          <img src="./screenshots/added-first-state.png" alt="After adding a state" />
+        </a>
+      </div>
+
+      <p>
+        Try adding another state next to the first:
+      </p>
+
+      <div class="img-sequence">
+        <a class="img-sequence__item" href="./screenshots/added-second-state.png">
+          <img src="./screenshots/added-second-state.png" alt="After adding another state" />
+        </a>
+      </div>
+
+      <p>
+        As you can see, the first state is no longer colored purple. The purple
+        coloring indicates that a state is currently selected. You can select a
+        state by clicking it. Additionally, you can select multiple states at
+        once by holding the SHIFT key and clicking the desired
+        states.
+      </p>
+
+      <p>
+        It's time to add a transition between the two states. Select the first
+        one we added. Then, holding the SHIFT key down, select the second state.
+        Some new options should appear on the lefthand side, including the "add
+        transition" button:
+      </p>
+
+      <div class="img-sequence">
+        <img class="img-sequence__item" src="./screenshots/add-transition-button.png" alt="The 'add transition' button" />
+      </div>
+
+      <p>
+        Click this button. It will add a line between the two states with an
+        arrow pointing from the first one we selected toward the second:
+      </p>
+
+      <div class="img-sequence">
+        <a class="img-sequence__item" href="./screenshots/added-transition.png">
+          <img src="./screenshots/added-transition.png" alt="After adding another state" />
+        </a>
+      </div>
+
+      <p>
+        Beside the arrow, you will see a pair of text inputs and an arrow
+        symbol. Focus the first of the inputs and type the character <code>A</code>. Then
+        focus the next input and type the character <code>a</code>:
+      </p>
+
+      <div class="img-sequence">
+        <a class="img-sequence__item" href="./screenshots/new-transition-with-symbols.png">
+          <img src="./screenshots/new-transition-with-symbols.png" alt="After changing the read/write symbols for the transition" />
+        </a>
+      </div>
+
+      <p>
+        The first symbol is the "read" symbol for the transition and the second
+        is the "write" symbol. When the machine is in the first state, it will
+        follow the transition if the current symbol under the tape head matches
+        the read symbol; when it follows the transition, it will replace the
+        read symbol with the write symbol. Lastly, the arrow indicates the
+        direction in which the tape will move when the machine follows the
+        transition. In this case, the tape will move to the <i>left</i>
+        (effectively scanning the tape head to the <i>right</i>).
+      </p>
+
+      <p>
+        Let's see if this transition behaves the way I have described above. In
+        order to try it out, we need to indicate the "initial state" of the
+        machine. For the purposes of our little experiment, we will make the
+        first state the start state. Simply select the first state, and click
+        the "distinguish as initial state" button:
+      </p>
+
+      <div class="img-sequence">
+        <img class="img-sequence__item" src="./screenshots/distinguish-as-initial-state-button.png" alt="The 'distinguish as initial state' button" />
+      </div>
+
+      <p>
+        Your machine should now resemble this:
+      </p>
+
+      <div class="img-sequence">
+        <img class="img-sequence__item" src="./screenshots/after-distinguishing-initial.png" alt="After distinguishing a state as the initial state." />
+      </div>
+
+      <p>
+        The arrow within the circle indicates that the state is the initial
+        machine state: any time the machine is reset, it will start in this
+        state. The yellow arrow indicates that the machine will be in this state
+        whenever the simulation is started or resumed. Since we have not yet
+        started the simulation, the yellow arrow points to the initial state.
+      </p>
+
+      <p>
+        Finally, we must type an <code>A</code> character in the first cell of the tape
+        (otherwise, the machine will not follow our transition). Simply focus
+        the leftmost tape cell and type the character <code>A</code>:
+      </p>
+
+      <div class="img-sequence">
+        <a class="img-sequence__item" href="./screenshots/tape-after-A.png">
+          <img src="./screenshots/tape-after-A.png" alt="After typing the character 'A' in the first tape cell" />
+        </a>
+      </div>
+
+      <p>
+        Your machine should now resemble this:
+      </p>
+
+      <div class="img-sequence">
+        <a class="img-sequence__item" href="./screenshots/before-first-test.png">
+          <img src="./screenshots/before-first-test.png" alt="The machine, before our first test" />
+        </a>
+      </div>
+
+      <p>
+        Time to see if the machine follows the transition! Without further ado,
+        press the "step" button located below the tape:
+      </p>
+
+      <div class="img-sequence">
+        <img class="img-sequence__item" src="./screenshots/step-button.png" alt="The simulation step button" />
+      </div>
+
+      <p>
+        This will execute a single step in the machine's operation. The result
+        should look something like this:
+      </p>
+
+      <div class="img-sequence">
+        <a class="img-sequence__item" href="./screenshots/test-transition.gif">
+          <img src="./screenshots/test-transition.gif" alt="Testing a transition" />
+        </a>
+      </div>
+
+      <p>
+        The machine read the character <code>A</code> under the tape head, replaced it with
+        the character <code>a</code>, moved the tape to the left, and changed the current
+        state.
+      </p>
+
+      <p>
+        To return the machine to its original simulation state, click the
+        "reset" button near the "step" button:
+      </p>
+
+      <div class="img-sequence">
+        <img class="img-sequence__item" src="./screenshots/reset-button.png" alt="The simulation reset button" />
+      </div>
+
+      <p>
+        This will revert the tape contents to whatever they were before the
+        simulation was started or stepped, and return the next simulation state
+        to the initial state.
+      </p>
+
+      <p>
+        At the moment, our machine does next to nothing. Let's add some
+        additional states and transitions to create something closer to our
+        desired <code>A<sup>n</sup>B<sup>n</sup>C<sup>n</sup></code> decider.
+      </p>
+
+      <p>
+        After reading and "crossing out" (since we can't really cross out
+        characters on the tape, we'll just replace them with their lower-case
+        variants. This preserves their "type" while also indicating that they've
+        been processed already) an <code>A</code>, we wish to scan through the
+        remaining <code>A</code>s until we see a <code>B</code>. If our first
+        machine state represents a state of "waiting to process an
+        <code>A</code>", then the second machine state might represent a state
+        of "waiting to process a <code>B</code>". In this state, whenever we see
+        an <code>A</code>, we should do nothing to it and continue scanning to
+        the right.
+      </p>
+
+      <p>
+        This requires a transition from the second state back to itself. To add
+        such a transition, select the second state, and click the "add self
+        transition" button:
+      </p>
+
+      <div class="img-sequence">
+        <img class="img-sequence__item" src="./screenshots/add-self-transition-button.png" alt="The 'add self transition' button" />
+      </div>
+
+      <p>
+        This will add a loop from the second state to itself, with the same
+        inputs and arrow selector accompanying it:
+      </p>
+
+      <div class="img-sequence">
+        <img src="./screenshots/after-adding-self-transition.png" alt="After adding a self transition" />
+      </div>
+
+      <p>
+        Since we want the machine to simply scan through any <code>A</code>s
+        that it reads when following this transition, we will provide
+        <code>A</code> as both the read and write symbol, and leave the tape
+        movement direction as it is:
+      </p>
+
+      <div class="img-sequence">
+        <img src="./screenshots/complete-self-transition.png" alt="After completing a self transition" />
+      </div>
+
+      <p>
+        The machine should now replace the first <code>A</code> it reads with an
+        <code>a</code>, and then scan through any remaining <code>A</code>s. Try
+        loading the tape with several <code>A</code>s, say <code>AAAA</code>, and
+        stepping through the simulation:
+      </p>
+
+      <div class="img-sequence">
+        <a class="img-sequence__item" href="./screenshots/test-As.gif">
+          <img src="./screenshots/test-As.gif" alt="Testing our machine so far" />
+        </a>
+      </div>
+
+      <p>
+        The machine is looking a little crowded; it would be nice if we could
+        move the two transitions a little farther apart to reduce any potential
+        confusion. Additionally, we are going to add several more states and it
+        might be nice to make some room for them in advance. Fortunately,
+        rearranging states and transition arrows is as simple as dragging and
+        dropping with the mouse. To move a state, simply drag it; to move a
+        group of states, select all of them (using SHIFT) and drag any one of
+        the selected states; to move a transition arrow, drag the arrow
+        associated with it.
+      </p>
+
+      <div class="img-sequence">
+        <a class="img-sequence__item" href="./screenshots/movements.gif">
+          <img src="./screenshots/movements.gif" alt="Rearranging the machine components" />
+        </a>
+      </div>
+
+      <p>
+        It's time to complete the core of the machine. Right now, the machine
+        scans through every <code>A</code> it reads in the second state. We need
+        to add a transition for it to follow when it reads a <code>B</code>.
+        Furthermore, this transition must move the machine to an entirely new
+        state.
+      </p>
+
+      <p>
+        Add a new state. Select the second state we added (the one that
+        repeatedly scans through <code>A</code>s), then the new state, and add a
+        transition between the two. This transition should have <code>B</code>
+        as its read symbol, <code>b</code> as its write symbol, and the default
+        leftward tape movement. Now, once we've replaced the first
+        <code>B</code> by <code>b</code>, we need to again scan through any
+        remaining <code>B</code>s. Add a self-transition to accomplish this.
+        Your machine should now look like this:
+      </p>
+
+      <div class="img-sequence">
+        <a class="img-sequence__item" href="./screenshots/after-adding-3-states.png">
+          <img src="./screenshots/after-adding-3-states.png" alt="After adding a third state" />
+        </a>
+      </div>
+
+      <p>
+        Finally, we need to add some machinery to replace the first
+        <code>C</code> we read with a <code>c</code>. However, after processing
+        a <code>C</code>, we need to scan <i>backwards</i> to repeat the core
+        process. Furthermore, we need to scan through any <code>c</code>s,
+        <code>B</code>s, <code>b</code>s, and <code>A</code>s that might exist
+        between the tape head and any leftmost remaining <code>A</code> symbol.
+      </p>
+
+      <p>
+        First, add a new state and transition to replace the first
+        <code>C</code> read with a <code>c</code>. Remember that the machine
+        needs to move the tape to the <i>right</i> when following this
+        transition. Your machine should now look like this:
+      </p>
+
+      <div class="img-sequence">
+        <a class="img-sequence__item" href="./screenshots/replace-C.png">
+          <img src="./screenshots/replace-C.png" alt="Enough machinery to replace C" />
+        </a>
+      </div>
+
+      <p>
+        To scan backwards to the leftmost <code>A</code>, we need to add a
+        number of self-transitions (one for each symbol we might encounter).
+        Begin by adding a self transition that scans through
+        <code>c</code>s and moves the tape to the right. Then, hovering over
+        this transition, click the <i>add new</i> button (or, simply add another
+        self-transition). This will add an additional transition. Configure this
+        one to scan through <code>B</code>s and move to the right. Add two more
+        transitions in the same way: one for <code>b</code>s and another for
+        <code>A</code>s. Your machine should look like this:
+      </p>
+
+      <div class="img-sequence">
+        <a class="img-sequence__item" href="./screenshots/core-almost-complete.png">
+          <img src="./screenshots/core-almost-complete.png" alt="The core nearly completed" />
+        </a>
+      </div>
+
+      <p>
+        At this point, we are nearly done with the core of the machine. We only
+        need to add a transition from the last state we added to the first. The
+        machine should follow this transition whenever it reads an
+        <code>a</code>. It should leave this <code>a</code> as is, and move to
+        the left, thus placing the tape head over the next <code>A</code>. From
+        here, the process will continue as in the first case.
+      </p>
+
+      <div class="img-sequence">
+        <a class="img-sequence__item" href="./screenshots/flawed-core.png">
+          <img src="./screenshots/flawed-core.png" alt="The completed--but buggy--core" />
+        </a>
+      </div>
+
+      <p>
+        It is worth trying a few examples at this point. The core is complete,
+        but there are two small errors that we need to fix. If the machine
+        begins processing a second round of <code>A</code>s, <code>B</code>s,
+        and <code>C</code>s, it gets stuck at the second state we added, because
+        we haven't accounted for the fact that it needs to scan through any
+        <code>b</code>s that were added in previous cycles. Likewise, we need to
+        scan through any <code>c</code>s that we might encounter in the
+        following state. After adding these two transitions, your machine should
+        look like this:
+      </p>
+
+      <div class="img-sequence">
+        <a class="img-sequence__item" href="./screenshots/completed-core.png">
+          <img src="./screenshots/completed-core.png" alt="The completed core" />
+        </a>
+      </div>
+
+      <p>
+        Try stepping through an example string, or running the simulation
+        continuously by clicking the "play" button. Here is a small clip of the
+        latter:
+      </p>
+
+      <div class="img-sequence">
+        <a class="img-sequence__item" href="./screenshots/core-operations.gif">
+          <img src="./screenshots/core-operations.gif" alt="A clip of the core operations, running" />
+        </a>
+      </div>
+
+      <p>
+        We are nearly done! Once we run out of <code>A</code>s to process, all
+        that is left to do is verify that there are no remaining <code>B</code>s
+        or <code>C</code>s on the tape.
+      </p>
+
+      <p>
+        Note that the machine returns to the initial state when it first reads
+        an <code>a</code> after processing a <code>B</code> and a
+        <code>C</code>. In a typical turn of the core loop, it will read an
+        <code>A</code> immediately thereafter; however, when all of the
+        <code>A</code>s have been processed, it will not read an <code>A</code>
+        but a <code>b</code> instead. This is the sign that we are done
+        processing <code>A</code>s.
+      </p>
+
+      <p>
+        Add a new state, and a transition to it from the initial state. This
+        transition should be taken when the machine reads a <code>b</code> on
+        the tape. Furthermore, in this state, the machine should scan through
+        any <code>b</code>s on the tape, waiting for a <code>c</code>.
+      </p>
+
+      <p>
+        Add another state, and a transition to it from the state you just added.
+        This one should be taken when the machine reads a <code>c</code>. In
+        this state, the machine should scan through any <code>c</code>s on the
+        tape.
+      </p>
+
+      <p>
+        After adding the described machinery, your machine should resemble this:
+      </p>
+
+      <div class="img-sequence">
+        <a class="img-sequence__item" href="./screenshots/beginning-verification.png">
+          <img src="./screenshots/beginning-verification.png" alt="The beginning of the verification process" />
+        </a>
+      </div>
+
+      <p>
+        Try loading the tape with an input string like <code>AABBCC</code> and
+        pressing the "play" button (or trace its operations with the "step"
+        button as we have been doing). The machine should reach the last state
+        we added and then display an ominous message similar to the following:
+      </p>
+
+      <div class="img-sequence">
+        <a class="img-sequence__item" href="./screenshots/reject-message.png">
+          <img src="./screenshots/reject-message.png" alt="The machine has rejected its input" />
+        </a>
+      </div>
+
+      <p>
+        When a machine has no transition to follow out of a state, it
+        <i>halts</i> its operations. Its computation is now complete. But this
+        is not the end of the story. A machine state can be designated as a
+        &ldquo;final&rdquo; (or &ldquo;accepting&rdquo;) state. If the machine
+        halts in a final state, it <i>accepts</i> its input; if it halts in a
+        run-of-the-mill, non-final state, it <i>rejects</i> its input.
+      </p>
+
+      <p>
+        This behavior and these terms are due to the fact that Turing machines
+        (at least in their classical form) are designed to be <i>deciders</i>,
+        meaning they answer questions of the form &ldquo;is <code>x</code> a
+        string of some designated formal language/system?&rdquo; (of course,
+        they can also change the contents of their tape, providing another
+        output channel).
+      </p>
+
+      <p>
+        In order to make our machine <i>accept</i> strings of the form
+        <code>A<sup>n</sup>B<sup>n</sup>C<sup>n</sup></code>, we simply need to
+        make the last state we added a final state. To do so, select the state,
+        and click the "toggle state's status as final" button:
+      </p>
+
+      <div class="img-sequence">
+        <img src="./screenshots/toggle-final-button.png" alt="The 'toggle state's status as final' button" />
+      </div>
+
+      <p>
+        Try running the simulation again. This time, when the machine halts, the
+        message should indicate that the input string was accepted:
+      </p>
+
+      <div class="img-sequence">
+        <a class="img-sequence__item" href="./screenshots/accepting.gif">
+          <img src="./screenshots/accepting.gif" alt="The machine accepting its input" />
+        </a>
+      </div>
+
+      <p>
+        At this point, you should test a variety of input strings, especially
+        ones that you suspect might be "tricky" to deal with. If you do so,
+        you'll find that our machine contains a bug: not only does it accept
+        strings of the form
+        <code>A<sup>n</sup>B<sup>n</sup>C<sup>n</sup></code>, as we intend, but
+        it also accepts strings of the form
+        <code>A<sup>n</sup>B<sup>n</sup>C<sup>m</sup></code>, as long as
+        <code>m</code> is at least as large as <code>n</code>.
+      </p>
+
+      <p>
+        This is due to the fact that when our machine reads the extraneous
+        <code>C</code>s, it is already in a final state with nowhere to
+        transition to, so it halts. To fix this, we simply need to provide an
+        appropriate transition out of our final state to a non-final state. The
+        machine should take this transition whenever it reads a <code>C</code>:
+      </p>
+
+      <div class="img-sequence">
+        <a class="img-sequence__item" href="./screenshots/complete-machine.png">
+          <img src="./screenshots/complete-machine.png" alt="The completed machine" />
+        </a>
+      </div>
+
+      <p>
+        The machine is now complete! Try constructing machines for some other
+        formal languages, or tinkering with the one you just created. Can you
+        make it accept strings of our language when <code>n</code> is 0 (i.e.
+        the empty string)?
+      </p>
+
+      <p>
+        Also, check out the <a class="doc-link" href="./guide.html">guide</a>
+        for more info about editor and simulation operations, downloading and
+        uploading machines, keyboard shortcuts, and more.
+      </p>
+
+    </section>
   </body>
 </html>
