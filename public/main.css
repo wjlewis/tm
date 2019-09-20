@@ -90,3 +90,18 @@ img {
   border: 1px solid var(--base-lt);
   max-width: 100%;
 }
+
+ul {
+  padding-left: 0;
+  margin: 0;
+}
+
+li {
+  margin: 3px 0;
+  font-family: var(--main-font);
+  list-style-type: none;
+}
+
+#table-of-contents {
+  margin-bottom: 50px;
+}

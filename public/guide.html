@@ -10,5 +10,156 @@
   </head>
   <body>
     <h1>The <span class="tm-name">tm</span> Guide</h1>
+
+    <p>
+      This is a complete overview of the operations and capabilities of the
+      <span class="tm-name">tm</span>
+      application. For a tutorial introduction, see the
+      <a class="doc-link" href="./tutorial.html">tutorial</a>.
+      For more information about the app and the Turing Machine formalism, see
+      <a class="doc-link" href="./about.html">about</a>.
+    </p>
+
+    <p>
+      Contents:
+    </p>
+
+    <ul id="table-of-contents">
+      <li>
+        <a class="doc-link" href="#editing-state-diagrams">Editing State Diagrams</a>
+      </li>
+      <li>
+        <a class="doc-link" href="#editing-the-tape">Editing the Tape</a>
+      </li>
+      <li>
+        <a class="doc-link" href="#simulation">Simulation</a>
+      </li>
+      <li>
+        <a class="doc-link" href="#keyboard-shortcuts">Keyboard Shortcuts</a>
+      </li>
+      <li>
+        <a class="doc-link" href="#machine-download/upload">Machine Download/Upload</a>
+      </li>
+      <li>
+        <a class="doc-link" href="#odds-and-ends">Odds and Ends</a>
+      </li>
+    </ul>
+
+    <section id="editing-state-diagrams">
+      <h2>Editing State Diagrams</h2>
+
+      <p>
+        The distinguishing feature of any particular Turing Machine is its state
+        diagram. This section outlines all that you need to know to create and
+        modify your own state diagrams.
+      </p>
+
+      <p>
+        All of the controls related to constructing and editing state diagrams
+        appear on the lefthand side of the app, as seen here:
+      </p>
+
+      <div class="img-sequence">
+        <a class="img-sequence__item" href="./screenshots/state-diagram-controls.png">
+          <img src="./screenshots/state-diagram-controls.png" alt="The state diagram editing controls" />
+        </a>
+      </div>
+
+      <p>
+        The available controls change depending on the current selection. We
+        will return to this detail later when discussing individual operations.
+      </p>
+
+      <p>
+        The most basic state diagram editing operation is adding a new state. To
+        do this, click the "add new state" button (which is always available):
+      </p>
+
+      <div class="img-sequence">
+        <img class="img-sequence__item" src="./screenshots/add-new-state-button.png" alt="The 'add new state' button" />
+      </div>
+
+      <p>
+        Now, no state will be added after clicking this button. Instead, you
+        should see a "phantom state" underneath your cursor as you move it
+        around the app. To add a state, simply click anywhere on the screen.
+        This adds a new state at the location you clicked:
+      </p>
+
+      <div class="img-sequence">
+        <a class="img-sequence__item" href="./screenshots/adding-new-state.gif">
+          <img src="./screenshots/adding-new-state.gif" alt="Adding a new state" />
+        </a>
+      </div>
+
+      <p>
+        To select a state, simply click it. The state will change to a purple
+        color to indicate that it is currently selected. To select multiple
+        states, hold the SHIFT key and click each of the desired states. To
+        deselect all selected states, click an empty area on the screen.
+      </p>
+
+      <p>
+        States may also be moved around the screen. To move a single state,
+        simply drag it with the cursor. To move a collection of states, select
+        all of them (by holding the SHIFT key) and then drag one of the selected
+        states with the cursor.
+      </p>
+
+      <div class="img-sequence">
+        <a class="img-sequence__item" href="./screenshots/moving-states.gif">
+          <img src="./screenshots/moving-states.gif" alt="Moving some states around" />
+        </a>
+      </div>
+
+      <p>
+        To delete a state, select the state and click the "delete state" button:
+      </p>
+
+      <div class="img-sequence">
+        <img class="img-sequence__item" src="./screenshots/delete-state-button.png" alt="The 'delete state' button" />
+      </div>
+
+      <p>
+        To delete multiple states, select the desired states and click the
+        appropriate "delete states" button:
+      </p>
+
+      <div class="img-sequence">
+        <img class="img-sequence__item" src="./screenshots/delete-2-states-button.png" alt="The 'delete 2 states' button" />
+        <img class="img-sequence__item" src="./screenshots/delete-many-states-button.png" alt="The 'delete many states' button" />
+      </div>
+
+      <p>
+        In order to simulate a machine's operations, one of the states must be
+        distinguished as the initial state. To do so, select a state and click
+        the "distinguish as initial state" button:
+      </p>
+
+      <div class="img-sequence">
+        <img class="img-sequence__item" src="./screenshots/distinguish-as-initial-state-button.png" alt="The 'distinguish as initial state' button" />
+      </div>
+
+    </section>
+
+    <section id="editing-the-tape">
+      <h2>Editing the Tape</h2>
+    </section>
+
+    <section id="simulation">
+      <h2>Simulation</h2>
+    </section>
+
+    <section id="keyboard-shortcuts">
+      <h2>Keyboard Shortcuts</h2>
+    </section>
+
+    <section id="machine-download/upload">
+      <h2>Machine Download/Upload</h2>
+    </section>
+
+    <section id="odds-and-ends">
+      <h2>Odds and Ends</h2>
+    </section>
   </body>
 </html>
