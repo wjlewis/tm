@@ -3,7 +3,10 @@
   <head>
     <meta charset="utf-8" />
     <title>Tutorial</title>
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Fira+Sans|Roboto+Mono&display=swap" />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css?family=Fira+Sans|Roboto+Mono&display=swap"
+    />
     <link rel="shortcut ico" href="./favicon.ico" type="image/x-icon" />
     <link rel="icon" href="./favicon.ico" type="image/x-icon" />
     <link rel="stylesheet" href="./main.css" type="text/css" />
@@ -25,9 +28,9 @@
       <p>
         This guide will walk you through the process of creating a Turing
         Machine that decides the formal language
-        <code>A<sup>n</sup>B<sup>n</sup>C<sup>n</sup></code>. That is, we will
-        construct a machine that <i>accepts</i> all strings consisting of a
-        number of <code>A</code>s followed by the same number of
+        <code>A<sup>n</sup>B<sup>n</sup>C<sup>n</sup></code
+        >. That is, we will construct a machine that <i>accepts</i> all strings
+        consisting of a number of <code>A</code>s followed by the same number of
         <code>B</code>s followed by the same number of <code>C</code>s, and
         <i>rejects</i> all other strings.
       </p>
@@ -58,37 +61,66 @@
         <code><span class="crossed-out">A</span>AABBBCCC</code>. We then scan to
         the right until we see the first <span>B</span>, which we cross out,
         yielding
-        <code><span class="crossed-out">A</span>AA<span class="crossed-out">B</span>BBCCC</code>.
-        Finally, we scan to the first <code>C</code>, and cross it out, yielding
-        <code><span class="crossed-out">A</span>AA<span class="crossed-out">B</span>BB<span class="crossed-out">C</span>CC</code>.
-        Repeating this process once more from the left yields
-        <code><span class="crossed-out">A</span><span class="crossed-out">A</span>A<span class="crossed-out">B</span><span class="crossed-out">B</span>B<span class="crossed-out">C</span><span class="crossed-out">C</span>C</code>
+        <code
+          ><span class="crossed-out">A</span>AA<span class="crossed-out">B</span
+          >BBCCC</code
+        >. Finally, we scan to the first <code>C</code>, and cross it out,
+        yielding
+        <code
+          ><span class="crossed-out">A</span>AA<span class="crossed-out">B</span
+          >BB<span class="crossed-out">C</span>CC</code
+        >. Repeating this process once more from the left yields
+        <code
+          ><span class="crossed-out">A</span
+          ><span class="crossed-out">A</span>A<span class="crossed-out">B</span
+          ><span class="crossed-out">B</span>B<span class="crossed-out">C</span
+          ><span class="crossed-out">C</span>C</code
+        >
         We scan through the string one final time, crossing out the remaining
         <code>A</code>, <code>B</code>, and <code>C</code>:
-        <code><span class="crossed-out">A</span><span class="crossed-out">A</span><span class="crossed-out">A</span><span class="crossed-out">B</span><span class="crossed-out">B</span><span class="crossed-out">B</span><span class="crossed-out">C</span><span class="crossed-out">C</span><span class="crossed-out">C</span></code>
+        <code
+          ><span class="crossed-out">A</span><span class="crossed-out">A</span
+          ><span class="crossed-out">A</span><span class="crossed-out">B</span
+          ><span class="crossed-out">B</span><span class="crossed-out">B</span
+          ><span class="crossed-out">C</span><span class="crossed-out">C</span
+          ><span class="crossed-out">C</span></code
+        >
         We can now see that because every symbol in the string has been crossed
         out, and at no time did we cross out an <code>A</code> without also
         crossing out a <code>B</code> and a <code>C</code>, the string
-        <code>AAABBBCCC</code> belongs to the language <code>A<sup>n</sup>B<sup>n</sup>C<sup>n</sup></code>.
+        <code>AAABBBCCC</code> belongs to the language
+        <code>A<sup>n</sup>B<sup>n</sup>C<sup>n</sup></code
+        >.
       </p>
       <p>
         We're now ready to construct the state diagram for this machine. If
-        you've navigated to the application (<a class="doc-link" href="https://wjlew.is/tm">wjlew.is/tm</a>),
-        you should see a screen that looks like this:
+        you've navigated to the application (<a
+          class="doc-link"
+          href="https://wjlewis.github.io/tm"
+          >wjlew.is/tm</a
+        >), you should see a screen that looks like this:
       </p>
 
       <div class="img-sequence">
         <a class="img-sequence__item" href="./screenshots/fresh-open.png">
-          <img src="./screenshots/fresh-open.png" alt="The application, freshly opened" />
+          <img
+            src="./screenshots/fresh-open.png"
+            alt="The application, freshly opened"
+          />
         </a>
       </div>
 
       <p>
-        Add a machine state by clicking the "add new state" button on the lefthand side.
+        Add a machine state by clicking the "add new state" button on the
+        lefthand side.
       </p>
 
       <div class="img-sequence">
-        <img class="img-sequence__item" src="./screenshots/add-new-state-button.png" alt="The 'add new state' button" />
+        <img
+          class="img-sequence__item"
+          src="./screenshots/add-new-state-button.png"
+          alt="The 'add new state' button"
+        />
       </div>
 
       <p>
@@ -102,18 +134,28 @@
       </p>
 
       <div class="img-sequence">
-        <a class="img-sequence__item" href="./screenshots/added-first-state.png">
-          <img src="./screenshots/added-first-state.png" alt="After adding a state" />
+        <a
+          class="img-sequence__item"
+          href="./screenshots/added-first-state.png"
+        >
+          <img
+            src="./screenshots/added-first-state.png"
+            alt="After adding a state"
+          />
         </a>
       </div>
 
-      <p>
-        Try adding another state next to the first:
-      </p>
+      <p>Try adding another state next to the first:</p>
 
       <div class="img-sequence">
-        <a class="img-sequence__item" href="./screenshots/added-second-state.png">
-          <img src="./screenshots/added-second-state.png" alt="After adding another state" />
+        <a
+          class="img-sequence__item"
+          href="./screenshots/added-second-state.png"
+        >
+          <img
+            src="./screenshots/added-second-state.png"
+            alt="After adding another state"
+          />
         </a>
       </div>
 
@@ -121,8 +163,7 @@
         As you can see, the first state is no longer colored purple. The purple
         coloring indicates that a state is currently selected. You can select a
         state by clicking it. Additionally, you can select multiple states at
-        once by holding the SHIFT key and clicking the desired
-        states.
+        once by holding the SHIFT key and clicking the desired states.
       </p>
 
       <p>
@@ -133,7 +174,11 @@
       </p>
 
       <div class="img-sequence">
-        <img class="img-sequence__item" src="./screenshots/add-transition-button.png" alt="The 'add transition' button" />
+        <img
+          class="img-sequence__item"
+          src="./screenshots/add-transition-button.png"
+          alt="The 'add transition' button"
+        />
       </div>
 
       <p>
@@ -143,19 +188,29 @@
 
       <div class="img-sequence">
         <a class="img-sequence__item" href="./screenshots/added-transition.png">
-          <img src="./screenshots/added-transition.png" alt="After adding another state" />
+          <img
+            src="./screenshots/added-transition.png"
+            alt="After adding another state"
+          />
         </a>
       </div>
 
       <p>
         Beside the arrow, you will see a pair of text inputs and an arrow
-        symbol. Focus the first of the inputs and type the character <code>A</code>. Then
-        focus the next input and type the character <code>a</code>:
+        symbol. Focus the first of the inputs and type the character
+        <code>A</code>. Then focus the next input and type the character
+        <code>a</code>:
       </p>
 
       <div class="img-sequence">
-        <a class="img-sequence__item" href="./screenshots/new-transition-with-symbols.png">
-          <img src="./screenshots/new-transition-with-symbols.png" alt="After changing the read/write symbols for the transition" />
+        <a
+          class="img-sequence__item"
+          href="./screenshots/new-transition-with-symbols.png"
+        >
+          <img
+            src="./screenshots/new-transition-with-symbols.png"
+            alt="After changing the read/write symbols for the transition"
+          />
         </a>
       </div>
 
@@ -166,8 +221,8 @@
         the read symbol; when it follows the transition, it will replace the
         read symbol with the write symbol. Lastly, the arrow indicates the
         direction in which the tape will move when the machine follows the
-        transition. In this case, the tape will move to the <i>left</i>
-        (effectively scanning the tape head to the <i>right</i>).
+        transition. In this case, the tape will move to the
+        <i>left</i> (effectively scanning the tape head to the <i>right</i>).
       </p>
 
       <p>
@@ -179,15 +234,21 @@
       </p>
 
       <div class="img-sequence">
-        <img class="img-sequence__item" src="./screenshots/distinguish-as-initial-state-button.png" alt="The 'distinguish as initial state' button" />
+        <img
+          class="img-sequence__item"
+          src="./screenshots/distinguish-as-initial-state-button.png"
+          alt="The 'distinguish as initial state' button"
+        />
       </div>
 
-      <p>
-        Your machine should now resemble this:
-      </p>
+      <p>Your machine should now resemble this:</p>
 
       <div class="img-sequence">
-        <img class="img-sequence__item" src="./screenshots/after-distinguishing-initial.png" alt="After distinguishing a state as the initial state." />
+        <img
+          class="img-sequence__item"
+          src="./screenshots/after-distinguishing-initial.png"
+          alt="After distinguishing a state as the initial state."
+        />
       </div>
 
       <p>
@@ -199,24 +260,31 @@
       </p>
 
       <p>
-        Finally, we must type an <code>A</code> character in the first cell of the tape
-        (otherwise, the machine will not follow our transition). Simply focus
-        the leftmost tape cell and type the character <code>A</code>:
+        Finally, we must type an <code>A</code> character in the first cell of
+        the tape (otherwise, the machine will not follow our transition). Simply
+        focus the leftmost tape cell and type the character <code>A</code>:
       </p>
 
       <div class="img-sequence">
         <a class="img-sequence__item" href="./screenshots/tape-after-A.png">
-          <img src="./screenshots/tape-after-A.png" alt="After typing the character 'A' in the first tape cell" />
+          <img
+            src="./screenshots/tape-after-A.png"
+            alt="After typing the character 'A' in the first tape cell"
+          />
         </a>
       </div>
 
-      <p>
-        Your machine should now resemble this:
-      </p>
+      <p>Your machine should now resemble this:</p>
 
       <div class="img-sequence">
-        <a class="img-sequence__item" href="./screenshots/before-first-test.png">
-          <img src="./screenshots/before-first-test.png" alt="The machine, before our first test" />
+        <a
+          class="img-sequence__item"
+          href="./screenshots/before-first-test.png"
+        >
+          <img
+            src="./screenshots/before-first-test.png"
+            alt="The machine, before our first test"
+          />
         </a>
       </div>
 
@@ -226,7 +294,11 @@
       </p>
 
       <div class="img-sequence">
-        <img class="img-sequence__item" src="./screenshots/step-button.png" alt="The simulation step button" />
+        <img
+          class="img-sequence__item"
+          src="./screenshots/step-button.png"
+          alt="The simulation step button"
+        />
       </div>
 
       <p>
@@ -236,14 +308,17 @@
 
       <div class="img-sequence">
         <a class="img-sequence__item" href="./screenshots/test-transition.gif">
-          <img src="./screenshots/test-transition.gif" alt="Testing a transition" />
+          <img
+            src="./screenshots/test-transition.gif"
+            alt="Testing a transition"
+          />
         </a>
       </div>
 
       <p>
-        The machine read the character <code>A</code> under the tape head, replaced it with
-        the character <code>a</code>, moved the tape to the left, and changed the current
-        state.
+        The machine read the character <code>A</code> under the tape head,
+        replaced it with the character <code>a</code>, moved the tape to the
+        left, and changed the current state.
       </p>
 
       <p>
@@ -252,7 +327,11 @@
       </p>
 
       <div class="img-sequence">
-        <img class="img-sequence__item" src="./screenshots/reset-button.png" alt="The simulation reset button" />
+        <img
+          class="img-sequence__item"
+          src="./screenshots/reset-button.png"
+          alt="The simulation reset button"
+        />
       </div>
 
       <p>
@@ -287,7 +366,11 @@
       </p>
 
       <div class="img-sequence">
-        <img class="img-sequence__item" src="./screenshots/add-self-transition-button.png" alt="The 'add self transition' button" />
+        <img
+          class="img-sequence__item"
+          src="./screenshots/add-self-transition-button.png"
+          alt="The 'add self transition' button"
+        />
       </div>
 
       <p>
@@ -296,7 +379,10 @@
       </p>
 
       <div class="img-sequence">
-        <img src="./screenshots/after-adding-self-transition.png" alt="After adding a self transition" />
+        <img
+          src="./screenshots/after-adding-self-transition.png"
+          alt="After adding a self transition"
+        />
       </div>
 
       <p>
@@ -307,19 +393,25 @@
       </p>
 
       <div class="img-sequence">
-        <img src="./screenshots/complete-self-transition.png" alt="After completing a self transition" />
+        <img
+          src="./screenshots/complete-self-transition.png"
+          alt="After completing a self transition"
+        />
       </div>
 
       <p>
         The machine should now replace the first <code>A</code> it reads with an
         <code>a</code>, and then scan through any remaining <code>A</code>s. Try
-        loading the tape with several <code>A</code>s, say <code>AAAA</code>, and
-        stepping through the simulation:
+        loading the tape with several <code>A</code>s, say <code>AAAA</code>,
+        and stepping through the simulation:
       </p>
 
       <div class="img-sequence">
         <a class="img-sequence__item" href="./screenshots/test-As.gif">
-          <img src="./screenshots/test-As.gif" alt="Testing our machine so far" />
+          <img
+            src="./screenshots/test-As.gif"
+            alt="Testing our machine so far"
+          />
         </a>
       </div>
 
@@ -337,7 +429,10 @@
 
       <div class="img-sequence">
         <a class="img-sequence__item" href="./screenshots/movements.gif">
-          <img src="./screenshots/movements.gif" alt="Rearranging the machine components" />
+          <img
+            src="./screenshots/movements.gif"
+            alt="Rearranging the machine components"
+          />
         </a>
       </div>
 
@@ -352,17 +447,23 @@
       <p>
         Add a new state. Select the second state we added (the one that
         repeatedly scans through <code>A</code>s), then the new state, and add a
-        transition between the two. This transition should have <code>B</code>
-        as its read symbol, <code>b</code> as its write symbol, and the default
-        leftward tape movement. Now, once we've replaced the first
-        <code>B</code> by <code>b</code>, we need to again scan through any
-        remaining <code>B</code>s. Add a self-transition to accomplish this.
+        transition between the two. This transition should have
+        <code>B</code> as its read symbol, <code>b</code> as its write symbol,
+        and the default leftward tape movement. Now, once we've replaced the
+        first <code>B</code> by <code>b</code>, we need to again scan through
+        any remaining <code>B</code>s. Add a self-transition to accomplish this.
         Your machine should now look like this:
       </p>
 
       <div class="img-sequence">
-        <a class="img-sequence__item" href="./screenshots/after-adding-3-states.png">
-          <img src="./screenshots/after-adding-3-states.png" alt="After adding a third state" />
+        <a
+          class="img-sequence__item"
+          href="./screenshots/after-adding-3-states.png"
+        >
+          <img
+            src="./screenshots/after-adding-3-states.png"
+            alt="After adding a third state"
+          />
         </a>
       </div>
 
@@ -384,25 +485,34 @@
 
       <div class="img-sequence">
         <a class="img-sequence__item" href="./screenshots/replace-C.png">
-          <img src="./screenshots/replace-C.png" alt="Enough machinery to replace C" />
+          <img
+            src="./screenshots/replace-C.png"
+            alt="Enough machinery to replace C"
+          />
         </a>
       </div>
 
       <p>
         To scan backwards to the leftmost <code>A</code>, we need to add a
         number of self-transitions (one for each symbol we might encounter).
-        Begin by adding a self transition that scans through
-        <code>c</code>s and moves the tape to the right. Then, hovering over
-        this transition, click the <i>add new</i> button (or, simply add another
-        self-transition). This will add an additional transition. Configure this
-        one to scan through <code>B</code>s and move to the right. Add two more
-        transitions in the same way: one for <code>b</code>s and another for
-        <code>A</code>s. Your machine should look like this:
+        Begin by adding a self transition that scans through <code>c</code>s and
+        moves the tape to the right. Then, hovering over this transition, click
+        the <i>add new</i> button (or, simply add another self-transition). This
+        will add an additional transition. Configure this one to scan through
+        <code>B</code>s and move to the right. Add two more transitions in the
+        same way: one for <code>b</code>s and another for <code>A</code>s. Your
+        machine should look like this:
       </p>
 
       <div class="img-sequence">
-        <a class="img-sequence__item" href="./screenshots/core-almost-complete.png">
-          <img src="./screenshots/core-almost-complete.png" alt="The core nearly completed" />
+        <a
+          class="img-sequence__item"
+          href="./screenshots/core-almost-complete.png"
+        >
+          <img
+            src="./screenshots/core-almost-complete.png"
+            alt="The core nearly completed"
+          />
         </a>
       </div>
 
@@ -417,7 +527,10 @@
 
       <div class="img-sequence">
         <a class="img-sequence__item" href="./screenshots/flawed-core.png">
-          <img src="./screenshots/flawed-core.png" alt="The completed--but buggy--core" />
+          <img
+            src="./screenshots/flawed-core.png"
+            alt="The completed--but buggy--core"
+          />
         </a>
       </div>
 
@@ -435,7 +548,10 @@
 
       <div class="img-sequence">
         <a class="img-sequence__item" href="./screenshots/completed-core.png">
-          <img src="./screenshots/completed-core.png" alt="The completed core" />
+          <img
+            src="./screenshots/completed-core.png"
+            alt="The completed core"
+          />
         </a>
       </div>
 
@@ -447,7 +563,10 @@
 
       <div class="img-sequence">
         <a class="img-sequence__item" href="./screenshots/core-operations.gif">
-          <img src="./screenshots/core-operations.gif" alt="A clip of the core operations, running" />
+          <img
+            src="./screenshots/core-operations.gif"
+            alt="A clip of the core operations, running"
+          />
         </a>
       </div>
 
@@ -462,9 +581,9 @@
         an <code>a</code> after processing a <code>B</code> and a
         <code>C</code>. In a typical turn of the core loop, it will read an
         <code>A</code> immediately thereafter; however, when all of the
-        <code>A</code>s have been processed, it will not read an <code>A</code>
-        but a <code>b</code> instead. This is the sign that we are done
-        processing <code>A</code>s.
+        <code>A</code>s have been processed, it will not read an
+        <code>A</code> but a <code>b</code> instead. This is the sign that we
+        are done processing <code>A</code>s.
       </p>
 
       <p>
@@ -486,8 +605,14 @@
       </p>
 
       <div class="img-sequence">
-        <a class="img-sequence__item" href="./screenshots/beginning-verification.png">
-          <img src="./screenshots/beginning-verification.png" alt="The beginning of the verification process" />
+        <a
+          class="img-sequence__item"
+          href="./screenshots/beginning-verification.png"
+        >
+          <img
+            src="./screenshots/beginning-verification.png"
+            alt="The beginning of the verification process"
+          />
         </a>
       </div>
 
@@ -500,7 +625,10 @@
 
       <div class="img-sequence">
         <a class="img-sequence__item" href="./screenshots/reject-message.png">
-          <img src="./screenshots/reject-message.png" alt="The machine has rejected its input" />
+          <img
+            src="./screenshots/reject-message.png"
+            alt="The machine has rejected its input"
+          />
         </a>
       </div>
 
@@ -524,13 +652,17 @@
 
       <p>
         In order to make our machine <i>accept</i> strings of the form
-        <code>A<sup>n</sup>B<sup>n</sup>C<sup>n</sup></code>, we simply need to
-        make the last state we added a final state. To do so, select the state,
-        and click the "toggle state's status as final" button:
+        <code>A<sup>n</sup>B<sup>n</sup>C<sup>n</sup></code
+        >, we simply need to make the last state we added a final state. To do
+        so, select the state, and click the "toggle state's status as final"
+        button:
       </p>
 
       <div class="img-sequence">
-        <img src="./screenshots/toggle-final-button.png" alt="The 'toggle state's status as final' button" />
+        <img
+          src="./screenshots/toggle-final-button.png"
+          alt="The 'toggle state's status as final' button"
+        />
       </div>
 
       <p>
@@ -540,7 +672,10 @@
 
       <div class="img-sequence">
         <a class="img-sequence__item" href="./screenshots/accepting.gif">
-          <img src="./screenshots/accepting.gif" alt="The machine accepting its input" />
+          <img
+            src="./screenshots/accepting.gif"
+            alt="The machine accepting its input"
+          />
         </a>
       </div>
 
@@ -549,10 +684,10 @@
         ones that you suspect might be "tricky" to deal with. If you do so,
         you'll find that our machine contains a bug: not only does it accept
         strings of the form
-        <code>A<sup>n</sup>B<sup>n</sup>C<sup>n</sup></code>, as we intend, but
-        it also accepts strings of the form
-        <code>A<sup>n</sup>B<sup>n</sup>C<sup>m</sup></code>, as long as
-        <code>m</code> is at least as large as <code>n</code>.
+        <code>A<sup>n</sup>B<sup>n</sup>C<sup>n</sup></code
+        >, as we intend, but it also accepts strings of the form
+        <code>A<sup>n</sup>B<sup>n</sup>C<sup>m</sup></code
+        >, as long as <code>m</code> is at least as large as <code>n</code>.
       </p>
 
       <p>
@@ -565,7 +700,10 @@
 
       <div class="img-sequence">
         <a class="img-sequence__item" href="./screenshots/complete-machine.png">
-          <img src="./screenshots/complete-machine.png" alt="The completed machine" />
+          <img
+            src="./screenshots/complete-machine.png"
+            alt="The completed machine"
+          />
         </a>
       </div>
 
@@ -581,7 +719,6 @@
         for more info about editor and simulation operations, downloading and
         uploading machines, keyboard shortcuts, and more.
       </p>
-
     </section>
   </body>
 </html>
