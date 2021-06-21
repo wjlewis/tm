@@ -1,15 +1,11 @@
-## A machine capable of looking at itself?!
+## Overview
 
-Turing machines are fascinating.
-With the right idea in mind and a modicum of patience, we can encode any machine as a symbol-string, load it into a "universal" machine's tape, hit _go_ and watch the host machine perfectly emulate its input machine, state-for-state, step-by-step in a sort of Quinean dream that would make even the staunchest naysayers grin.
+One of the most interesting questions of our time is "what is computation?".
+This raises all sorts of additional intriguing questions like "in what sense is a JavaScript evaluator the same as a PDP-11?", "is an iPhone more powerful than an abacus, and if so, why?", "can the human mind be mapped onto a physical medium?", and more.
+The first two questions can be answered with the use of a model of computation called a _Turing Machine_ (named after its creator, Alan M. Turing).
 
-Aside from being fascinating, Turing machines are just plain fun.
-This is an attempt to provide an easy-to-use sandbox for creating, debugging, and running small Turing machines.
-Enjoy!
+Now, a Turing Machine is probably not anyone's first choice when posed with a typical programming problem.
+It lacks much of the richness that characterizes most modern languages (for instance, it doesn't even provide a way to create subroutines), but where it really shines is its delightful simplicity.
 
-## Thanks
-
-To Alan M. Turing, a human being way ahead of their time in more ways than one.
-
-Prof. Kevin Treu, who introduced me to Turing and computation not once but _twice_: first when I was a freshman, and second when I was a senior.
-Many thanks, Dr. Treu; I couldn't think of a better way to book-end a college career!
+This repository contains the source code for a web app that allows you to create and run Turing Machines of your own design.
+I hope you have as much fun using it as I did writing it.
